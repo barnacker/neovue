@@ -21,6 +21,9 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			"windwp/nvim-ts-autotag",
+		},
 		build = ":TSUpdate",
 		config = function()
 			require'nvim-treesitter.configs'.setup {
@@ -77,6 +80,14 @@ return {
 				indent = {
   			  enable = true
   			},
+
+				autotag = {
+					enable = true,
+					enable_rename = true,
+    			enable_close = true,
+    			enable_close_on_slash = true,
+    			-- filetypes = { "html" , "xml" },
+				}
 			}
 		end
 	},
