@@ -1,0 +1,21 @@
+{
+	"Vue for Reals: Main SFC Structure (Default)": {
+		"prefix": "reals-vue3-template",
+		"body": [
+      "<script setup lang=\"ts\">",
+      "",
+      "</script>",
+      "",
+			"<template>",
+      "\t<div>",
+      "",
+      "\t</div>",
+      "</template>",
+      "",
+      "<style scoped>",
+      "",
+      "</style>"
+		], 
+		"description": "Vue 3 SFC Typescript/Composition API"
+	}
+}

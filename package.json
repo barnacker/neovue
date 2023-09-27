@@ -1,0 +1,13 @@
+{
+	"name": "reals-snippets",
+	"contributes": {
+		"snippets": 
+		[
+			{
+				"language": "vue",
+				"path": "./snippets/real.json"
+			}
+		]
+	}
+}
+
