@@ -109,11 +109,21 @@ return {
 			local lsp_status = require('lsp-status')
 			lsp_status.register_progress()
 
+			--Enable (broadcasting) snippet capability for completion
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+			require 'lspconfig'.html.setup {
+				handlers = lsp_status.extensions.clangd.setup(),
+				on_attach = lsp_status.on_attach,
+				capabilities = capabilities
+			}
+
 			require 'lspconfig'.volar.setup({
 				handlers = lsp_status.extensions.clangd.setup(),
 				on_attach = lsp_status.on_attach,
 				capabilities = lsp_status.capabilities,
-				filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+				filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json', 'html' },
 				init_options = {
 					languageFeatures = {
 						references = true,

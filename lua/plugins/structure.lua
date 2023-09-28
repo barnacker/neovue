@@ -309,7 +309,7 @@ return {
 				}
 			})
 
-			vim.cmd([[nnoremap \ :Neotree reveal focus<cr>]])
+			vim.cmd([[nnoremap \ :wincmd w<cr>]])
 			vim.cmd([[nnoremap <M-Bslash> :Neotree reveal toggle<cr>]])
 			vim.api.nvim_create_augroup("neotree_autoopen", { clear = true })
 			vim.api.nvim_create_autocmd("BufRead", { -- Changed from BufReadPre
