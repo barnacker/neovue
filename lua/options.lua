@@ -2,6 +2,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.o.relativenumber = true
 vim.o.number = true
 vim.o.signcolumn = 'yes'
 vim.o.clipboard = 'unnamedplus'
@@ -16,3 +17,4 @@ vim.o.updatetime = 300
 vim.o.mouse = 'a'
 
 vim.o.wrap = false
+vim.o.laststatus = 3
