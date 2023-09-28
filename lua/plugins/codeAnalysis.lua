@@ -106,7 +106,13 @@ return {
 				end
 			end
 
+			local lsp_status = require('lsp-status')
+			lsp_status.register_progress()
+
 			require 'lspconfig'.volar.setup({
+				handlers = lsp_status.extensions.clangd.setup(),
+				on_attach = lsp_status.on_attach,
+				capabilities = lsp_status.capabilities,
 				filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
 				init_options = {
 					languageFeatures = {
@@ -142,6 +148,9 @@ return {
 			})
 
 			require 'lspconfig'.lua_ls.setup({
+				handlers = lsp_status.extensions.clangd.setup(),
+				on_attach = lsp_status.on_attach,
+				capabilities = lsp_status.capabilities,
 				on_new_config = function(new_config, new_root_dir)
 					new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
 				end,
@@ -222,4 +231,10 @@ return {
 			})
 		end,
 	},
+	{
+		"nvim-lua/lsp-status.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+	}
 }

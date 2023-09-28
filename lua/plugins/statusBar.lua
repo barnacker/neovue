@@ -1,13 +1,5 @@
 return {
 	{
-		"j-hui/fidget.nvim",
-		tag = "legacy",
-		event = "LspAttach",
-		opts = {
-			-- options
-		},
-	},
-	{
 		"rebelot/heirline.nvim",
 		lazy = true,
 		event = "UiEnter",
@@ -21,7 +13,7 @@ return {
 			local utils            = require("heirline.utils")
 
 			local colors           = {
-				bright_bg = "", -- utils.get_highlight("Folded").bg,
+				bright_bg = utils.get_highlight("Folded").bg,
 				bright_fg = utils.get_highlight("Folded").fg,
 				red = utils.get_highlight("DiagnosticError").fg,
 				dark_red = utils.get_highlight("DiffDelete").bg,
@@ -564,6 +556,15 @@ return {
 				},
 			}
 
+			local LSPMessages = {
+				condition = #vim.lsp.buf_get_clients() > 0,
+				provider = function()
+					local statusline = require('lsp-status/statusline').progress()
+					return statusline.progress
+				end
+
+			}
+
 			local Align = { provider = "%=" }
 			local Space = { provider = " " }
 
@@ -587,7 +588,7 @@ return {
 				--Navic, DAPMessages, Align,
 				Align,
 				--LSPActive, Space, LSPMessages, Space, UltTest, Space, FileType, Space, Ruler, Space, ScrollBar
-				Diagnostics, Space, LSPActive, Space, FileType, Ruler, Space, ScrollBar
+				LSPActive, Space, FileType, Ruler, Space, ScrollBar
 			}
 
 			local InactiveStatusline = {
@@ -754,8 +755,8 @@ return {
 				},
 			}
 
-			vim.keymap.set({ "n", "i" }, "<A-l>", "<cmd>bnext<cr>")
-			vim.keymap.set({ "n", "i" }, "<A-h>", "<cmd>bprevious<cr>")
+			vim.keymap.set({ "n", "i" }, "<A-l>", "<cmd>BufferLineCycleNext<cr>")
+			vim.keymap.set({ "n", "i" }, "<A-h>", "<cmd>BufferLineCyclePrev<cr>")
 			vim.keymap.set({ "n", "i" }, "<M-k>", "<cmd>Navbuddy<cr>")
 			vim.keymap.set({ "n", "i" }, "<M-j>", "<cmd>Navbuddy<cr>")
 			vim.keymap.set({ "n", "i" }, "", "<cmd>w<cr>")
@@ -912,7 +913,7 @@ return {
 
 			require("heirline").setup({
 				-- winbar = WinBars,
-				tabline = TabLine,
+				-- tabline = TabLine,
 				statusline = StatusLines,
 				--statuscolumn = {...},
 				opts = {

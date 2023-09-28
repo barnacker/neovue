@@ -18,3 +18,6 @@ vim.o.mouse = 'a'
 
 vim.o.wrap = false
 vim.o.laststatus = 3
+
+vim.o.laststatus = 3
+vim.o.showtabline = 2
