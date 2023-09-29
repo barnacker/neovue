@@ -122,36 +122,6 @@ return {
 				},
 			}
 
-			local WorkDir          = {
-				init = function(self)
-					self.icon = (vim.fn.haslocaldir(0) == 1 and "l" or "g") .. " " .. "󱁿 "
-					local cwd = vim.fn.getcwd(0)
-					self.cwd = vim.fn.fnamemodify(cwd, ":~")
-				end,
-				hl = { fg = "blue", bold = true },
-
-				flexible = 1,
-
-				{
-					-- evaluates to the full-lenth path
-					provider = function(self)
-						local trail = self.cwd:sub(-1) == "/" and "" or "/"
-						return self.icon .. self.cwd .. trail .. " "
-					end,
-				},
-				{
-					-- evaluates to the shortened path
-					provider = function(self)
-						local cwd = vim.fn.pathshorten(self.cwd)
-						local trail = self.cwd:sub(-1) == "/" and "" or "/"
-						return self.icon .. cwd .. trail .. " "
-					end,
-				},
-				{
-					-- evaluates to "", hiding the component
-					provider = "",
-				}
-			}
 			local FileNameBlock    = {
 				-- let's first set up some attributes needed by this component and it's children
 				init = function(self)
@@ -168,16 +138,72 @@ return {
 						{ default = true })
 				end,
 				provider = function(self)
-					return (self.icon .. "  ")
+					return self.icon and (self.icon .. " ")
 				end,
 				hl = function(self)
 					return { fg = self.icon_color }
 				end
 			}
 
+			local FileName         = {
+				provider = function(self)
+					-- first, trim the pattern relative to the current directory. For other
+					-- options, see :h filename-modifers
+					local filename = vim.fn.fnamemodify(self.filename, ":.")
+					if filename == "" then return "[No Name]" end
+					-- now, if the filename would occupy more than 1/4th of the available
+					-- space, we trim the file path to its initials
+					-- See Flexible Components section below for dynamic truncation
+					if not conditions.width_percent_below(#filename, 0.25) then
+						filename = vim.fn.pathshorten(filename)
+					end
+					return filename
+				end,
+				hl = { fg = utils.get_highlight("Directory").fg },
+			}
+
+			local FileFlags        = {
+				{
+					condition = function()
+						return vim.bo.modified
+					end,
+					provider = "[+]",
+					hl = { fg = "green" },
+				},
+				{
+					condition = function()
+						return not vim.bo.modifiable or vim.bo.readonly
+					end,
+					provider = "",
+					hl = { fg = "orange" },
+				},
+			}
+
+			-- Now, let's say that we want the filename color to change if the buffer is
+			-- modified. Of course, we could do that directly using the FileName.hl field,
+			-- but we'll see how easy it is to alter existing components using a "modifier"
+			-- component
+
+			local FileNameModifer  = {
+				hl = function()
+					if vim.bo.modified then
+						-- use `force` because we need to override the child's hl foreground
+						return { fg = "cyan", bold = true, force = true }
+					end
+				end,
+			}
+
+			-- let's add the children to our FileNameBlock component
+			FileNameBlock          = utils.insert(FileNameBlock,
+				FileIcon,
+				utils.insert(FileNameModifer, FileName), -- a new table where FileName is a child of FileNameModifier
+				FileFlags,
+				{ provider = '%<' }                  -- this means that the statusline is cut here when there's not enough space
+			)
+
 			local FileType         = {
 				provider = function()
-					return vim.bo.filetype
+					return string.upper(vim.bo.filetype)
 				end,
 				hl = { fg = utils.get_highlight("Type").fg, bold = true },
 			}
@@ -195,6 +221,7 @@ return {
 				end,
 				hl = { fg = utils.get_highlight("Type").fg, bold = true },
 			}
+
 			local FileSize         = {
 				provider = function()
 					-- stackoverflow, compute human readable file size
@@ -208,6 +235,7 @@ return {
 					return string.format("%.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
 				end
 			}
+
 			local FileLastModified = {
 				-- did you know? Vim is full of functions!
 				provider = function()
@@ -399,9 +427,9 @@ return {
 				--ViMode, Space, FileNameBlock, Space, Git, Space, Diagnostics, Align,
 				ViMode, Space, Git, Space, LSPActive, Space, LSPMessages, Align,
 				--Navic, DAPMessages, Align,
-				Align,
+				FileSize, Align,
 				--LSPActive, Space, LSPMessages, Space, UltTest, Space, FileType, Space, Ruler, Space, ScrollBar
-				FileType, Space, FileEncoding, Space, FileFormat, Space, Ruler
+				FileEncoding, Space, FileFormat, Space, Ruler
 			}
 
 			local InactiveStatusline = {
