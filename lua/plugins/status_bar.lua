@@ -429,7 +429,7 @@ return {
 				--Navic, DAPMessages, Align,
 				LSPMessages, Align,
 				--LSPActive, Space, LSPMessages, Space, UltTest, Space, FileType, Space, Ruler, Space, ScrollBar
-				FileEncoding, Space, FileFormat, Space, Ruler, FileSize
+				FileEncoding, Space, FileFormat, Space, Ruler, Space, FileSize
 			}
 
 			local InactiveStatusline = {

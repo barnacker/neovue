@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
+		branch = "main",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -46,12 +46,14 @@ return {
 				},
 				source_selector = {
 					winbar = false,
-					statusline = false
+					statusline = false,
+					show_scrolled_off_parent_node = false,
 				},
 				close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 				popup_border_style = "rounded",
 				enable_git_status = true,
 				enable_diagnostics = true,
+				enable_modified_markers = true,
 				enable_normal_mode_for_inputs = false,                         -- Enable normal mode for input dialogs.
 				open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
 				sort_case_insensitive = false,                                 -- used when sorting files and directories in the tree
@@ -313,7 +315,81 @@ return {
 							["ot"] = { "order_by_type", nowait = false },
 						}
 					}
-				}
+				},
+				document_symbols = {
+					follow_cursor = true,
+					client_filters = "first",
+					renderers = {
+						root = {
+							{ "indent" },
+							{ "icon",  default = "C" },
+							{ "name",  zindex = 10 },
+						},
+						symbol = {
+							{ "indent",    with_expanders = true },
+							{ "kind_icon", default = "?" },
+							{
+								"container",
+								content = {
+									{ "name",      zindex = 10 },
+									{ "kind_name", zindex = 20, align = "right" },
+								}
+							}
+						},
+					},
+					window = {
+						mappings = {
+							["<cr>"] = "jump_to_symbol",
+							["l"] = "jump_to_symbol",
+							["/"] = "filter",
+							["f"] = "filter_on_submit",
+						},
+					},
+					custom_kinds = {
+						-- define custom kinds here (also remember to add icon and hl group to kinds)
+						-- ccls
+						-- [252] = 'TypeAlias',
+						-- [253] = 'Parameter',
+						-- [254] = 'StaticMethod',
+						-- [255] = 'Macro',
+					},
+					kinds = {
+						Unknown = { icon = "?", hl = "" },
+						Root = { icon = "", hl = "NeoTreeRootName" },
+						File = { icon = "󰈙", hl = "Tag" },
+						Module = { icon = "", hl = "Exception" },
+						Namespace = { icon = "󰌗", hl = "Include" },
+						Package = { icon = "󰏖", hl = "Label" },
+						Class = { icon = "󰌗", hl = "Include" },
+						Method = { icon = "", hl = "Function" },
+						Property = { icon = "󰆧", hl = "@property" },
+						Field = { icon = "", hl = "@field" },
+						Constructor = { icon = "", hl = "@constructor" },
+						Enum = { icon = "󰒻", hl = "@number" },
+						Interface = { icon = "", hl = "Type" },
+						Function = { icon = "󰊕", hl = "Function" },
+						Variable = { icon = "", hl = "@variable" },
+						Constant = { icon = "", hl = "Constant" },
+						String = { icon = "󰀬", hl = "String" },
+						Number = { icon = "󰎠", hl = "Number" },
+						Boolean = { icon = "", hl = "Boolean" },
+						Array = { icon = "󰅪", hl = "Type" },
+						Object = { icon = "󰅩", hl = "Type" },
+						Key = { icon = "󰌋", hl = "" },
+						Null = { icon = "", hl = "Constant" },
+						EnumMember = { icon = "", hl = "Number" },
+						Struct = { icon = "󰌗", hl = "Type" },
+						Event = { icon = "", hl = "Constant" },
+						Operator = { icon = "󰆕", hl = "Operator" },
+						TypeParameter = { icon = "󰊄", hl = "Type" },
+
+						-- ccls
+						-- TypeAlias = { icon = ' ', hl = 'Type' },
+						-- Parameter = { icon = ' ', hl = '@parameter' },
+						-- StaticMethod = { icon = '󰠄 ', hl = 'Function' },
+						-- Macro = { icon = ' ', hl = 'Macro' },
+					}
+				},
 			})
 
 			vim.cmd([[nnoremap \ :wincmd w<cr>]])
@@ -330,6 +406,14 @@ return {
 					end
 				end,
 			})
+			-- vim.api.nvim_create_autocmd("LspAttach", { -- Changed from BufReadPre
+			-- 	desc = "Open symbols on LspAttach",
+			-- 	group = "neotree_autoopen",
+			-- 	once = true,
+			-- 	callback = function()
+			-- 		vim.cmd "Neotree document_symbols right"
+			-- 	end,
+			-- })
 		end
 	},
 }
