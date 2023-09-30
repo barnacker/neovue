@@ -1,7 +1,7 @@
 # Welcome to NEOVUE !
 This **neovim** config was built with 2 main goals:
  - **Vue 3**: Vim is already faster than most with text editing. but how about trying to make the fastest and most efficient **Vue 3 Full IDE** ? With  **Autocompletion** like IntelliSense with **native LSP client** as well as total live **debbuging** capacity with **DAP**. While we are at it, why not throw in a few IntelliJ or VSCode shortcuts too! Such as the great **Incremental Selection** ( Ctrl-W ) or the classic **Auto-Formatiing on Save** and other extremely fast shortcuts, snippets and goodies to make you the fastest you have ever been ! 
- - **NixOS...** That's right! I'll show you how I wrapped neovim in it's own 'bubble' where you can inject all the Nix packages you want sur as Node, Volar, Lua_ls without ever polluting your machine !  (If you don't use NixOS then you will still see how to use this config)
+ - **NixOS...** That's right! I'll show you how I wrapped neovim in it's own 'bubble' where you can inject all the Nix packages you want such as Node, Volar, Lua_ls without ever polluting your machine !  ( Don't worry, if you don't use NixOS you will still be able to use this config 'BTW' )
 # Files
 To be continued
 
