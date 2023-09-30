@@ -360,8 +360,9 @@ return {
 
 			-- Set up lspconfig.
 			local capabilities = require('cmp_nvim_lsp').default_capabilities(lsp_status.capabilities)
+			local capabilitiesVSCode = require('cmp_nvim_lsp').default_capabilities(lsp_status.capabilities)
 			--Enable (broadcasting) snippet capability for completion
-			capabilities.textDocument.completion.completionItem.snippetSupport = true
+			capabilitiesVSCode.textDocument.completion.completionItem.snippetSupport = true
 
 			lspconfig.lua_ls.setup {
 				on_attach = lsp_status.on_attach,
@@ -431,14 +432,19 @@ return {
 				capabilities = capabilities,
 			}
 
-			lspconfig.html.setup {
+			lspconfig.marksman.setup {
 				on_attach = lsp_status.on_attach,
 				capabilities = capabilities,
 			}
 
+			lspconfig.html.setup {
+				on_attach = lsp_status.on_attach,
+				capabilities = capabilitiesVSCode,
+			}
+
 			lspconfig.cssls.setup {
 				on_attach = lsp_status.on_attach,
-				capabilities = capabilities,
+				capabilities = capabilitiesVSCode,
 			}
 
 			lspconfig.emmet_language_server.setup {
@@ -465,7 +471,6 @@ return {
 					variables = {},
 				},
 			}
-
 			require('cmp_luasnip_choice').setup({
 				auto_open = true, -- Automatically open nvim-cmp on choice node (default: true)
 			});

@@ -425,11 +425,11 @@ return {
 
 			local DefaultStatusline = {
 				--ViMode, Space, FileNameBlock, Space, Git, Space, Diagnostics, Align,
-				ViMode, Space, Git, Space, LSPActive, Space, LSPMessages, Align,
+				ViMode, Space, Git, Space, LSPActive, Space, Align,
 				--Navic, DAPMessages, Align,
-				FileSize, Align,
+				LSPMessages, Align,
 				--LSPActive, Space, LSPMessages, Space, UltTest, Space, FileType, Space, Ruler, Space, ScrollBar
-				FileEncoding, Space, FileFormat, Space, Ruler
+				FileEncoding, Space, FileFormat, Space, Ruler, FileSize
 			}
 
 			local InactiveStatusline = {
