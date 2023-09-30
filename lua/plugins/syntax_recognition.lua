@@ -437,6 +437,11 @@ return {
 				capabilities = capabilities,
 			}
 
+			lspconfig.jsonls.setup {
+				on_attach = lsp_status.on_attach,
+				capabilities = capabilitiesVSCode,
+			}
+
 			lspconfig.html.setup {
 				on_attach = lsp_status.on_attach,
 				capabilities = capabilitiesVSCode,

@@ -8,7 +8,9 @@ return {
 		end,
 		config = function()
 			local wk = require("which-key")
-			wk.setup()
+			wk.setup({
+				-- triggers = { "<leader>" }
+			})
 			-- As an example, we will create the following mappings:
 			--  * <leader>ff find files
 			--  * <leader>fr show recent files

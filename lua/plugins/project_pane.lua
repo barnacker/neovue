@@ -38,8 +38,14 @@ return {
 				{ text = "󰌵", texthl = "DiagnosticSignHint" })
 
 			require("neo-tree").setup({
+				sources = {
+					"filesystem",
+					"buffers",
+					"git_status",
+					"document_symbols",
+				},
 				source_selector = {
-					winbar = true,
+					winbar = false,
 					statusline = false
 				},
 				close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
