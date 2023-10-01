@@ -18,7 +18,7 @@ return {
 
 			dashboard.section.header.val = vim.split(logo, "\n")
 			dashboard.section.buttons.val = {
-				dashboard.button("n", "  New file", ":ene <BAR> startinsert <CR>"),
+				dashboard.button("a", "  New file", ":ene <BAR> startinsert <CR>"),
 				dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
 				dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
 				dashboard.button("s", "  Settings", ":cd ~/.config/nvim/<CR> | :e ~/.config/nvim/README.md<CR>"),

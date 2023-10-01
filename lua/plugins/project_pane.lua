@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
+		event = "BufWinEnter",
 		branch = "main",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -42,10 +43,9 @@ return {
 					"filesystem",
 					"buffers",
 					"git_status",
-					"document_symbols",
 				},
 				source_selector = {
-					winbar = false,
+					winbar = true,
 					statusline = false,
 					show_scrolled_off_parent_node = false,
 				},
@@ -93,7 +93,7 @@ return {
 						highlight = "NeoTreeFileIcon"
 					},
 					modified = {
-						symbol = "[+]",
+						symbol = "",
 						highlight = "NeoTreeModified",
 					},
 					name = {
@@ -182,7 +182,7 @@ return {
 						},
 						["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
 						["d"] = "delete",
-						["r"] = "rename",
+						["<f2>"] = "rename",
 						["y"] = "copy_to_clipboard",
 						["x"] = "cut_to_clipboard",
 						["p"] = "paste_from_clipboard",
@@ -197,8 +197,8 @@ return {
 						["q"] = "close_window",
 						["R"] = "refresh",
 						["?"] = "show_help",
-						["<"] = "prev_source",
-						[">"] = "next_source",
+						["<A-,>"] = "prev_source",
+						["<A-.>"] = "next_source",
 						["i"] = "show_file_details",
 					}
 				},
@@ -316,84 +316,8 @@ return {
 						}
 					}
 				},
-				document_symbols = {
-					follow_cursor = true,
-					client_filters = "first",
-					renderers = {
-						root = {
-							{ "indent" },
-							{ "icon",  default = "C" },
-							{ "name",  zindex = 10 },
-						},
-						symbol = {
-							{ "indent",    with_expanders = true },
-							{ "kind_icon", default = "?" },
-							{
-								"container",
-								content = {
-									{ "name",      zindex = 10 },
-									{ "kind_name", zindex = 20, align = "right" },
-								}
-							}
-						},
-					},
-					window = {
-						mappings = {
-							["<cr>"] = "jump_to_symbol",
-							["l"] = "jump_to_symbol",
-							["/"] = "filter",
-							["f"] = "filter_on_submit",
-						},
-					},
-					custom_kinds = {
-						-- define custom kinds here (also remember to add icon and hl group to kinds)
-						-- ccls
-						-- [252] = 'TypeAlias',
-						-- [253] = 'Parameter',
-						-- [254] = 'StaticMethod',
-						-- [255] = 'Macro',
-					},
-					kinds = {
-						Unknown = { icon = "?", hl = "" },
-						Root = { icon = "", hl = "NeoTreeRootName" },
-						File = { icon = "󰈙", hl = "Tag" },
-						Module = { icon = "", hl = "Exception" },
-						Namespace = { icon = "󰌗", hl = "Include" },
-						Package = { icon = "󰏖", hl = "Label" },
-						Class = { icon = "󰌗", hl = "Include" },
-						Method = { icon = "", hl = "Function" },
-						Property = { icon = "󰆧", hl = "@property" },
-						Field = { icon = "", hl = "@field" },
-						Constructor = { icon = "", hl = "@constructor" },
-						Enum = { icon = "󰒻", hl = "@number" },
-						Interface = { icon = "", hl = "Type" },
-						Function = { icon = "󰊕", hl = "Function" },
-						Variable = { icon = "", hl = "@variable" },
-						Constant = { icon = "", hl = "Constant" },
-						String = { icon = "󰀬", hl = "String" },
-						Number = { icon = "󰎠", hl = "Number" },
-						Boolean = { icon = "", hl = "Boolean" },
-						Array = { icon = "󰅪", hl = "Type" },
-						Object = { icon = "󰅩", hl = "Type" },
-						Key = { icon = "󰌋", hl = "" },
-						Null = { icon = "", hl = "Constant" },
-						EnumMember = { icon = "", hl = "Number" },
-						Struct = { icon = "󰌗", hl = "Type" },
-						Event = { icon = "", hl = "Constant" },
-						Operator = { icon = "󰆕", hl = "Operator" },
-						TypeParameter = { icon = "󰊄", hl = "Type" },
-
-						-- ccls
-						-- TypeAlias = { icon = ' ', hl = 'Type' },
-						-- Parameter = { icon = ' ', hl = '@parameter' },
-						-- StaticMethod = { icon = '󰠄 ', hl = 'Function' },
-						-- Macro = { icon = ' ', hl = 'Macro' },
-					}
-				},
 			})
 
-			vim.cmd([[nnoremap \ :wincmd w<cr>]])
-			vim.cmd([[nnoremap <M-Bslash> :Neotree reveal toggle<cr>]])
 			vim.api.nvim_create_augroup("neotree_autoopen", { clear = true })
 			vim.api.nvim_create_autocmd("BufRead", { -- Changed from BufReadPre
 				desc = "Open neo-tree on enter",
@@ -406,14 +330,6 @@ return {
 					end
 				end,
 			})
-			-- vim.api.nvim_create_autocmd("LspAttach", { -- Changed from BufReadPre
-			-- 	desc = "Open symbols on LspAttach",
-			-- 	group = "neotree_autoopen",
-			-- 	once = true,
-			-- 	callback = function()
-			-- 		vim.cmd "Neotree document_symbols right"
-			-- 	end,
-			-- })
 		end
 	},
 }

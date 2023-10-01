@@ -17,10 +17,11 @@ vim.o.updatetime = 300
 vim.o.mouse = 'a'
 
 vim.o.wrap = false
-vim.o.laststatus = 3
 
 vim.o.laststatus = 3
 vim.o.showtabline = 2
+vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
+
 if vim.g.neovide then
 	-- Put anything you want to happen only in Neovide here
 	vim.o.guifont = "IosevkaBarnacker Nerd Font:h12"
