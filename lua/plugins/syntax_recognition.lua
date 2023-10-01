@@ -1,33 +1,33 @@
 return {
 	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			-- Format on save
-			vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
-
-			-- Use LspAttach autocommand to only map the following keys
-			-- after the language server attaches to the current buffer
-			vim.api.nvim_create_autocmd('LspAttach', {
-				-- group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-				callback = function(ev)
-				end
-			})
-		end,
-	},
-	{
-		"linrongbin16/lsp-progress.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"nvim-tree/nvim-web-devicons"
-		},
-		config = function()
-			require("lsp-progress").setup()
-		end
-	},
-	{
 		"hrsh7th/nvim-cmp",
+		enabled = true,
 		dependencies = {
-			"neovim/nvim-lspconfig",
+			{
+				"linrongbin16/lsp-progress.nvim",
+				dependencies = {
+					"neovim/nvim-lspconfig",
+					"nvim-tree/nvim-web-devicons"
+				},
+				config = function()
+					require("lsp-progress").setup()
+				end
+			},
+			{
+				"neovim/nvim-lspconfig",
+				config = function()
+					-- Format on save
+					vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+
+					-- Use LspAttach autocommand to only map the following keys
+					-- after the language server attaches to the current buffer
+					vim.api.nvim_create_autocmd('LspAttach', {
+						-- group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+						callback = function(ev)
+						end
+					})
+				end,
+			},
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-buffer",
@@ -164,7 +164,9 @@ return {
 
 			-- Set up lspconfig.
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
-			local capabilitiesVSCode = require('cmp_nvim_lsp').default_capabilities()
+			-- capabilities.semanticTokensProvider = nil
+
+			local capabilitiesVSCode = capabilities
 			--Enable (broadcasting) snippet capability for completion
 			capabilitiesVSCode.textDocument.completion.completionItem.snippetSupport = true
 

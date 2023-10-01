@@ -17,9 +17,9 @@ vim.o.updatetime = 300
 vim.o.mouse = 'a'
 
 vim.o.wrap = false
-
 vim.o.laststatus = 3
 vim.o.showtabline = 2
+-- vim.cmd("syntax off")
 vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
 
 if vim.g.neovide then

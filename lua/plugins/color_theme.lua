@@ -1,18 +1,23 @@
 return {
 	{
+		"posva/vim-vue",
+		enabled = true
+	},
+	{
 		"catppuccin/nvim",
 		priority = 1000,
 		lazy = false,
 		name = "catppuccin",
-		-- you can do it like this with a config function
 		config = function()
 			require("catppuccin").setup({
 				integrations = {
 					alpha = true,
 					gitsigns = true,
 					treesitter = true,
+					semantic_tokens = true,
 					lsp_saga = true,
 					cmp = true,
+					notifier = true,
 					neotree = true,
 					markdown = true,
 					rainbow_delimiters = true,
@@ -96,19 +101,11 @@ return {
 	{
 		"folke/twilight.nvim",
 		lazy = true,
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		}
+		opts = {}
 	},
 	{
 		"folke/zen-mode.nvim",
 		lazy = true,
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		}
+		opts = {}
 	},
 }

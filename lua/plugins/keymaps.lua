@@ -48,7 +48,7 @@ return {
 				["<C-.>"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next Diagnostic" },
 				["<A-,>"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer" },
 				["<A-.>"] = { "<cmd>BufferLineCycleNext<cr>", "Next Buffer" },
-				["<A-x>"] = { "<cmd>BufferDel<cr>", "Close Buffer" },
+				["<A-x>"] = { "<cmd>BufDel<cr>", "Close Buffer" },
 				["\\"] = { "<cmd>wincmd w<cr>", "Go to Project Pane" },
 				["<M-Bslash>"] = { "<cmd>Neotree reveal toggle<cr>", "Toggle Project Pane" },
 				[""] = { "<cmd>Lspsaga outline<cr>", "Toggle Outline" },
