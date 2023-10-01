@@ -9,45 +9,46 @@ return {
 		config = function()
 			local wk = require("which-key")
 			wk.setup({
-				-- triggers = { "<leader>" }
+				opts = {
+					operators = true,
+					text_objects = true,
+					motions = true
+				}
 			})
-			-- As an example, we will create the following mappings:
-			--  * <leader>ff find files
-			--  * <leader>fr show recent files
-			--  * <leader>fb Foobar
-			-- we'll document:
-			--  * <leader>fn new file
-			--  * <leader>fe edit file
-			-- and hide <leader>1
-
-			-- wk.register({
-			-- 	f = {
-			-- 		name = "file",                                                                       -- optional group name
-			-- 		f = { "<cmd>Telescope find_files<cr>", "Find File" },                                -- create a binding with label
-			-- 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap = false, buffer = 123 }, -- additional options for creating the keymap
-			-- 		n = { "New File" },                                                                  -- just a label. don't create any mapping
-			-- 		e = "Edit File",                                                                     -- same as above
-			-- 		["1"] = "which_key_ignore",                                                          -- special label to hide it in the popup
-			-- 		b = { function() print("bar") end, "Foobar" }                                        -- you can also pass functions!
-			-- 	},
-			-- }, { prefix = "<leader>" })
-			-- method 2
 			wk.register({
 				["<leader>"] = {
 					f = {
-						name = "+file",
-						f = { "<cmd>Telescope find_files<cr>", "Find File" },
-						r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-						n = { "<cmd>enew<cr>", "New File" },
-						b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
+						name = "File...",
+						f = { "<cmd>Telescope find_files<cr>", "Find File..." },
+						r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File..." },
+						a = { "<cmd>enew<cr>", "New File" },
+					},
+					d = {
+						name = "Definition...",
+						d = { "<cmd>Lspsaga peek_definition<cr>", "Peek Definition" },
+						D = { "<cmd>Lspsaga goto_definition<cr>", "Go To Definition" },
+						t = { "<cmd>Lspsaga peek_type_definition<cr>", "Peek Type Definition" },
+						T = { "<cmd>Lspsaga goto_type_definition<cr>", "Go To Type Definition" },
+					},
+					D = { "<cmd>Lspsaga show_workspace_diagnostics ++float<cr>", "Show Diagnostics..." },
+					["H"] = { "<cmd>Lspsaga hover_doc<cr>", "Hover code" },
+					c = {
+						name = "Code...",
+						f = { "<cmd> Lspsaga finder<cr>", "Finder..." },
+						a = { "<cmd> Lspsaga code_action<cr>", "Action..." },
 					},
 				},
+				["<f2>"] = { "<cmd>Lspsaga rename<cr>", "Rename Symbol" },
+				["<C-.>"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next Diagnostic" },
+				["<C-,>"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous Diagnostic" },
+				["<C-.>"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next Diagnostic" },
+				["<A-,>"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous Diagnostic" },
+				["<A-.>"] = { "<cmd>BufferLineCycleNext<cr>", "Next Diagnostic" },
+				["\\"] = { "<cmd>wincmd w<cr>", "Go to Project Pane" },
+				["<M-Bslash>"] = { "<cmd>Neotree reveal toggle<cr>", "Toggle Project Pane" },
+				[""] = { "<cmd>Lspsaga outline<cr>", "Toggle Outline" },
+				[""] = { "<cmd>w<cr>", "Save" },
 			})
 		end,
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		}
 	}
 }
