@@ -21,3 +21,25 @@ vim.o.laststatus = 3
 
 vim.o.laststatus = 3
 vim.o.showtabline = 2
+if vim.g.neovide then
+	-- Put anything you want to happen only in Neovide here
+	vim.o.guifont = "IosevkaBarnacker Nerd Font:h12"
+	vim.g.neovide_padding_top = 0
+	vim.g.neovide_padding_bottom = 0
+	vim.g.neovide_padding_right = 0
+	vim.g.neovide_padding_left = 0
+	vim.g.neovide_cursor_vfx_mode = "pixiedust"
+	vim.g.neovide_cursor_vfx_particle_density = 10.0
+	vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
+	vim.g.neovide_cursor_vfx_opacity = 200.0
+	vim.cmd [[
+" system clipboard
+nmap <c-c> "+y
+vmap <c-c> "+y
+nmap <c-v> "+p
+inoremap <c-v> <c-r>+
+cnoremap <c-v> <c-r>+
+" use <c-r> to insert original character without triggering things like auto-pairs
+inoremap <c-r> <c-v>
+]]
+end

@@ -1,9 +1,4 @@
 return {
-	-- {
-	-- 	"xiyaowong/nvim-transparent",
-	-- 	opts = {
-	-- 	}
-	-- },
 	{
 		"catppuccin/nvim",
 		priority = 1000,
@@ -13,14 +8,23 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				integrations = {
+					alpha = true,
 					gitsigns = true,
 					treesitter = true,
+					lsp_saga = true,
 					cmp = true,
 					neotree = true,
+					markdown = true,
 					rainbow_delimiters = true,
+					lightspeed = true,
 					illuminate = {
 						enabled = true,
 						lsp = false
+					},
+					indent_blankline = {
+						enabled = true,
+						scope_color = "mauve", -- catppuccin color (eg. `lavender`) Default: text
+						colored_indent_levels = false,
 					},
 					native_lsp = {
 						enabled = true,

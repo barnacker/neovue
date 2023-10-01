@@ -596,11 +596,6 @@ return {
 				},
 			}
 
-			vim.keymap.set({ "n", "i" }, "<A-l>", "<cmd>BufferLineCycleNext<cr>")
-			vim.keymap.set({ "n", "i" }, "<A-h>", "<cmd>BufferLineCyclePrev<cr>")
-			vim.keymap.set({ "n", "i" }, "<M-k>", "<cmd>Navbuddy<cr>")
-			vim.keymap.set({ "n", "i" }, "<M-j>", "<cmd>Navbuddy<cr>")
-			vim.keymap.set({ "n", "i" }, "", "<cmd>w<cr>")
 
 			vim.keymap.set("n", "gbp", function()
 				local tabline = require("heirline").tabline
