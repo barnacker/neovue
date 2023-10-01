@@ -6,14 +6,6 @@ return {
 		tag = '0.1.3',
 		-- or                              , branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' },
-		init = function()
-			local builtin = require('telescope.builtin')
-			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-			vim.keymap.set('n', '<C-S-N>', builtin.find_files, {})
-			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-		end
 	},
 	{
 		'numToStr/Comment.nvim',
@@ -42,6 +34,21 @@ return {
 				eol = 'gcA',
 			},
 		},
+	},
+	{
+		"yamatsum/nvim-cursorline",
+		opts = {
+			cursorline = {
+				enable = true,
+				timeout = 100,
+				number = false,
+			},
+			cursorword = {
+				enable = true,
+				min_length = 3,
+				hl = { underline = true },
+			}
+		}
 	},
 	{
 		"nvimdev/lspsaga.nvim",
@@ -170,7 +177,7 @@ return {
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",
-		enable = false,
+		enabled = false,
 		config = function()
 			-- This module contains a number of default definitions
 			local rainbow_delimiters = require 'rainbow-delimiters'
@@ -198,7 +205,7 @@ return {
 	},
 	{
 		"RRethy/vim-illuminate",
-		enable = false,
+		enabled = false,
 		init = function()
 			-- default configuration
 			require('illuminate').configure({
