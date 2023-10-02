@@ -17,6 +17,7 @@ return {
 			})
 			wk.register({
 				["<leader>"] = {
+					["<cr>"] = { "i<cr><esc>", "new line" },
 					f = {
 						name = "find...",
 						f = { "<cmd>Telescope find_files<cr>", "file..." },
@@ -53,6 +54,10 @@ return {
 				["<M-Bslash>"] = { "<cmd>Neotree reveal toggle<cr>", "Toggle Project Pane" },
 				[""] = { "<cmd>Lspsaga outline<cr>", "Toggle Outline" },
 				[""] = { "<cmd>w<cr>", "Save", mode = { "n", "i" } },
+				["<A-h>"] = { "<C-w>h", "Left Window" },
+				["<A-l>"] = { "<C-w>l", "Right Window" },
+				["<A-j>"] = { "<C-w>j", "Down Window" },
+				["<A-k>"] = { "<C-w>k", "Up Window" },
 			})
 		end,
 	}

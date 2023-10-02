@@ -30,9 +30,10 @@ if vim.g.neovide then
 	vim.g.neovide_padding_right = 0
 	vim.g.neovide_padding_left = 0
 	vim.g.neovide_cursor_vfx_mode = "pixiedust"
-	vim.g.neovide_cursor_vfx_particle_density = 10.0
+	vim.g.neovide_cursor_vfx_particle_density = 80.0
 	vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
 	vim.g.neovide_cursor_vfx_opacity = 200.0
+	vim.g.neovide_cursor_vfx_particle_speed = 50.0
 	vim.cmd [[
 " system clipboard
 nmap <c-c> "+y

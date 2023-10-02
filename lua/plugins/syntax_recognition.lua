@@ -16,9 +16,6 @@ return {
 			{
 				"neovim/nvim-lspconfig",
 				config = function()
-					-- Format on save
-					vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
-
 					-- Use LspAttach autocommand to only map the following keys
 					-- after the language server attaches to the current buffer
 					vim.api.nvim_create_autocmd('LspAttach', {
@@ -171,6 +168,15 @@ return {
 			capabilitiesVSCode.textDocument.completion.completionItem.snippetSupport = true
 
 			lspconfig.lua_ls.setup {
+				-- Format on save
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function(event)
+							vim.lsp.buf.format()
+						end
+					})
+				end,
 				capabilities = capabilities,
 				settings = {
 					Lua = {
@@ -231,7 +237,27 @@ return {
 				},
 			}
 
+			lspconfig.eslint.setup({
+				-- Format on save
+				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						command = "EslintFixAll",
+					})
+				end,
+			})
+
 			lspconfig.nil_ls.setup {
+				-- Format on save
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function(event)
+							vim.lsp.buf.format()
+						end
+					})
+				end,
 				capabilities = capabilities,
 			}
 
@@ -240,14 +266,41 @@ return {
 			}
 
 			lspconfig.jsonls.setup {
+				-- Format on save
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function(event)
+							vim.lsp.buf.format()
+						end
+					})
+				end,
 				capabilities = capabilitiesVSCode,
 			}
 
 			lspconfig.html.setup {
+				-- Format on save
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function(ev)
+							vim.lsp.buf.format()
+						end
+					})
+				end,
 				capabilities = capabilitiesVSCode,
 			}
 
 			lspconfig.cssls.setup {
+				-- Format on save
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function(event)
+							vim.lsp.buf.format()
+						end
+					})
+				end,
 				capabilities = capabilitiesVSCode,
 			}
 
