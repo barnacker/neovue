@@ -44,6 +44,7 @@ return {
 			"L3MON4D3/cmp-luasnip-choice",
 			"rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
+			"windwp/nvim-autopairs"
 		},
 		config = function()
 			-- don't pass any arguments, luasnip will find the collection because it is

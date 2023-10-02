@@ -301,6 +301,12 @@ return {
 				)
 			})
 
+			local Session = {
+				condition = function()
+					return true -- require('auto-session.lib').current_session_name ~= nil
+				end,
+				provider = "" -- require('auto-session.lib').current_session_name
+			}
 
 			local Align = { provider = "%=" }
 			local Space = { provider = " " }
@@ -321,9 +327,9 @@ return {
 
 			local DefaultStatusline = {
 				--ViMode, Space, FileNameBlock, Space, Git, Space, Diagnostics, Align,
-				ViMode, Space, Git, Space, LSPActive, Space, Align,
+				ViMode, Space, Git, Space, LSPActive, Space, LSPMessages, Align,
 				--Navic, DAPMessages, Align,
-				LSPMessages, Align,
+				Session, Align,
 				--LSPActive, Space, LSPMessages, Space, UltTest, Space, FileType, Space, Ruler, Space, ScrollBar
 				MacroRec, Space, FileEncoding, Space, FileFormat, Space, Ruler, Space, FileSize
 			}

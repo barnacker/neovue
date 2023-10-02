@@ -319,7 +319,7 @@ return {
 			})
 
 			vim.api.nvim_create_augroup("neotree_autoopen", { clear = true })
-			vim.api.nvim_create_autocmd("BufRead", { -- Changed from BufReadPre
+			vim.api.nvim_create_autocmd("BufReadPost", { -- Changed from BufReadPre
 				desc = "Open neo-tree on enter",
 				group = "neotree_autoopen",
 				once = true,

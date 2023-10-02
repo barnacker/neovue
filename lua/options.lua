@@ -19,6 +19,9 @@ vim.o.mouse = 'a'
 vim.o.wrap = false
 vim.o.laststatus = 3
 vim.o.showtabline = 2
+
+vim.o.sessionoptions = "buffers,curdir,folds,localoptions"
+
 -- vim.cmd("syntax off")
 vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
 
