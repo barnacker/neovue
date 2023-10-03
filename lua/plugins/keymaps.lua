@@ -24,6 +24,7 @@ return {
 						f = { "<cmd>Telescope find_files<cr>", "file..." },
 						t = { "<cmd>Telescope live_grep<cr>", "text in files..." },
 						r = { "<cmd>Telescope oldfiles<cr>", "recent file..." },
+						s = { "<cmd>Telescope possession list<cr>", "session..." },
 					},
 					a = { "<cmd>enew<cr>", "add file" },
 					d = { "<cmd>Lspsaga show_buf_diagnostics ++float<cr>", "diagnostics (Buffer)..." },
