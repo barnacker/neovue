@@ -318,18 +318,18 @@ return {
 				},
 			})
 
-			vim.api.nvim_create_augroup("neotree_autoopen", { clear = true })
-			vim.api.nvim_create_autocmd("BufReadPost", { -- Changed from BufReadPre
-				desc = "Open neo-tree on enter",
-				group = "neotree_autoopen",
-				once = true,
-				callback = function()
-					if not vim.g.neotree_opened then
-						vim.cmd "Neotree reveal show"
-						vim.g.neotree_opened = true
-					end
-				end,
-			})
+			-- vim.api.nvim_create_augroup("neotree_autoopen", { clear = true })
+			-- vim.api.nvim_create_autocmd("BufReadPost", { -- Changed from BufReadPre
+			-- 	desc = "Open neo-tree on enter",
+			-- 	group = "neotree_autoopen",
+			-- 	once = true,
+			-- 	callback = function()
+			-- 		if not vim.g.neotree_opened then
+			-- 			vim.cmd "Neotree reveal show"
+			-- 			vim.g.neotree_opened = true
+			-- 		end
+			-- 	end,
+			-- })
 		end
 	},
 }

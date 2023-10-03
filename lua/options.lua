@@ -20,8 +20,13 @@ vim.o.wrap = false
 vim.o.laststatus = 3
 vim.o.showtabline = 2
 
-vim.o.sessionoptions = "buffers,curdir,folds,localoptions"
-
+vim.cmd("set sessionoptions+=tabpages,globals")
+vim.cmd("set sessionoptions+=resize")
+vim.cmd("set sessionoptions+=winpos")
+vim.cmd("set sessionoptions-=folds")
+vim.cmd("set sessionoptions-=buffers")
+vim.cmd("set sessionoptions-=options")
+vim.cmd("set sessionoptions-=help")
 -- vim.cmd("syntax off")
 vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
 

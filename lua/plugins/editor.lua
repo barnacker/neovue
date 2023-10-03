@@ -1,4 +1,7 @@
 return {
+	{
+		"mbbill/undotree"
+	},
 	{ "ojroques/nvim-bufdel",    event = "UIEnter" },
 	{
 		'nvim-telescope/telescope.nvim',

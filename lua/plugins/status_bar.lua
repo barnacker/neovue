@@ -301,11 +301,12 @@ return {
 				)
 			})
 
+			local function session_name()
+				return require('possession.session').session_name or ''
+			end
+
 			local Session = {
-				condition = function()
-					return true -- require('auto-session.lib').current_session_name ~= nil
-				end,
-				provider = "" -- require('auto-session.lib').current_session_name
+				provider = session_name
 			}
 
 			local Align = { provider = "%=" }

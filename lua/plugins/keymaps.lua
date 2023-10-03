@@ -17,6 +17,7 @@ return {
 			})
 			wk.register({
 				["<leader>"] = {
+					q = { "<cmd>qa!<cr>", "quit all" },
 					["<cr>"] = { "i<cr><esc>", "new line" },
 					f = {
 						name = "find...",
