@@ -9,7 +9,8 @@ vim.o.clipboard = 'unnamedplus'
 
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
-
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.o.termguicolors = true
 
 vim.o.updatetime = 300
