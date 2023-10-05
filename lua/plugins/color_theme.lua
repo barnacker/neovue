@@ -4,6 +4,13 @@ return {
 		enabled = true
 	},
 	{
+		"rktjmp/lush.nvim",
+	},
+	{
+		dir = "~/.config/nvim/colors/bevangelion",
+		dependencies = "rktjmp/lush.nvim"
+	},
+	{
 		"HiPhish/rainbow-delimiters.nvim",
 		enabled = true,
 		config = function()
@@ -48,9 +55,8 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		event = "VeryLazy",
 		main = "ibl",
-		config = function()
-			require("ibl").setup {}
-		end
+		opts = {
+		},
 	},
 	{
 		"catppuccin/nvim",
@@ -136,15 +142,13 @@ return {
 				-- 		TelescopePromptTitle = { fg = colors.surface0, bg = colors.surface0 },
 				-- 		TelescopeResultsTitle = { fg = colors.mantle, bg = colors.mantle },
 				-- 		TelescopePreviewTitle = { fg = colors.crust, bg = colors.crust },
-				-- 		IndentBlanklineChar = { fg = colors.surface0 },
-				-- 		IndentBlanklineContextChar = { fg = colors.surface2 },
 				-- 		GitSignsChange = { fg = colors.peach },
 				-- 		NvimTreeIndentMarker = { link = "IndentBlanklineChar" },
 				-- 		NvimTreeExecFile = { fg = colors.text },
 				-- 	}
 				-- end,
 			})
-			vim.cmd('colorscheme catppuccin')
+			-- vim.cmd('colorscheme catppuccin')
 		end,
 	},
 	{

@@ -58,9 +58,9 @@ return {
 		event = "LspAttach",
 		config = function()
 			require("lspsaga").setup({
-				ui = {
-					kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-				},
+				-- ui = {
+				-- 	kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+				-- },
 				lightbulb = {
 					enable = false
 				},
@@ -96,7 +96,7 @@ return {
 			require 'nvim-treesitter.configs'.setup {
 				-- A list of parser names, or "all" (the five listed parsers should always be installed)
 				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "yaml", "bash", "regex",
-					"markdown_inline", "javascript", "typescript", "html", "css", "scss" },
+					"markdown_inline", "javascript", "typescript", "html", "css", "scss", "vue" },
 
 				-- Install parsers synchronously (only applied to `ensure_installed`)
 				sync_install = false,
@@ -119,6 +119,8 @@ return {
 						node_decremental = "<S-cr>",
 					},
 				},
+
+				highlight = { enable = true },
 
 				indent = {
 					enable = false
