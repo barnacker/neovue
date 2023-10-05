@@ -21,6 +21,15 @@ vim.o.wrap = false
 vim.o.laststatus = 3
 vim.o.showtabline = 2
 
+vim.fn.sign_define("DiagnosticSignError",
+	{ text = " ", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn",
+	{ text = " ", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo",
+	{ text = " ", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint",
+	{ text = "󰌵", texthl = "DiagnosticSignHint" })
+
 vim.cmd("set sessionoptions+=tabpages,globals")
 vim.cmd("set sessionoptions+=resize")
 vim.cmd("set sessionoptions+=winpos")
