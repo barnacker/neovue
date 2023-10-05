@@ -26,7 +26,7 @@ return {
 			number = false,
 			relativenumber = false,
 			signcolumn = "yes",
-			width = 37,
+			width = {},
 		},
 		renderer = {
 			add_trailing = false,
