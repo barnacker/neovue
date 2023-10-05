@@ -8,13 +8,12 @@ return {
 		end,
 		config = function()
 			local focus_pane = function()
-				if vim.bo.filetype == "neo-tree" then
+				if vim.bo.filetype == "NvimTree" then
 					vim.cmd("wincmd l")
 					return
 				end
-				vim.cmd("Neotree reveal")
+				vim.cmd("NvimTreeFindFile")
 			end
-
 			local wk = require("which-key")
 			wk.setup({
 				opts = {
@@ -60,8 +59,8 @@ return {
 				["<A-,>"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer" },
 				["<A-.>"] = { "<cmd>BufferLineCycleNext<cr>", "Next Buffer" },
 				["<A-x>"] = { "<cmd>BufDel<cr>", "Close Buffer" },
-				["\\"] = { "<cmd>wincmd w<cr>", "Go to Project Pane" },
-				["<M-Bslash>"] = { "<cmd>Neotree reveal toggle<cr>", "Toggle Project Pane" },
+				["\\"] = { focus_pane, "Go to Project Pane" },
+				["<M-Bslash>"] = { "<cmd>NvimTreeToggle<cr>", "Toggle Project Pane" },
 				[""] = { "<cmd>Lspsaga outline<cr>", "Toggle Outline" },
 				[""] = { "<cmd>w<cr><esc>", "Save", mode = { "n", "i" } },
 				["<A-h>"] = { "<C-w>h", "Left Window" },

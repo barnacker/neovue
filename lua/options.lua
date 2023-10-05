@@ -9,7 +9,8 @@ vim.o.clipboard = 'unnamedplus'
 
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
-
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.o.termguicolors = true
 
 vim.o.updatetime = 300
@@ -20,11 +21,20 @@ vim.o.wrap = false
 vim.o.laststatus = 3
 vim.o.showtabline = 2
 
+vim.fn.sign_define("DiagnosticSignError",
+	{ text = " ", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn",
+	{ text = " ", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo",
+	{ text = " ", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint",
+	{ text = "󰌵", texthl = "DiagnosticSignHint" })
+
 vim.cmd("set sessionoptions+=tabpages,globals")
 vim.cmd("set sessionoptions+=resize")
 vim.cmd("set sessionoptions+=winpos")
 vim.cmd("set sessionoptions-=folds")
-vim.cmd("set sessionoptions-=buffers")
+vim.cmd("set sessionoptions+=buffers")
 vim.cmd("set sessionoptions-=options")
 vim.cmd("set sessionoptions-=help")
 -- vim.cmd("syntax off")

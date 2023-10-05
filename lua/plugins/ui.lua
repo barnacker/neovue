@@ -19,7 +19,7 @@ return {
 				logfile = false,
 				prompt_no_cr = false,
 				autosave = {
-					current = false, -- or fun(name): boolean
+					current = true, -- or fun(name): boolean
 					tmp = false, -- or fun(): boolean
 					tmp_name = 'tmp', -- or fun(): string
 					on_load = true,
@@ -52,13 +52,13 @@ return {
 							custom = false, -- or fun(win): boolean
 						},
 					},
-					delete_hidden_buffers = {
-						hooks = {
-							"before_load",
-							vim.o.sessionoptions:match("buffer") and "before_save",
-						},
-						force = false, -- or fun(buf): boolean
-					},
+					-- delete_hidden_buffers = {
+					-- 	hooks = {
+					-- 		"before_load",
+					-- 		vim.o.sessionoptions:match("buffer") and "before_save",
+					-- 	},
+					-- 	force = false, -- or fun(buf): boolean
+					-- },
 					nvim_tree = true,
 					neo_tree = true,
 					symbols_outline = true,

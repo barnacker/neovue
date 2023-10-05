@@ -313,18 +313,6 @@ return {
 			local Space = { provider = " " }
 
 			-- ViMode = utils.surround({ "", " " }, "black", { ViMode })
-			--
-			local IgnoredStatusline = {
-				condition = function()
-					return conditions.buffer_matches({
-						filetype = { "neo-tree" },
-					})
-				end,
-
-				provider = "sadln",
-				hl = { bg = "dark_red" },
-
-			}
 
 			local DefaultStatusline = {
 				--ViMode, Space, FileNameBlock, Space, Git, Space, Diagnostics, Align,

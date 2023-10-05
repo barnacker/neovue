@@ -14,7 +14,8 @@ return {
 
 				offsets = {
 					{
-						filetype = "neo-tree",
+						-- filetype = "neo-tree",
+						filetype = "NvimTree",
 						text = "Project",
 						text_align = "center",
 						separator = false
