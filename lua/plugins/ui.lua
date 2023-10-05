@@ -1,5 +1,9 @@
 return {
 	{
+		'stevearc/dressing.nvim',
+		opts = {},
+	},
+	{
 		"jedrzejboczar/possession.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -39,7 +43,7 @@ return {
 				},
 				plugins = {
 					close_windows = {
-						-- hooks = { "before_save", 'before_load' },
+						hooks = { "before_save", 'before_load' },
 						preserve_layout = true, -- or fun(win): boolean
 						match = {
 							floating = true,
@@ -104,7 +108,12 @@ return {
 			-- OPTIONAL:
 			--   `nvim-notify` is only needed, if you want to use the notification view.
 			--   If not available, we use `mini` as the fallback
-			"rcarriga/nvim-notify",
+			{
+				"rcarriga/nvim-notify",
+				opts = {
+					background_colour = "#000000",
+				}
+			},
 		}
 	}
 }

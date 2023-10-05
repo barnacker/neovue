@@ -55,7 +55,7 @@ return {
 				["\\"] = { "<cmd>wincmd w<cr>", "Go to Project Pane" },
 				["<M-Bslash>"] = { "<cmd>Neotree reveal toggle<cr>", "Toggle Project Pane" },
 				[""] = { "<cmd>Lspsaga outline<cr>", "Toggle Outline" },
-				[""] = { "<cmd>w<cr>", "Save", mode = { "n", "i" } },
+				[""] = { "<cmd>w<cr><esc>", "Save", mode = { "n", "i" } },
 				["<A-h>"] = { "<C-w>h", "Left Window" },
 				["<A-l>"] = { "<C-w>l", "Right Window" },
 				["<A-j>"] = { "<C-w>j", "Down Window" },
