@@ -26,6 +26,12 @@ return {
 				["<leader>"] = {
 					q = { "<cmd>qa!<cr>", "quit all" },
 					["<cr>"] = { "i<cr><esc>", "new line" },
+					t = {
+						name = "tabs...",
+						a = { "<cmd>$tabnew<cr>", "add new tab" },
+						x = { "<cmd>tabclose<cr>", "close this tab" },
+						o = { "<cmd>tabonly<cr>", "close all other tabs" },
+					},
 					f = {
 						name = "find...",
 						f = { "<cmd>Telescope find_files<cr>", "file..." },
@@ -56,8 +62,10 @@ return {
 				["<f2>"] = { "<cmd>Lspsaga rename<cr>", "Rename Symbol" },
 				["<C-,>"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous Diagnostic" },
 				["<C-.>"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next Diagnostic" },
-				["<A-,>"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer" },
-				["<A-.>"] = { "<cmd>BufferLineCycleNext<cr>", "Next Buffer" },
+				["<A-,>"] = { "<cmd>tabp<cr>", "Previous Tab" },
+				["<A-.>"] = { "<cmd>tabn<cr>", "Next Tab" },
+				["<C-A-,>"] = { "<cmd>-tabmove<cr>", "Move Tab Back" }, -- move current tab to previous position
+				["<C-A-.>"] = { "<cmd>+tabmove<cr>", "Move Tab Forward" }, -- move current tab to next position
 				["<A-x>"] = { "<cmd>BufDel<cr>", "Close Buffer" },
 				["\\"] = { focus_pane, "Go to Project Pane" },
 				["<M-Bslash>"] = { "<cmd>NvimTreeToggle<cr>", "Toggle Project Pane" },

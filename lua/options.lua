@@ -30,23 +30,18 @@ vim.fn.sign_define("DiagnosticSignInfo",
 vim.fn.sign_define("DiagnosticSignHint",
 	{ text = " ", texthl = "DiagnosticSignHint" })
 
-vim.cmd("set sessionoptions+=tabpages,globals")
-vim.cmd("set sessionoptions+=resize")
-vim.cmd("set sessionoptions+=winpos")
-vim.cmd("set sessionoptions-=folds")
-vim.cmd("set sessionoptions+=buffers")
-vim.cmd("set sessionoptions-=options")
-vim.cmd("set sessionoptions-=help")
+vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
+vim.cmd("set sessionoptions-=buffers")
 -- vim.cmd("syntax off")
 vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
 
 if vim.g.neovide then
 	-- Put anything you want to happen only in Neovide here
-	vim.o.guifont = "IosevkaBarnacker Nerd Font:h12"
-	vim.g.neovide_padding_top = 0
-	vim.g.neovide_padding_bottom = 0
-	vim.g.neovide_padding_right = 0
-	vim.g.neovide_padding_left = 0
+	vim.o.guifont = "IosevkaBarnacker Nerd Font:h11"
+	-- vim.g.neovide_padding_top = 0
+	-- vim.g.neovide_padding_bottom = 0
+	-- vim.g.neovide_padding_right = 0
+	-- vim.g.neovide_padding_left = 0
 	vim.g.neovide_cursor_vfx_mode = "pixiedust"
 	vim.g.neovide_cursor_vfx_particle_density = 80.0
 	vim.g.neovide_cursor_vfx_particle_lifetime = 1.2

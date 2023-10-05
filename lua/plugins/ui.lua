@@ -19,7 +19,7 @@ return {
 				logfile = false,
 				prompt_no_cr = false,
 				autosave = {
-					current = false, -- or fun(name): boolean
+					current = true, -- or fun(name): boolean
 					tmp = false, -- or fun(): boolean
 					tmp_name = 'tmp', -- or fun(): string
 					on_load = true,
@@ -60,7 +60,7 @@ return {
 					-- 	force = false, -- or fun(buf): boolean
 					-- },
 					nvim_tree = true,
-					neo_tree = true,
+					neo_tree = false,
 					symbols_outline = true,
 					tabby = true,
 					dap = true,
