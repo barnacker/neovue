@@ -82,7 +82,7 @@ local theme = lush(function(injected_functions)
 		-- CurSearch      { }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		-- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		-- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
-		-- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+		CursorColumn {},             -- Screen-column at the cursor, when 'cursorcolumn' is set.
 		CursorLine { bg = highlight }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
 		Directory {},                -- Directory names (and other special names in listings)
 		-- DiffAdd        { }, -- Diff mode: Added line |diff.txt|
@@ -138,7 +138,7 @@ local theme = lush(function(injected_functions)
 		-- TabLineFill    { }, -- Tab pages line, where there are no labels
 		-- TabLineSel     { }, -- Tab pages line, active tab page label
 		-- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
-		-- Visual         { }, -- Visual mode selection
+		Visual { bg = purple1, fg = base }, -- Visual mode selection
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
 		-- WarningMsg     { }, -- Warning messages
 		Whitespace { fg = disabled }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
