@@ -19,7 +19,7 @@ return {
 				logfile = false,
 				prompt_no_cr = false,
 				autosave = {
-					current = true, -- or fun(name): boolean
+					current = false, -- or fun(name): boolean
 					tmp = false, -- or fun(): boolean
 					tmp_name = 'tmp', -- or fun(): string
 					on_load = true,

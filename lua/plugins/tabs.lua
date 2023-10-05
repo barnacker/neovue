@@ -27,7 +27,8 @@ return {
 					local s = " "
 					for e, n in pairs(diagnostics_dict) do
 						local sym = e == "error" and "󰅜 "
-								or (e == "warning" and " " or "󰌵 ")
+								or (e == "warning" and " ")
+								or (e == "info" and " " or " ")
 						s = s .. n .. sym
 					end
 					return s

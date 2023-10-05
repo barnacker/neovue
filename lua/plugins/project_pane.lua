@@ -30,7 +30,7 @@ return {
 		},
 		renderer = {
 			add_trailing = false,
-			group_empty = false,
+			group_empty = true,
 			full_name = false,
 			root_folder_label = ":~:s?$?/..?",
 			indent_width = 2,
@@ -111,7 +111,7 @@ return {
 			auto_open = true,
 		},
 		update_focused_file = {
-			enable = false,
+			enable = true,
 			update_root = false,
 			ignore_list = {},
 		},
