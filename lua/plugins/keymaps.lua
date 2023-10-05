@@ -7,6 +7,14 @@ return {
 			vim.o.timeoutlen = 300
 		end,
 		config = function()
+			local focus_pane = function()
+				if vim.bo.filetype == "neo-tree" then
+					vim.cmd("wincmd l")
+					return
+				end
+				vim.cmd("Neotree reveal")
+			end
+
 			local wk = require("which-key")
 			wk.setup({
 				opts = {
