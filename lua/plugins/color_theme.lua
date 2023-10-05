@@ -8,7 +8,10 @@ return {
 	},
 	{
 		dir = "~/.config/nvim/colors/bevangelion",
-		dependencies = "rktjmp/lush.nvim"
+		dependencies = "rktjmp/lush.nvim",
+		config = function()
+			vim.cmd('colorscheme bevangelion')
+		end
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",
