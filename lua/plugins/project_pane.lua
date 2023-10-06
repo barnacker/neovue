@@ -190,7 +190,9 @@ return {
 				resize_window = true,
 				window_picker = {
 					enable = true,
-					picker = "default",
+					picker = function()
+						require('window-picker').pick_window()
+					end,
 					chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
 					exclude = {
 						filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },

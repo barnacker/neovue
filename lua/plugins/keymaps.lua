@@ -66,7 +66,7 @@ return {
 				["<A-.>"] = { "<cmd>tabn<cr>", "Next Tab" },
 				["<C-A-,>"] = { "<cmd>-tabmove<cr>", "Move Tab Back" }, -- move current tab to previous position
 				["<C-A-.>"] = { "<cmd>+tabmove<cr>", "Move Tab Forward" }, -- move current tab to next position
-				["<A-x>"] = { "<cmd>BufDel<cr>", "Close Buffer" },
+				["<A-x>"] = { "<cmd>tabclose<cr>", "Close Tab" },
 				["\\"] = { focus_pane, "Go to Project Pane" },
 				["<M-Bslash>"] = { "<cmd>NvimTreeToggle<cr>", "Toggle Project Pane" },
 				[""] = { "<cmd>Lspsaga outline<cr>", "Toggle Outline" },
@@ -75,6 +75,7 @@ return {
 				["<A-l>"] = { "<C-w>l", "Right Window" },
 				["<A-j>"] = { "<C-w>j", "Down Window" },
 				["<A-k>"] = { "<C-w>k", "Up Window" },
+				["<esc>"] = { "<cmd>noh<cr>", "Clear Search" },
 			})
 		end,
 	}
