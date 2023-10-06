@@ -120,7 +120,7 @@ return {
 					},
 				},
 
-				highlight = { enable = true },
+				highlight = { enable = false },
 
 				indent = {
 					enable = false

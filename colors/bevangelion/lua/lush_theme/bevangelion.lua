@@ -68,9 +68,9 @@ local theme = lush(function(injected_functions)
 	local purple2 = hsl('#984695')
 	local purple3 = hsl('#734f9a')
 	local purple4 = hsl('#765898')
-	local status = base.lighten(10)
 	local red1 = hsl('#e52c2c')
 	local red2 = hsl('#d3290f')
+	local red3 = red1.darken(30)
 
 	return {
 
@@ -221,7 +221,7 @@ local theme = lush(function(injected_functions)
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		DiagnosticError { gui = "italic", fg = red1 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticError { gui = "italic", fg = red3 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		DiagnosticWarn { gui = "italic", fg = yellow2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticHint             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
