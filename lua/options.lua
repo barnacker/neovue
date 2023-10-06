@@ -32,6 +32,13 @@ vim.fn.sign_define("DiagnosticSignHint",
 
 vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 vim.cmd("set sessionoptions-=buffers")
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = function(event)
+		vim.cmd("set title titlestring=buffers")
+	end
+})
+
 -- vim.cmd("syntax off")
 vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
 

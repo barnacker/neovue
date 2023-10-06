@@ -273,6 +273,7 @@ return {
 				group = "heirline_augroup",
 				callback = vim.schedule_wrap(
 					function()
+						vim.cmd("set title titlestring=~")
 						vim.cmd("redrawstatus")
 					end
 				)

@@ -55,6 +55,7 @@ local theme = lush(function(injected_functions)
 	local highlight = base.lighten(3)
 	local indent = base.lighten(16)
 	local normal = hsl('#e2e4f6')
+	local hint = normal.darken(30)
 	local orange1 = hsl('#fc735d')
 	local orange2 = hsl('#e6770b')
 	local disabled = hsl('#686858')
@@ -140,7 +141,7 @@ local theme = lush(function(injected_functions)
 		-- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
 		-- SpellLocal     { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 		-- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-		StatusLine { gui = "bold", fg = red2, bg = base },    -- Status line of current window
+		StatusLine { gui = "bold", fg = green1, bg = base },  -- Status line of current window
 		StatusLineNC { gui = "bold", fg = base, bg = purple1 }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		TabLine { gui = "bold", fg = base, bg = yellow1 },    -- Tab pages line, not active tab page label
 		TabLineFill {},                                       -- Tab pages line, where there are no labels
@@ -206,7 +207,7 @@ local theme = lush(function(injected_functions)
 		Error { gui = "bold", fg = base, bg = red1 }, -- Any erroneous construct
 		-- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-		-- These groups are for the native LSP client and diagnostic system. Some
+		-- These groups are for the n765898ative LSP client and diagnostic system. Some
 		-- other LSP clients may use these groups, or use their own. Consult your
 		-- LSP client's documentation.
 
@@ -221,10 +222,10 @@ local theme = lush(function(injected_functions)
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		DiagnosticError { gui = "italic", fg = red3 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticWarn { gui = "italic", fg = yellow2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticError { gui = "italic", fg = red3 },           -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticWarn { gui = "italic", fg = yellow2 },         -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticHint             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticHint { gui = "italic", fg = hint },            -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
 		-- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
@@ -257,13 +258,13 @@ local theme = lush(function(injected_functions)
 		InsertMode { gui = "bold", fg = base, bg = green1 },
 		Encoding { gui = "bold", fg = base, bg = orange2 },
 		EncodingCap { gui = "bold", bg = base, fg = orange2 },
-		LineFeed { gui = "bold", fg = normal, bg = red2 },
+		LineFeed { gui = "bold", fg = base, bg = red2 },
 		LineFeedCap { gui = "bold", bg = base, fg = red2 },
-		Ruler { gui = "bold", fg = base, bg = green3 },
-		RulerCap { gui = "bold", bg = base, fg = green3 },
-		Size { gui = "bold", fg = normal, bg = purple4 },
-		SizeCap { gui = "bold", bg = base, fg = purple4 },
-		Session { gui = "bold", bg = red2, fg = base },
+		Ruler { gui = "bold", fg = base, bg = green1 },
+		RulerCap { gui = "bold", bg = base, fg = green1 },
+		Size { gui = "bold", fg = base, bg = purple1 },
+		SizeCap { gui = "bold", bg = base, fg = purple1 },
+		Session { gui = "bold", bg = green1, fg = base },
 
 		-- Tree-Sitter syntax groups.
 		--

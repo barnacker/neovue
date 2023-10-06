@@ -191,7 +191,7 @@ return {
 				window_picker = {
 					enable = true,
 					picker = function()
-						require('window-picker').pick_window()
+						return require('window-picker').pick_window()
 					end,
 					chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
 					exclude = {

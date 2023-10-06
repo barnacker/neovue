@@ -20,19 +20,11 @@ local function lsp_diag(buf)
 		count[diagnostic.severity] = count[diagnostic.severity] + 1
 	end
 	if count[1] > 0 then
-		return vim.bo[buf].modified and "" or ""
+		return vim.bo[buf].modified and "" or ""
 	elseif count[2] > 0 then
-		return vim.bo[buf].modified and "" or ""
+		return vim.bo[buf].modified and "" or ""
 	end
-	return vim.bo[buf].modified and "" or ""
-end
-
-local function get_modified(buf)
-	if vim.bo[buf].modified then
-		return ''
-	else
-		return ''
-	end
+	return vim.bo[buf].modified and "●" or ""
 end
 
 local function buffer_name(buf)
@@ -66,7 +58,7 @@ return {
 					local hl = tab.is_current() and theme.current_tab or theme.tab
 					return {
 						line.sep('', hl, theme.fill),
-						tab.number(),
+						not tab.is_current() and tab.number() .. '' or '',
 						tab.name(),
 						tab.close_btn(''),
 						line.sep('', hl, theme.fill),
@@ -81,7 +73,8 @@ return {
 					local hl = win.is_current() and theme.current_win or theme.tab
 					return {
 						line.sep('', hl, theme.fill),
-						win.buf_name(),
+						buffer_name(win.buf_name()),
+						lsp_diag(win.buf().id),
 						line.sep('', hl, theme.fill),
 						hl = hl,
 						margin = ' ',
