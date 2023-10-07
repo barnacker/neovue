@@ -1,5 +1,20 @@
 return {
 	{
+		"folke/neodev.nvim",
+		dependencies = "rcarriga/nvim-dap-ui",
+		opts = {
+			library = { plugins = { "nvim-dap-ui" }, types = true },
+		}
+	},
+	-- {
+	-- 	"j-hui/fidget.nvim",
+	-- 	tag = "legacy",
+	-- 	event = "LspAttach",
+	-- 	opts = {
+	-- 		-- options
+	-- 	},
+	-- },
+	{
 		"hrsh7th/nvim-cmp",
 		enabled = true,
 		dependencies = {
@@ -10,17 +25,18 @@ return {
 					"nvim-tree/nvim-web-devicons"
 				},
 				config = function()
-					require("lsp-progress").setup()
+					require("lsp-progress").setup({})
 				end
 			},
 			{
 				"neovim/nvim-lspconfig",
+				dependencies = { "folke/neodev.nvim" },
 				config = function()
 					-- Use LspAttach autocommand to only map the following keys
 					-- after the language server attaches to the current buffer
 					vim.api.nvim_create_autocmd('LspAttach', {
 						-- group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-						callback = function(ev)
+						callback = function()
 						end
 					})
 				end,
@@ -74,9 +90,20 @@ return {
 			)
 
 			cmp.setup({
+				view = {
+					entries = { name = 'custom', selection_order = 'near_cursor' }
+				},
+
 				formatting = {
 					format = lspkind.cmp_format({
-						mode = 'symbol', -- show only symbol annotations
+						mode = 'symbol_text',
+						menu = ({
+							buffer = "[Buffer]",
+							nvim_lsp = "[LSP]",
+							luasnip = "[LuaSnip]",
+							nvim_lua = "[Lua]",
+							latex_symbols = "[Latex]",
+						}),
 						maxwidth = 50,   -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 						ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 						-- The function below will be called before any actual modifications from lspkind
@@ -181,9 +208,15 @@ return {
 				capabilities = capabilities,
 				settings = {
 					Lua = {
-						diagnostics = {
-							globals = { "vim" }
-						}
+						completion = {
+							callSnippet = "Replace"
+						},
+						workspace = {
+							checkThirdParty = false,
+						},
+						-- diagnostics = {
+						-- 	globals = { "vim" }
+						-- }
 					}
 				}
 			}
@@ -297,7 +330,7 @@ return {
 				on_attach = function(client, bufnr)
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = bufnr,
-						callback = function(event)
+						callback = function()
 							vim.lsp.buf.format()
 						end
 					})

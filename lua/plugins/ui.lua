@@ -83,8 +83,8 @@ return {
 					neo_tree = false,
 					symbols_outline = true,
 					tabby = true,
-					dap = true,
-					dapui = true,
+					dap = false,
+					dapui = false,
 					delete_buffers = false,
 				},
 				telescope = {

@@ -243,18 +243,6 @@ return {
 				provider = ":%3.5(%S%)",
 			}
 
-			local LSPMessages  = {
-				-- condition = #vim.lsp.buf_get_clients() > 0,
-				provider = function()
-					-- return require('lsp-progress').progress()
-					return require("lsp-progress").progress({
-						format = function(messages)
-							return #messages > 0 and table.concat(messages, " ") or ""
-						end,
-					})
-				end
-			}
-
 			local LSPActive    = {
 				condition = conditions.lsp_attached,
 				update    = { 'LspAttach', 'LspDetach' },
@@ -306,7 +294,7 @@ return {
 
 			local DefaultStatusline = {
 				--ViMode, Space, FileNameBlock, Space, Git, Space, Diagnostics, Align,
-				ViMode, Git, LSPActive, Space, LSPMessages, Align,
+				ViMode, Git, LSPActive, Align,
 				--Navic, DAPMessages, Align,
 				StylishSpacess, Start, Session, End, StylishSpacess, Align,
 				--LSPActive, Space, LSPMessages, Space, UltTest, Space, FileType, Space, Ruler, Space, ScrollBar
@@ -339,7 +327,7 @@ return {
 					return conditions.buffer_matches({ buftype = { "terminal" } })
 				end,
 
-				hl = { bg = "dark_red" },
+				hl = "Error",
 
 				-- Quickly add a condition to the ViMode to only show it when buffer is active!
 				{ condition = conditions.is_active, ViMode, StylishSpace },

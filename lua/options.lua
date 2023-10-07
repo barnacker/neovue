@@ -1,4 +1,4 @@
--- Space is the leader key <leader>
+-- space is the leader key <leader>
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -10,7 +10,7 @@ vim.o.clipboard = 'unnamedplus'
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwplugin = 1
 vim.o.termguicolors = true
 
 vim.o.updatetime = 300
@@ -21,30 +21,41 @@ vim.o.wrap = false
 vim.o.laststatus = 3
 vim.o.showtabline = 2
 
-vim.fn.sign_define("DiagnosticSignError",
-	{ text = " ", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn",
-	{ text = " ", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo",
-	{ text = " ", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint",
-	{ text = " ", texthl = "DiagnosticSignHint" })
+vim.fn.sign_define("diagnosticsignerror",
+	{ text = " ", texthl = "diagnosticsignerror" })
+vim.fn.sign_define("diagnosticsignwarn",
+	{ text = " ", texthl = "diagnosticsignwarn" })
+vim.fn.sign_define("diagnosticsigninfo",
+	{ text = " ", texthl = "diagnosticsigninfo" })
+vim.fn.sign_define("diagnosticsignhint",
+	{ text = " ", texthl = "diagnosticsignhint" })
+
+vim.fn.sign_define('DapBreakpoint',
+	{ text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition',
+	{ text = 'ﳁ', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected',
+	{ text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapLogPoint',
+	{ text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' })
+vim.fn.sign_define('DapStopped',
+	{ text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
 
 vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 vim.cmd("set sessionoptions-=buffers")
 
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("bufwritepre", {
 	callback = function(event)
 		vim.cmd("set title titlestring=buffers")
 	end
 })
 
 -- vim.cmd("syntax off")
-vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
+vim.cmd([[au filetype * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
 
 if vim.g.neovide then
-	-- Put anything you want to happen only in Neovide here
-	vim.o.guifont = "IosevkaBarnacker Nerd Font:h11"
+	-- put anything you want to happen only in neovide here
+	vim.o.guifont = "iosevkabarnacker nerd font:h11"
 	-- vim.g.neovide_padding_top = 0
 	-- vim.g.neovide_padding_bottom = 0
 	-- vim.g.neovide_padding_right = 0

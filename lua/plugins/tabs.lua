@@ -58,7 +58,7 @@ return {
 					local hl = tab.is_current() and theme.current_tab or theme.tab
 					return {
 						line.sep('', hl, theme.fill),
-						not tab.is_current() and tab.number() .. '' or '',
+						not tab.is_current() and tab.number() .. ' ' or '',
 						tab.name(),
 						tab.close_btn(''),
 						line.sep('', hl, theme.fill),

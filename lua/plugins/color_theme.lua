@@ -1,7 +1,12 @@
 return {
 	{
-		"posva/vim-vue",
+		"leafOfTree/vim-vue-plugin",
 		enabled = true
+	},
+
+	{
+		"posva/vim-vue",
+		enabled = false
 	},
 	{
 		"rktjmp/lush.nvim",

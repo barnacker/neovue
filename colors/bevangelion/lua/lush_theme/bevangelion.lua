@@ -146,7 +146,7 @@ local theme = lush(function(injected_functions)
 		TabLine { gui = "bold", fg = base, bg = yellow1 },    -- Tab pages line, not active tab page label
 		TabLineFill {},                                       -- Tab pages line, where there are no labels
 		TabLineSel { gui = "bold", fg = yellow1, bg = base }, -- Tab pages line, active tab page label
-		-- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
+		Title { fg = green1 },                                -- Titles for output from ":set all", ":autocmd" etc.
 		Visual { bg = purple1, fg = base },                   -- Visual mode selection
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
 		WarningMsg { fg = red1 },                             -- Warning messages
@@ -166,10 +166,10 @@ local theme = lush(function(injected_functions)
 
 		Comment { fg = disabled, gui = "italic" }, -- Any comment
 
-		-- Constant       { }, -- (*) Any constant
-		String { fg = yellow1 }, --   A string constant: "this is a string"
+		Constant { fg = yellow1 },               -- (*) Any constant
+		String { fg = yellow1 },                 --   A string constant: "this is a string"
 		-- Character      { }, --   A character constant: 'c', '\n'
-		-- Number         { }, --   A number constant: 234, 0xff
+		Number { fg = red1 },                    --   A number constant: 234, 0xff
 		-- Boolean        { }, --   A boolean constant: TRUE, false
 		-- Float          { }, --   A floating point constant: 2.3e10
 
@@ -222,10 +222,10 @@ local theme = lush(function(injected_functions)
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		DiagnosticError { gui = "italic", fg = red3 },           -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticWarn { gui = "italic", fg = yellow2 },         -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticError { gui = "italic", fg = red3 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticWarn { gui = "italic", fg = yellow2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticHint { gui = "italic", fg = hint },            -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticHint { gui = "italic", fg = hint },  -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
 		-- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
@@ -248,6 +248,10 @@ local theme = lush(function(injected_functions)
 		-- DiagnosticSignHint         { } , -- Used for "Hint" signs in sign column.
 		-- DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
 
+		-- Debugger
+		DapBreakpoint { fg = red3 },
+		DapLogPoint { fg = purple1 },
+		DapStopped { fg = green1 },
 
 		-- Neo-Tree		
 		NeoTreeGitUntracked { gui = "italic", fg = orange1 }, -- NeoTreeGitUntracked xxx gui=italic guifg=#ff8700
