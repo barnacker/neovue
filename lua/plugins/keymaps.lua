@@ -76,6 +76,12 @@ return {
 				["<A-j>"] = { "<C-w>j", "Down Window" },
 				["<A-k>"] = { "<C-w>k", "Up Window" },
 				["<esc>"] = { "<cmd>noh<cr>", "Clear Search" },
+				["<F9>"] = { "<cmd>DapContinue<cr>", "Continue" },
+				["<C-F8>"] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
+				["<F8>"] = { "<cmd>DapStepOver<cr>", "Step Over" },
+				["<F7>"] = { "<cmd>DapStepInto<cr>", "Step Into" },
+				["<S-F8>"] = { "<cmd>DapStepOut<cr>", "Step Out" },
+				["<C-F2>"] = { "<cmd>DapTerminate<cr>", "Terminate" },
 			})
 		end,
 	}

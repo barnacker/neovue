@@ -92,7 +92,7 @@ return {
 			require("dapui").setup(
 				{
 					controls = {
-						element = "scopes",
+						element = "watches",
 						enabled = true,
 						icons = {
 							disconnect = "",
@@ -123,24 +123,24 @@ return {
 					layouts = { {
 						elements = {
 							{
-								id = "watches",
+								id = "repl",
 								size = 0.25
 							},
 							{
 								id = "stacks",
-								size = 0.50
+								size = 0.25
 							},
 							{
-								id = "repl",
-								size = 0.25
+								id = "scopes",
+								size = 0.5
 							},
 						},
 						position = "left",
-						size = 60
+						size = 40
 					}, {
 						elements = {
 							{
-								id = "scopes",
+								id = "watches",
 								size = 1.0
 							},
 							-- {
@@ -149,7 +149,7 @@ return {
 							-- },
 						},
 						position = "bottom",
-						size = 20
+						size = 15
 					}
 					},
 					mappings = {

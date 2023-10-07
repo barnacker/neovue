@@ -83,7 +83,7 @@ return {
 					neo_tree = false,
 					symbols_outline = true,
 					tabby = true,
-					dap = false,
+					dap = true,
 					dapui = false,
 					delete_buffers = false,
 				},
