@@ -56,19 +56,21 @@ local theme = lush(function(injected_functions)
 	local indent = base.lighten(16)
 	local normal = hsl('#e2e4f6')
 	local hint = normal.darken(30)
-	local orange1 = hsl('#fc735d')
+	local orange = hsl('#E54810')
+	local orange1 = orange.lighten(15)
 	local orange2 = hsl('#e6770b')
-	local disabled = hsl('#686858')
 	local yellow1 = hsl('#f5c024')
 	local yellow2 = yellow1.darken(30)
-	local purple1 = hsl('#b194fa')
+	local disabled = hsl('#686858')
+	local dormant = disabled.lighten(30)
 	local pink = hsl('#d694fa')
 	local green1 = hsl('#7cb375')
 	local green2 = hsl('#9ef01a')
-	local green3 = hsl('#52d053')
+	local green3 = hsl('#466b5a')
+	local purple1 = hsl('#b194fa')
 	local purple2 = hsl('#984695')
-	local purple3 = hsl('#734f9a')
-	local purple4 = hsl('#765898')
+	local purple3 = hsl('#765898')
+	local purple4 = hsl('#703871')
 	local red1 = hsl('#e52c2c')
 	local red2 = hsl('#d3290f')
 	local red3 = red1.darken(30)
@@ -102,11 +104,11 @@ local theme = lush(function(injected_functions)
 		-- TermCursor     { }, -- Cursor in a focused terminal
 		-- TermCursorNC   { }, -- Cursor in an unfocused terminal
 		-- ErrorMsg       { }, -- Error messages on the command line
-		VertSplit { fg = purple3 }, -- Column separating vertically split windows
+		VertSplit { fg = green3 }, -- Column separating vertically split windows
 		-- Folded         { }, -- Line used for closed folds
 		-- FoldColumn     { }, -- 'foldcolumn'
-		SignColumn {},            -- Column where |signs| are displayed
-		IncSearch { bg = purple2 }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+		SignColumn {}, -- Column where |signs| are displayed
+		-- IncSearch { fg = yellow1 }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		-- Substitute     { }, -- |:substitute| replacement text highlighting
 		LineNr { fg = disabled }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		-- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
@@ -125,8 +127,8 @@ local theme = lush(function(injected_functions)
 		-- FloatBorder    { }, -- Border of floating windows.
 		-- FloatTitle     { }, -- Title of floating windows.
 		-- NormalNC       { }, -- normal text in non-current windows
-		Pmenu {},                           -- Popup menu: Normal item.
-		PmenuSel { fg = base, bg = purple1 }, -- Popup menu: Selected item.
+		Pmenu {},                                         -- Popup menu: Normal item.
+		PmenuSel { gui = "bold", fg = base, bg = yellow1 }, -- Popup menu: Selected item.
 		-- PmenuKind      { }, -- Popup menu: Normal item "kind"
 		-- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
 		-- PmenuExtra     { }, -- Popup menu: Normal item "extra text"
@@ -135,7 +137,7 @@ local theme = lush(function(injected_functions)
 		-- PmenuThumb     { }, -- Popup menu: Thumb of the scrollbar.
 		-- Question       { }, -- |hit-enter| prompt and yes/no questions
 		-- QuickFixLine   { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-		Search { bg = purple2 }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+		Search { gui = "italic, bold, underline", fg = green2 }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 		-- SpecialKey     { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
 		-- SpellBad       { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
 		-- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
@@ -147,7 +149,7 @@ local theme = lush(function(injected_functions)
 		TabLineFill {},                                       -- Tab pages line, where there are no labels
 		TabLineSel { gui = "bold", fg = yellow1, bg = base }, -- Tab pages line, active tab page label
 		Title { fg = green1 },                                -- Titles for output from ":set all", ":autocmd" etc.
-		Visual { bg = purple1, fg = base },                   -- Visual mode selection
+		Visual { gui = "bold", bg = yellow1, fg = base },     -- Visual mode selection
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
 		WarningMsg { fg = red1 },                             -- Warning messages
 		Whitespace { fg = indent },                           -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -170,13 +172,13 @@ local theme = lush(function(injected_functions)
 		String { fg = yellow1 },                 --   A string constant: "this is a string"
 		-- Character      { }, --   A character constant: 'c', '\n'
 		Number { fg = red1 },                    --   A number constant: 234, 0xff
-		-- Boolean        { }, --   A boolean constant: TRUE, false
+		Boolean { fg = green2 },                 --   A boolean constant: TRUE, false
 		-- Float          { }, --   A floating point constant: 2.3e10
 
-		Identifier {},            -- (*) Any variable name
-		Function { fg = orange1 }, --   Function name (also: methods for classes)
+		Identifier {},                           -- (*) Any variable name
+		Function { fg = orange1, gui = "italic" }, --   Function name (also: methods for classes)
 
-		Statement { fg = purple1 }, -- (*) Any statement
+		Statement { fg = purple1 },              -- (*) Any statement
 		-- Conditional    { }, --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
@@ -270,6 +272,21 @@ local theme = lush(function(injected_functions)
 		SizeCap { gui = "bold", bg = base, fg = purple1 },
 		Session { gui = "bold", bg = green1, fg = base },
 
+
+
+		TelescopeMatching { Search },
+		TelescopeSelection { bg = highlight },
+		TelescopePromptPrefix {},
+		TelescopePromptNormal { fg = green2 },
+		TelescopeResultsNormal { fg = dormant },
+		TelescopePreviewNormal {},
+		TelescopePromptBorder { fg = green1 },
+		TelescopeResultsBorder { fg = yellow2 },
+		TelescopePreviewBorder { fg = yellow2 },
+		TelescopePromptTitle { fg = green2 },
+		TelescopeResultsTitle { fg = yellow1 },
+		TelescopePreviewTitle { fg = yellow1 },
+
 		-- Tree-Sitter syntax groups.
 		--
 		-- See :h treesitter-highlight-groups, some groups may not be listed,
@@ -295,7 +312,7 @@ local theme = lush(function(injected_functions)
 		-- sym"@text.todo"         { }, -- Todo
 		-- sym"@comment"           { }, -- Comment
 		-- sym"@punctuation"       { }, -- Delimiter
-		-- sym"@constant"          { }, -- Constant
+		-- sym "@constant" { fg = green2 },     -- Constant
 		-- sym"@constant.builtin"  { }, -- Special
 		-- sym"@constant.macro"    { }, -- Define
 		-- sym"@define"            { }, -- Define

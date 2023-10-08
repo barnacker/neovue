@@ -20,15 +20,16 @@ vim.o.mouse = 'a'
 vim.o.wrap = false
 vim.o.laststatus = 3
 vim.o.showtabline = 2
+vim.opt.showcmdloc = 'statusline'
 
-vim.fn.sign_define("diagnosticsignerror",
-	{ text = " ", texthl = "diagnosticsignerror" })
-vim.fn.sign_define("diagnosticsignwarn",
-	{ text = " ", texthl = "diagnosticsignwarn" })
-vim.fn.sign_define("diagnosticsigninfo",
-	{ text = " ", texthl = "diagnosticsigninfo" })
-vim.fn.sign_define("diagnosticsignhint",
-	{ text = " ", texthl = "diagnosticsignhint" })
+vim.fn.sign_define("DiagnosticSignError",
+	{ text = " ", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn",
+	{ text = " ", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo",
+	{ text = " ", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint",
+	{ text = " ", texthl = "DiagnosticSignHint" })
 
 vim.fn.sign_define('DapBreakpoint',
 	{ text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
@@ -44,7 +45,7 @@ vim.fn.sign_define('DapStopped',
 vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 vim.cmd("set sessionoptions-=buffers")
 
-vim.api.nvim_create_autocmd("bufwritepre", {
+vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function(event)
 		vim.cmd("set title titlestring=buffers")
 	end

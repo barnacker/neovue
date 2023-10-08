@@ -1,19 +1,16 @@
-local function tab_name(tab)
-	return string.gsub(tab, "%[..%]", "")
-end
-
 local function tab_modified(tab)
-	wins = require("tabby.module.api").get_tab_wins(tab)
+	local wins = require("tabby.module.api").get_tab_wins(tab.id)
+	---@diagnostic disable-next-line: unused-local
 	for i, x in pairs(wins) do
 		if vim.bo[vim.api.nvim_win_get_buf(x)].modified then
-			return ""
+			return "● "
 		end
 	end
-	return ""
+	return ""
 end
 
 local function lsp_diag(buf)
-	diagnostics = vim.diagnostic.get(buf)
+	local diagnostics = vim.diagnostic.get(buf)
 	local count = { 0, 0, 0, 0 }
 
 	for _, diagnostic in ipairs(diagnostics) do
@@ -23,6 +20,10 @@ local function lsp_diag(buf)
 		return vim.bo[buf].modified and "" or ""
 	elseif count[2] > 0 then
 		return vim.bo[buf].modified and "" or ""
+	elseif count[3] > 0 then
+		return vim.bo[buf].modified and "󰋼" or ""
+	elseif count[4] > 0 then
+		return vim.bo[buf].modified and "" or "󰗖"
 	end
 	return vim.bo[buf].modified and "●" or ""
 end
@@ -60,6 +61,7 @@ return {
 						line.sep('', hl, theme.fill),
 						not tab.is_current() and tab.number() .. ' ' or '',
 						tab.name(),
+						tab_modified(tab),
 						tab.close_btn(''),
 						line.sep('', hl, theme.fill),
 						hl = hl,

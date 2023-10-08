@@ -159,6 +159,7 @@ return {
 				condition = conditions.is_git_repo,
 
 				init = function(self)
+					---@diagnostic disable-next-line: undefined-field
 					self.status_dict = vim.b.gitsigns_status_dict
 					self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or
 							self.status_dict.changed ~= 0
@@ -235,14 +236,6 @@ return {
 				}
 			}
 
-			vim.opt.showcmdloc = 'statusline'
-			local ShowCmd      = {
-				condition = function()
-					return vim.o.cmdheight == 0
-				end,
-				provider = ":%3.5(%S%)",
-			}
-
 			local LSPActive    = {
 				condition = conditions.lsp_attached,
 				update    = { 'LspAttach', 'LspDetach' },
@@ -261,7 +254,6 @@ return {
 				group = "heirline_augroup",
 				callback = vim.schedule_wrap(
 					function()
-						vim.cmd("set title titlestring=~")
 						vim.cmd("redrawstatus")
 					end
 				)
