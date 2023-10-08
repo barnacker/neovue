@@ -32,10 +32,10 @@ local function lsp_diag(buf)
 		table.insert(diagstring, string.format(diagformat, count[2], " "))
 	end
 	if count[3] > 0 then
-		table.insert(diagstring, string.format(diagformat, count[3], "󰋼 "))
+		table.insert(diagstring, string.format(diagformat, count[3], " "))
 	end
 	if count[4] > 0 then
-		table.insert(diagstring, string.format(diagformat, count[4], " "))
+		table.insert(diagstring, string.format(diagformat, count[4], " "))
 	end
 	if next(diagstring) == nil then
 		return ""
