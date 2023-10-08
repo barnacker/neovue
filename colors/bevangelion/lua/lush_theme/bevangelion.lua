@@ -48,35 +48,35 @@ local hsl = lush.hsl
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
 ---@diagnostic disable: undefined-global
+---@diagnostic disable-next-line: unused-local
 local theme = lush(function(injected_functions)
-	local sym = injected_functions.sym
+	-- local sym = injected_functions.sym
 	-- Palette
 	-- local base = hsl(240, 14, 10)
 	local base = hsl('#01161C')
+	local disabled = hsl('#686858')
 	local highlight = base.lighten(4)
 	local indent = base.lighten(16)
-	local normal = hsl('#e2e4f6')
-	local hint = normal.darken(30)
 	local orange = hsl('#E54810')
 	local orange1 = orange.lighten(15)
 	local orange2 = hsl('#e6770b')
+	local orange3 = hsl('#F9A101')
 	local yellow1 = hsl('#f5c024')
 	local yellow2 = yellow1.darken(30)
-	local yellow3 = yellow1.darken(60)
-	local disabled = hsl('#686858')
 	local dormant = disabled.lighten(60)
 	local pink = hsl('#d694fa')
 	local green1 = hsl('#7cb375')
 	local green2 = hsl('#9ef01a')
 	local green3 = hsl('#466b5a')
 	local purple1 = hsl('#b194fa')
-	local purple2 = hsl('#984695')
-	local purple3 = hsl('#765898')
-	local purple4 = hsl('#703871')
+	local purple5 = hsl('#D901F9')
 	local red1 = hsl('#e52c2c')
 	local red2 = hsl('#d3290f')
 	local red3 = red1.darken(30)
-	local menu = purple1.darken(100)
+	local info = hsl('#1f9fff')
+	local menu = base.darken(40)
+	local normal = disabled.lighten(62)
+	local hint = normal.darken(30)
 
 	return {
 
@@ -125,9 +125,9 @@ local theme = lush(function(injected_functions)
 		-- MsgArea        { }, -- Area for messages and cmdline
 		-- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
 		-- MoreMsg        { }, -- |more-prompt|
-		NonText { fg = indent },          -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-		Normal { fg = yellow2, bg = base }, -- Normal text
-		NormalFloat {},                   -- Normal text in floating windows.
+		NonText { fg = indent },         -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+		Normal { fg = normal, bg = base }, -- Normal text
+		NormalFloat {},                  -- Normal text in floating windows.
 		-- FloatBorder    { }, -- Border of floating windows.
 		-- FloatTitle     { }, -- Title of floating windows.
 		-- NormalNC       { }, -- normal text in non-current windows
@@ -179,15 +179,15 @@ local theme = lush(function(injected_functions)
 		-- Boolean { fg = green2 },                 --   A boolean constant: TRUE, false
 		-- Float          { }, --   A floating point constant: 2.3e10
 
-		Identifier { fg = normal },              -- (*) Any variable name
+		Identifier { fg = disabled.lighten(82) }, -- (*) Any variable name
 		Function { fg = orange1, gui = "italic" }, --   Function name (also: methods for classes)
 
 		Statement { fg = purple1 },              -- (*) Any statement
-		-- Conditional { fg = purple1 },            --   if, then, else, endif, switch, etc.
+		-- Conditional {},                          --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
 		Operator { fg = pink }, --   "sizeof", "+", "*", etc.
-		-- Keyword        { }, --   any other keyword
+		Keyword { fg = pink }, --   any other keyword
 		-- Exception      { }, --   try, catch, throw
 
 		PreProc { fg = orange2 }, -- (*) Generic Preprocessor
@@ -196,7 +196,7 @@ local theme = lush(function(injected_functions)
 		-- Macro          { }, --   Same as Define
 		-- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-		Type { fg = red1 }, -- (*) int, long, char, etc.
+		Type { gui = "italic", fg = green1 }, -- (*) int, long, char, etc.
 		-- StorageClass   { }, --   static, register, volatile, etc.
 		-- Structure      { }, --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
@@ -229,7 +229,7 @@ local theme = lush(function(injected_functions)
 		--
 		DiagnosticError { fg = red3 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		DiagnosticWarn { fg = yellow2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticInfo { fg = info },  -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		DiagnosticHint { fg = hint },  -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
@@ -237,10 +237,10 @@ local theme = lush(function(injected_functions)
 		-- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
 		-- DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
 		-- DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
-		-- DiagnosticUnderlineError   { } , -- Used to underline "Error" diagnostics.
-		-- DiagnosticUnderlineWarn    { } , -- Used to underline "Warn" diagnostics.
-		-- DiagnosticUnderlineInfo    { } , -- Used to underline "Info" diagnostics.
-		-- DiagnosticUnderlineHint    { } , -- Used to underline "Hint" diagnostics.
+		DiagnosticUnderlineError { gui = "underdouble", sp = red1 }, -- Used to underline "Error" diagnostics.
+		DiagnosticUnderlineWarn { gui = "underdouble", sp = yellow1 }, -- Used to underline "Warn" diagnostics.
+		DiagnosticUnderlineInfo { gui = "underdouble", sp = info },  -- Used to underline "Info" diagnostics.
+		DiagnosticUnderlineHint { gui = "underdouble", sp = hint },  -- Used to underline "Hint" diagnostics.
 		-- DiagnosticUnderlineOk      { } , -- Used to underline "Ok" diagnostics.
 		-- DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
 		-- DiagnosticFloatingWarn     { } , -- Used to color "Warn" diagnostic messages in diagnostics float.
@@ -278,18 +278,27 @@ local theme = lush(function(injected_functions)
 
 
 		TelescopeMatching { Search },
-		TelescopeSelection { bg = yellow3 },
+		TelescopeSelection { bg = highlight },
 		TelescopePromptPrefix {},
 		TelescopePromptNormal { fg = green2 },
 		TelescopeResultsNormal { fg = dormant },
 		TelescopePreviewNormal {},
-		TelescopePromptBorder { fg = green1 },
-		TelescopeResultsBorder { fg = yellow2 },
-		TelescopePreviewBorder { fg = yellow2 },
+		TelescopePromptBorder { fg = green2 },
+		TelescopeResultsBorder { fg = info },
+		TelescopePreviewBorder { fg = info },
 		TelescopePromptTitle { fg = green2 },
-		TelescopeResultsTitle { fg = yellow1 },
-		TelescopePreviewTitle { fg = yellow1 },
+		TelescopeResultsTitle { fg = info },
+		TelescopePreviewTitle { fg = info },
 
+
+		--Rainbow Delimiter
+		RainbowDelimiterRed { fg = "red" },
+		RainbowDelimiterBlue { fg = info },
+		RainbowDelimiterGreen { fg = green2 },
+		RainbowDelimiterOrange { fg = orange3 },
+		RainbowDelimiterViolet { fg = purple5 },
+		RainbowDelimiterCyan { fg = "cyan" },
+		RainbowDelimiterYellow { fg = yellow1 },
 		-- Tree-Sitter syntax groups.
 		--
 		-- See :h treesitter-highlight-groups, some groups may not be listed,

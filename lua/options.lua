@@ -16,11 +16,14 @@ vim.o.termguicolors = true
 vim.o.updatetime = 300
 
 vim.o.mouse = 'a'
-
+vim.o.splitbelow = true
+vim.o.splitright = true
 vim.o.wrap = false
 vim.o.laststatus = 3
 vim.o.showtabline = 2
-vim.opt.showcmdloc = 'statusline'
+vim.o.showcmdloc = 'statusline'
+
+vim.o.spell = false
 
 vim.fn.sign_define("DiagnosticSignError",
 	{ text = "", texthl = "DiagnosticSignError" })

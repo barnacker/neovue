@@ -9,23 +9,38 @@ local function tab_modified(tab)
 	return ""
 end
 
+local function buf_modified(buf)
+	if vim.bo[buf].modified then
+		return "●"
+	end
+	return ""
+end
+
 local function lsp_diag(buf)
 	local diagnostics = vim.diagnostic.get(buf)
 	local count = { 0, 0, 0, 0 }
+	local diagformat = "%d%s"
+	local diagstring = {}
 
 	for _, diagnostic in ipairs(diagnostics) do
 		count[diagnostic.severity] = count[diagnostic.severity] + 1
 	end
 	if count[1] > 0 then
-		return vim.bo[buf].modified and "" or ""
-	elseif count[2] > 0 then
-		return vim.bo[buf].modified and "" or ""
-	elseif count[3] > 0 then
-		return vim.bo[buf].modified and "󰋼" or ""
-	elseif count[4] > 0 then
-		return vim.bo[buf].modified and "" or "󰗖"
+		table.insert(diagstring, string.format(diagformat, count[1], " "))
 	end
-	return vim.bo[buf].modified and "●" or ""
+	if count[2] > 0 then
+		table.insert(diagstring, string.format(diagformat, count[2], " "))
+	end
+	if count[3] > 0 then
+		table.insert(diagstring, string.format(diagformat, count[3], "󰋼 "))
+	end
+	if count[4] > 0 then
+		table.insert(diagstring, string.format(diagformat, count[4], " "))
+	end
+	if next(diagstring) == nil then
+		return ""
+	end
+	return "" .. table.concat(diagstring, "")
 end
 
 local function buffer_name(buf)
@@ -61,8 +76,8 @@ return {
 					return {
 						line.sep('', hl, theme.fill),
 						not tab.is_current() and tab.number() .. ' ' or '',
-						tab.name(),
 						tab_modified(tab),
+						tab.name(),
 						tab.close_btn(''),
 						line.sep('', hl, theme.fill),
 						hl = hl,
@@ -76,6 +91,7 @@ return {
 					local hl = win.is_current() and theme.current_win or theme.tab
 					return {
 						line.sep('', hl, theme.fill),
+						buf_modified(win.buf().id),
 						buffer_name(win.buf_name()),
 						lsp_diag(win.buf().id),
 						line.sep('', hl, theme.fill),

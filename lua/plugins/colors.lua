@@ -1,12 +1,21 @@
+local rainbowHighlights = {
+	'RainbowDelimiterRed',
+	'RainbowDelimiterBlue',
+	'RainbowDelimiterGreen',
+	'RainbowDelimiterOrange',
+	'RainbowDelimiterViolet',
+	'RainbowDelimiterCyan',
+	'RainbowDelimiterYellow',
+}
 return {
 	{
 		"leafOfTree/vim-vue-plugin",
-		enabled = true
+		enabled = false
 	},
 
 	{
 		"posva/vim-vue",
-		enabled = false
+		enabled = true
 	},
 	{
 		"rktjmp/lush.nvim",
@@ -20,7 +29,7 @@ return {
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",
-		enabled = false,
+		enabled = true,
 		config = function()
 			-- This module contains a number of default definitions
 			local rainbow_delimiters = require 'rainbow-delimiters'
@@ -34,15 +43,7 @@ return {
 					[''] = 'rainbow-delimiters',
 					lua = 'rainbow-blocks',
 				},
-				highlight = {
-					'RainbowDelimiterRed',
-					'RainbowDelimiterYellow',
-					'RainbowDelimiterBlue',
-					'RainbowDelimiterOrange',
-					'RainbowDelimiterGreen',
-					'RainbowDelimiterViolet',
-					'RainbowDelimiterCyan',
-				},
+				highlight = rainbowHighlights,
 			}
 		end
 	},
@@ -63,9 +64,15 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		event = "VeryLazy",
 		main = "ibl",
-		opts = {
-			indent = { char = '▏' }
-		},
+		config = function()
+			local hooks = require "ibl.hooks"
+			require("ibl").setup {
+				indent = { char = '▏' },
+				scope = { highlight = rainbowHighlights }
+			}
+
+			hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+		end
 	},
 	{
 		"catppuccin/nvim",
@@ -86,6 +93,7 @@ return {
 					markdown = true,
 					rainbow_delimiters = true,
 					lightspeed = true,
+					---@diagnostic disable-next-line: assign-type-mismatch
 					illuminate = {
 						enabled = true,
 						lsp = false

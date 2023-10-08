@@ -48,7 +48,7 @@
   "undotree": { "branch": "master", "commit": "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
   "vim-illuminate": { "branch": "master", "commit": "3bd2ab64b5d63b29e05691e624927e5ebbf0fb86" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
-  "vim-vue-plugin": { "branch": "master", "commit": "04c3fb20ed5096a983f71af204afba07cdfa6d6f" },
+  "vim-vue": { "branch": "master", "commit": "c424294e769b26659176065f9713c395731f7b3a" },
   "vscode-js-debug": { "branch": "main", "commit": "5c4f9dcd074ac737aa3399a12c662736fa915be7" },
   "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
   "window-picker": { "branch": "main", "commit": "fd5d3348b3e254ca3134f97793b4a8c702c4ad1d" },
