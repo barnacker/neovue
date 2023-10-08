@@ -25,19 +25,23 @@ return {
 				icons = {
 					-- breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
 					-- separator = "➜", -- symbol used between a key and it's label
-					group = "", -- symbol prepended to a group
+					group = "󰮫 ", -- symbol prepended to a group
 				},
 				key_labels = {
 					-- override the label used to display some keys. It doesn't effect WK in any other way.
 					-- For example:
 					-- ["<space>"] = "SPC",
 					["<CR>"] = "󰌑 ",
+					["<leader>"] = "<space>",
 					-- ["<tab>"] = "TAB",
 				},
 			})
 			wk.register({
 				["<leader>"] = {
-					q = { "<cmd>qa!<cr>", "quit all" },
+					name = "󰶆 leader menu...",
+					["<leader>"] = { "<cmd>Telescope find_files<cr>", "  find files" },
+					["?"] = { "<cmd>WhichKey<cr>", "Show All Mappings" },
+					q = { "<cmd>qa!<cr>", "  quit all" },
 					["<cr>"] = { "i<cr><esc>", "new line" },
 					b = {
 						name = "breakpoints...",
@@ -63,7 +67,8 @@ return {
 						n = { "<cmd>Telescope notify<cr>", "notification" },
 						d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
 					},
-					a = { "<cmd>enew<cr>", "add file" },
+					a = { "<cmd>enew<cr>", "  add file" },
+					z = { "<cmd>Lazy<cr>", "鈴 lazy plugins" },
 					d = { "<cmd>Lspsaga show_buf_diagnostics ++float<cr>", "diagnostics (Buffer)" },
 					D = { "<cmd>Lspsaga show_workspace_diagnostics ++float<cr>", "Diagnostics (Workspace)" },
 					h = { "<cmd>Lspsaga hover_doc<cr>", "hover code" },
