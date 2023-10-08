@@ -26,6 +26,15 @@ return {
 				["<leader>"] = {
 					q = { "<cmd>qa!<cr>", "quit all" },
 					["<cr>"] = { "i<cr><esc>", "new line" },
+					b = {
+						name = "breakpoints...",
+						c = { "<cmd>DapContinue<cr>", "Continue <F9>" },
+						b = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint <Ctrl-F8>" },
+						o = { "<cmd>DapStepOver<cr>", "Step Over <F8>" },
+						i = { "<cmd>DapStepInto<cr>", "Step Into <F7>" },
+						t = { "<cmd>DapStepOut<cr>", "Step Out <Shift-F8>" },
+						x = { "<cmd>DapTerminate<cr>", "Terminate <Ctrl-F2>" },
+					},
 					t = {
 						name = "tabs...",
 						a = { "<cmd>$tabnew<cr>", "add new tab" },
@@ -75,6 +84,11 @@ return {
 				["<A-l>"] = { "<C-w>l", "Right Window" },
 				["<A-j>"] = { "<C-w>j", "Down Window" },
 				["<A-k>"] = { "<C-w>k", "Up Window" },
+				["<C-h>"] = { "<C-w><", "Decrease Window Width" },
+				["<C-l>"] = { "<C-w>>", "Increase Window Width" },
+				["<C-j>"] = { "<C-w>-", "Decrease Window Height" },
+				["<C-k>"] = { "<C-w>+", "Increase Window Height" },
+				["<C-=>"] = { "<C-w>=", "Equalize Windows Sizes" },
 				["<esc>"] = { "<cmd>noh<cr>", "Clear Search" },
 				["<F9>"] = { "<cmd>DapContinue<cr>", "Continue" },
 				["<C-F8>"] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },

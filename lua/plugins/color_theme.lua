@@ -20,7 +20,7 @@ return {
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",
-		enabled = true,
+		enabled = false,
 		config = function()
 			-- This module contains a number of default definitions
 			local rainbow_delimiters = require 'rainbow-delimiters'

@@ -40,7 +40,7 @@ local theme = {
 	-- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
 	head = 'TabLine',
 	current_tab = 'TabLineSel',
-	current_win = 'Error',
+	current_win = "DiffText",
 	tab = 'TabLine',
 	win = 'TabLine',
 	tail = 'TabLine',
@@ -48,6 +48,7 @@ local theme = {
 
 return {
 	"nanozuki/tabby.nvim",
+	event = "VeryLazy",
 	config = function()
 		require('tabby.tabline').set(function(line)
 			return {

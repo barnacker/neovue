@@ -27,6 +27,7 @@ return {
 		"jedrzejboczar/possession.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nanozuki/tabby.nvim",
 			"nvim-telescope/telescope.nvim"
 		},
 		config = function()

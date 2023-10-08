@@ -23,9 +23,9 @@ vim.o.showtabline = 2
 vim.opt.showcmdloc = 'statusline'
 
 vim.fn.sign_define("DiagnosticSignError",
-	{ text = " ", texthl = "DiagnosticSignError" })
+	{ text = "", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn",
-	{ text = " ", texthl = "DiagnosticSignWarn" })
+	{ text = "", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo",
 	{ text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint",
@@ -46,7 +46,7 @@ vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 vim.cmd("set sessionoptions-=buffers")
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-	callback = function(event)
+	callback = function()
 		vim.cmd("set title titlestring=buffers")
 	end
 })
@@ -56,7 +56,9 @@ vim.cmd([[au filetype * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobu
 
 if vim.g.neovide then
 	-- put anything you want to happen only in neovide here
-	vim.o.guifont = "iosevkabarnacker nerd font:h11"
+	vim.o.guifont = "Agave Nerd Font:h12"
+	-- vim.o.guifont = "IosevkaBarnacker Nerd Font:h11"
+	-- vim.o.guifont = "CaskaydiaCove Nerd Font:h11"
 	-- vim.g.neovide_padding_top = 0
 	-- vim.g.neovide_padding_bottom = 0
 	-- vim.g.neovide_padding_right = 0

@@ -51,8 +51,9 @@ local hsl = lush.hsl
 local theme = lush(function(injected_functions)
 	local sym = injected_functions.sym
 	-- Palette
-	local base = hsl(240, 14, 10)
-	local highlight = base.lighten(3)
+	-- local base = hsl(240, 14, 10)
+	local base = hsl('#01161C')
+	local highlight = base.lighten(4)
 	local indent = base.lighten(16)
 	local normal = hsl('#e2e4f6')
 	local hint = normal.darken(30)
@@ -61,8 +62,9 @@ local theme = lush(function(injected_functions)
 	local orange2 = hsl('#e6770b')
 	local yellow1 = hsl('#f5c024')
 	local yellow2 = yellow1.darken(30)
+	local yellow3 = yellow1.darken(60)
 	local disabled = hsl('#686858')
-	local dormant = disabled.lighten(30)
+	local dormant = disabled.lighten(60)
 	local pink = hsl('#d694fa')
 	local green1 = hsl('#7cb375')
 	local green2 = hsl('#9ef01a')
@@ -74,6 +76,7 @@ local theme = lush(function(injected_functions)
 	local red1 = hsl('#e52c2c')
 	local red2 = hsl('#d3290f')
 	local red3 = red1.darken(30)
+	local menu = purple1.darken(100)
 
 	return {
 
@@ -87,19 +90,20 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
+		Error { gui = "bold", bg = base, fg = red1 }, -- Any erroneous construct
 		-- ColorColumn    { }, -- Columns set with 'colorcolumn'
-		-- Conceal        { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-		Cursor { fg = base, bg = normal }, -- Character under the cursor
+		Conceal { fg = dormant },                   -- Placeholder characters substituted for concealed text (see 'conceallevel')
+		Cursor { fg = base, bg = yellow1 },         -- Character under the cursor
 		-- CurSearch      { }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		-- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		-- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
-		CursorColumn {},             -- Screen-column at the cursor, when 'cursorcolumn' is set.
-		CursorLine { bg = highlight }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-		Directory {},                -- Directory names (and other special names in listings)
-		DiffAdd { fg = green2 },     -- Diff mode: Added line |diff.txt|
-		DiffChange { fg = purple1 }, -- Diff mode: Changed line |diff.txt|
-		DiffDelete { fg = red1 },    -- Diff mode: Deleted line |diff.txt|
-		-- DiffText       { }, -- Diff mode: Changed text within a changed line |diff.txt|
+		CursorColumn {},                               -- Screen-column at the cursor, when 'cursorcolumn' is set.
+		CursorLine { bg = highlight },                 -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+		Directory {},                                  -- Directory names (and other special names in listings)
+		DiffAdd { fg = green2 },                       -- Diff mode: Added line |diff.txt|
+		DiffChange { fg = purple1 },                   -- Diff mode: Changed line |diff.txt|
+		DiffDelete { fg = red1 },                      -- Diff mode: Deleted line |diff.txt|
+		DiffText { gui = "bold", fg = base, bg = red1 }, -- Diff mode: Changed text within a changed line |diff.txt|
 		-- EndOfBuffer    { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
 		-- TermCursor     { }, -- Cursor in a focused terminal
 		-- TermCursorNC   { }, -- Cursor in an unfocused terminal
@@ -116,18 +120,18 @@ local theme = lush(function(injected_functions)
 		CursorLineNr { fg = normal }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		-- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
 		-- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
-		MatchParen { fg = green2, bg = base }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+		MatchParen { fg = red1 }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		-- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
 		-- MsgArea        { }, -- Area for messages and cmdline
 		-- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
 		-- MoreMsg        { }, -- |more-prompt|
-		NonText { fg = indent },         -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-		Normal { fg = normal, bg = base }, -- Normal text
-		NormalFloat {},                  -- Normal text in floating windows.
+		NonText { fg = indent },          -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+		Normal { fg = yellow2, bg = base }, -- Normal text
+		NormalFloat {},                   -- Normal text in floating windows.
 		-- FloatBorder    { }, -- Border of floating windows.
 		-- FloatTitle     { }, -- Title of floating windows.
 		-- NormalNC       { }, -- normal text in non-current windows
-		Pmenu {},                                         -- Popup menu: Normal item.
+		Pmenu { bg = menu, fg = dormant },                -- Popup menu: Normal item.
 		PmenuSel { gui = "bold", fg = base, bg = yellow1 }, -- Popup menu: Selected item.
 		-- PmenuKind      { }, -- Popup menu: Normal item "kind"
 		-- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
@@ -168,31 +172,31 @@ local theme = lush(function(injected_functions)
 
 		Comment { fg = disabled, gui = "italic" }, -- Any comment
 
-		Constant { fg = yellow1 },               -- (*) Any constant
+		Constant { gui = "italic", fg = red1 },  -- (*) Any constant
 		String { fg = yellow1 },                 --   A string constant: "this is a string"
-		-- Character      { }, --   A character constant: 'c', '\n'
-		Number { fg = red1 },                    --   A number constant: 234, 0xff
-		Boolean { fg = green2 },                 --   A boolean constant: TRUE, false
+		-- Character      { }, --  redacter constant: 'c', '\n'
+		-- Number { fg = red1 },                    --   A number constant: 234, 0xff
+		-- Boolean { fg = green2 },                 --   A boolean constant: TRUE, false
 		-- Float          { }, --   A floating point constant: 2.3e10
 
-		Identifier {},                           -- (*) Any variable name
+		Identifier { fg = normal },              -- (*) Any variable name
 		Function { fg = orange1, gui = "italic" }, --   Function name (also: methods for classes)
 
 		Statement { fg = purple1 },              -- (*) Any statement
-		-- Conditional    { }, --   if, then, else, endif, switch, etc.
+		-- Conditional { fg = purple1 },            --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
 		Operator { fg = pink }, --   "sizeof", "+", "*", etc.
 		-- Keyword        { }, --   any other keyword
 		-- Exception      { }, --   try, catch, throw
 
-		-- PreProc        { }, -- (*) Generic Preprocessor
+		PreProc { fg = orange2 }, -- (*) Generic Preprocessor
 		-- Include        { }, --   Preprocessor #include
 		-- Define         { }, --   Preprocessor #define
 		-- Macro          { }, --   Same as Define
 		-- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-		Type { fg = green1 }, -- (*) int, long, char, etc.
+		Type { fg = red1 }, -- (*) int, long, char, etc.
 		-- StorageClass   { }, --   static, register, volatile, etc.
 		-- Structure      { }, --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
@@ -206,7 +210,6 @@ local theme = lush(function(injected_functions)
 
 		-- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
 		-- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-		Error { gui = "bold", fg = base, bg = red1 }, -- Any erroneous construct
 		-- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
 		-- These groups are for the n765898ative LSP client and diagnostic system. Some
@@ -224,10 +227,10 @@ local theme = lush(function(injected_functions)
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		DiagnosticError { gui = "italic", fg = red3 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticWarn { gui = "italic", fg = yellow2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticError { fg = red3 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticWarn { fg = yellow2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticHint { gui = "italic", fg = hint },  -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticHint { fg = hint },  -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
 		-- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
@@ -275,7 +278,7 @@ local theme = lush(function(injected_functions)
 
 
 		TelescopeMatching { Search },
-		TelescopeSelection { bg = highlight },
+		TelescopeSelection { bg = yellow3 },
 		TelescopePromptPrefix {},
 		TelescopePromptNormal { fg = green2 },
 		TelescopeResultsNormal { fg = dormant },

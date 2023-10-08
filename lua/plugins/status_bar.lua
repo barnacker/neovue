@@ -24,15 +24,15 @@ return {
 				-- them at initialisation time.
 				static = {
 					mode_names = { -- change the strings if you like it vvvvverbose!
-						n = " ",
-						no = " ?",
-						nov = " ?",
-						noV = " ?",
-						["no\22"] = " ?",
-						niI = " i",
-						niR = " r",
-						niV = " v",
-						nt = " t",
+						n = "N",
+						no = "N?",
+						nov = "N?",
+						noV = "N?",
+						["no\22"] = "N?",
+						niI = "Ni",
+						niR = "Nr",
+						niV = "Nv",
+						nt = "Nt",
 						v = "󰩬 ",
 						vs = "󰩬 s",
 						V = "󰘤 ",
@@ -42,9 +42,9 @@ return {
 						s = "S",
 						S = "S_",
 						["\19"] = "^S",
-						i = "󰓥 ",
-						ic = "󰓥 c",
-						ix = "󰓥 x",
+						i = "I",
+						ic = "Ic",
+						ix = "Ix",
 						R = "R",
 						Rc = "Rc",
 						Rx = "Rx",
@@ -241,6 +241,7 @@ return {
 				update    = { 'LspAttach', 'LspDetach' },
 				provider  = function()
 					local names = {}
+					---@diagnostic disable-next-line: unused-local
 					for i, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
 						table.insert(names, server.name)
 					end
@@ -273,7 +274,6 @@ return {
 			local StylishSpace = { provider = "" }
 			local Start = { provider = "" }
 			local End = { provider = "" }
-			local StylishSpacess = { provider = string.rep("", 5) }
 			local EncStart = { provider = "", hl = "EncodingCap" }
 			local EncEnd = { provider = "", hl = "EncodingCap" }
 			local LFStart = { provider = "", hl = "LineFeedCap" }
@@ -281,17 +281,90 @@ return {
 			local RulerStart = { provider = "", hl = "RulerCap" }
 			local RulerEnd = { provider = "", hl = "RulerCap" }
 			local SizeStart = { provider = "", hl = "SizeCap" }
+			local flexSession = {
+				{
+					flexible = 1,
+					{ provider = string.rep("", 5) },
+					{ provider = string.rep("", 4) },
+					{ provider = string.rep("", 3) },
+					{ provider = string.rep("", 2) },
+					{ provider = string.rep("", 1) },
+					{ provider = "" },
+				},
+				{
+					Start,
+					Session,
+					End
+				},
+				{
+					flexible = 1,
+					{ provider = string.rep("", 5) },
+					{ provider = string.rep("", 4) },
+					{ provider = string.rep("", 3) },
+					{ provider = string.rep("", 2) },
+					{ provider = string.rep("", 1) },
+					{ provider = "" },
+				}
+			}
+
 
 			-- ViMode = utils.surround({ "", " " }, "black", { ViMode })
 
 			local DefaultStatusline = {
-				--ViMode, Space, FileNameBlock, Space, Git, Space, Diagnostics, Align,
-				ViMode, Git, LSPActive, Align,
-				--Navic, DAPMessages, Align,
-				StylishSpacess, Start, Session, End, StylishSpacess, Align,
-				--LSPActive, Space, LSPMessages, Space, UltTest, Space, FileType, Space, Ruler, Space, ScrollBar
-				MacroRec, EncStart, FileEncoding, EncEnd, LFStart, FileFormat, LFEnd, RulerStart, Ruler, RulerEnd, SizeStart,
-				FileSize
+				{
+					flexible = 20,
+					{
+						ViMode, Git, LSPActive,
+					},
+					{
+						ViMode, Git,
+					},
+					{
+						ViMode,
+					},
+				},
+				Align, flexSession, Align,
+				{
+					flexible = 10,
+					{
+						MacroRec,
+						EncStart,
+						FileEncoding,
+						EncEnd,
+						LFStart,
+						FileFormat,
+						LFEnd,
+						RulerStart,
+						Ruler,
+						RulerEnd,
+						SizeStart,
+						FileSize
+					},
+					{
+						MacroRec,
+						EncStart,
+						FileEncoding,
+						EncEnd,
+						RulerStart,
+						Ruler,
+						RulerEnd,
+						SizeStart,
+						FileSize
+					},
+					{
+						MacroRec,
+						RulerStart,
+						Ruler,
+						RulerEnd,
+						SizeStart,
+						FileSize
+					},
+					{
+						MacroRec,
+						RulerStart,
+						Ruler,
+					},
+				}
 			}
 
 			local InactiveStatusline = {
