@@ -12,26 +12,6 @@ return {
 			local conditions   = require("heirline.conditions")
 			local utils        = require("heirline.utils")
 
-			local colors       = {
-				bright_bg = utils.get_highlight("Folded").bg,
-				bright_fg = utils.get_highlight("Folded").fg,
-				red = utils.get_highlight("DiagnosticError").fg,
-				dark_red = utils.get_highlight("DiffDelete").bg,
-				green = utils.get_highlight("String").fg,
-				blue = utils.get_highlight("Function").fg,
-				gray = utils.get_highlight("NonText").fg,
-				orange = utils.get_highlight("Constant").fg,
-				purple = utils.get_highlight("Statement").fg,
-				cyan = utils.get_highlight("Special").fg,
-				diag_warn = utils.get_highlight("DiagnosticWarn").fg,
-				diag_error = utils.get_highlight("DiagnosticError").fg,
-				diag_hint = utils.get_highlight("DiagnosticHint").fg,
-				diag_info = utils.get_highlight("DiagnosticInfo").fg,
-				git_del = utils.get_highlight("diffRemoved").fg,
-				git_add = utils.get_highlight("diffAdded").fg,
-				git_change = utils.get_highlight("diffChanged").fg,
-			}
-
 			local ViMode       = {
 				-- get vim current mode, this information will be required by the provider
 				-- and the highlight functions, so we compute it only once per component
@@ -44,15 +24,15 @@ return {
 				-- them at initialisation time.
 				static = {
 					mode_names = { -- change the strings if you like it vvvvverbose!
-						n = " ",
-						no = " ?",
-						nov = " ?",
-						noV = " ?",
-						["no\22"] = " ?",
-						niI = " i",
-						niR = " r",
-						niV = " v",
-						nt = " t",
+						n = "N",
+						no = "N?",
+						nov = "N?",
+						noV = "N?",
+						["no\22"] = "N?",
+						niI = "Ni",
+						niR = "Nr",
+						niV = "Nv",
+						nt = "Nt",
 						v = "󰩬 ",
 						vs = "󰩬 s",
 						V = "󰘤 ",
@@ -62,9 +42,9 @@ return {
 						s = "S",
 						S = "S_",
 						["\19"] = "^S",
-						i = "󰓥 ",
-						ic = "󰓥 c",
-						ix = "󰓥 x",
+						i = "I",
+						ic = "Ic",
+						ix = "Ix",
 						R = "R",
 						Rc = "Rc",
 						Rx = "Rx",
@@ -80,19 +60,19 @@ return {
 						t = "T",
 					},
 					mode_colors = {
-						n = "green",
-						i = "white",
-						v = "cyan",
-						V = "cyan",
+						n = "TabLine",
+						i = "InsertMode",
+						v = "StatusLineNC",
+						V = "StatusLineNC",
 						["\22"] = "cyan",
-						c = "orange",
-						s = "purple",
-						S = "purple",
-						["\19"] = "purple",
-						R = "orange",
-						r = "orange",
-						["!"] = "red",
-						t = "red",
+						c = "TabLine",
+						s = "TabLine",
+						S = "TabLine",
+						["\19"] = "TabLine",
+						R = "TabLine",
+						r = "TabLine",
+						["!"] = "TabLine",
+						t = "TabLine",
 					}
 				},
 				-- We can now access the value of mode() that, by now, would have been
@@ -103,12 +83,12 @@ return {
 				-- control the padding and make sure our string is always at least 2
 				-- characters long. Plus a nice Icon.
 				provider = function(self)
-					return "%2(" .. self.mode_names[self.mode] .. "%)"
+					return "%2( " .. self.mode_names[self.mode] .. "%)"
 				end,
 				-- Same goes for the highlight. Now the foreground will change according to the current mode.
 				hl = function(self)
 					local mode = self.mode:sub(1, 1) -- get only the first mode character
-					return { fg = self.mode_colors[mode], bold = true, }
+					return self.mode_colors[mode]
 				end,
 				-- Re-evaluate the component only on ModeChanged event!
 				-- Also allows the statusline to be re-evaluated when entering operator-pending mode
@@ -125,35 +105,35 @@ return {
 				provider = function()
 					return string.upper(vim.bo.filetype)
 				end,
-				hl = { fg = utils.get_highlight("Type").fg, bold = true },
 			}
 
 			local FileEncoding = {
 				provider = function()
-					return vim.bo.fenc or vim.o.enc -- :h 'enc'
+					return " " .. (vim.bo.fenc or vim.o.enc) .. " " -- :h 'enc'
 				end,
-				hl = { fg = utils.get_highlight("Type").fg, bold = true },
+				hl = "Encoding"
 			}
 
 			local FileFormat   = {
 				provider = function()
-					return vim.bo.fileformat
+					return " " .. vim.bo.fileformat .. " "
 				end,
-				hl = { fg = utils.get_highlight("Type").fg, bold = true },
+				hl = "LineFeed"
 			}
 
 			local FileSize     = {
 				provider = function()
 					-- stackoverflow, compute human readable file size
-					local suffix = { 'b', 'k', 'M', 'G', 'T', 'P', 'E' }
+					local suffix = { 'b ', 'k ', 'M ', 'G ', 'T ', 'P ', 'E ' }
 					local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
 					fsize = (fsize < 0 and 0) or fsize
 					if fsize < 1024 then
 						return fsize .. suffix[1]
 					end
 					local i = math.floor((math.log(fsize) / math.log(1024)))
-					return string.format("%.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
-				end
+					return (string.format("%s %.2f%s", " ", fsize / math.pow(1024, i), suffix[i + 1]))
+				end,
+				hl = "Size"
 			}
 
 			local TerminalName = {
@@ -163,7 +143,6 @@ return {
 					local tname, _ = vim.api.nvim_buf_get_name(0):gsub(".*:", "")
 					return " " .. tname
 				end,
-				hl = { fg = "blue", bold = true },
 			}
 
 			local HelpFileName = {
@@ -174,24 +153,24 @@ return {
 					local filename = vim.api.nvim_buf_get_name(0)
 					return vim.fn.fnamemodify(filename, ":t")
 				end,
-				hl = { fg = colors.blue },
 			}
 
 			local Git          = {
 				condition = conditions.is_git_repo,
 
 				init = function(self)
+					---@diagnostic disable-next-line: undefined-field
 					self.status_dict = vim.b.gitsigns_status_dict
 					self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or
 							self.status_dict.changed ~= 0
 				end,
 
-				hl = { fg = "orange" },
+				hl = "StatusLineNC",
 
 
 				{ -- git branch name
 					provider = function(self)
-						return " " .. self.status_dict.head
+						return " " .. self.status_dict.head
 					end,
 					hl = { bold = true }
 				},
@@ -207,27 +186,27 @@ return {
 						local count = self.status_dict.added or 0
 						return count > 0 and ("+" .. count)
 					end,
-					hl = { fg = "git_add" },
+					hl = "DiffAdd",
 				},
 				{
 					provider = function(self)
 						local count = self.status_dict.removed or 0
 						return count > 0 and ("-" .. count)
 					end,
-					hl = { fg = "git_del" },
+					hl = "DiffDelete",
 				},
 				{
 					provider = function(self)
 						local count = self.status_dict.changed or 0
 						return count > 0 and ("~" .. count)
 					end,
-					hl = { fg = "git_change" },
+					hl = "diffChanged",
 				},
 				{
 					condition = function(self)
 						return self.has_changes
 					end,
-					provider = ")",
+					provider = ")",
 				},
 			}
 
@@ -237,7 +216,8 @@ return {
 				-- %L = number of lines in the buffer
 				-- %c = column number
 				-- %P = percentage through file of displayed window
-				provider = "%l:%c %P",
+				provider = " %l:%c %P ",
+				hl = "Ruler"
 			}
 
 			local MacroRec     = {
@@ -245,12 +225,10 @@ return {
 					return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0
 				end,
 				provider = " ",
-				hl = { fg = "orange", bold = true },
 				utils.surround({ "[", "]" }, nil, {
 					provider = function()
 						return vim.fn.reg_recording()
 					end,
-					hl = { fg = "green", bold = true },
 				}),
 				update = {
 					"RecordingEnter",
@@ -258,35 +236,16 @@ return {
 				}
 			}
 
-			vim.opt.showcmdloc = 'statusline'
-			local ShowCmd      = {
-				condition = function()
-					return vim.o.cmdheight == 0
-				end,
-				provider = ":%3.5(%S%)",
-			}
-
-			local LSPMessages  = {
-				-- condition = #vim.lsp.buf_get_clients() > 0,
-				provider = function()
-					-- return require('lsp-progress').progress()
-					return require("lsp-progress").progress({
-						format = function(messages)
-							return #messages > 0 and table.concat(messages, " ") or ""
-						end,
-					})
-				end
-			}
-
 			local LSPActive    = {
 				condition = conditions.lsp_attached,
 				update    = { 'LspAttach', 'LspDetach' },
 				provider  = function()
 					local names = {}
+					---@diagnostic disable-next-line: unused-local
 					for i, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
 						table.insert(names, server.name)
 					end
-					return " [" .. table.concat(names, " ") .. "]"
+					return "  [" .. table.concat(names, " ") .. "]"
 				end,
 			}
 
@@ -306,21 +265,106 @@ return {
 			end
 
 			local Session = {
-				provider = session_name
+				provider = session_name,
+				hl = "Session"
 			}
 
 			local Align = { provider = "%=" }
 			local Space = { provider = " " }
+			local StylishSpace = { provider = "" }
+			local Start = { provider = "" }
+			local End = { provider = "" }
+			local EncStart = { provider = "", hl = "EncodingCap" }
+			local EncEnd = { provider = "", hl = "EncodingCap" }
+			local LFStart = { provider = "", hl = "LineFeedCap" }
+			local LFEnd = { provider = "", hl = "LineFeedCap" }
+			local RulerStart = { provider = "", hl = "RulerCap" }
+			local RulerEnd = { provider = "", hl = "RulerCap" }
+			local SizeStart = { provider = "", hl = "SizeCap" }
+			local flexSession = {
+				{
+					flexible = 1,
+					{ provider = string.rep("", 5) },
+					{ provider = string.rep("", 4) },
+					{ provider = string.rep("", 3) },
+					{ provider = string.rep("", 2) },
+					{ provider = string.rep("", 1) },
+					{ provider = "" },
+				},
+				{
+					Start,
+					Session,
+					End
+				},
+				{
+					flexible = 1,
+					{ provider = string.rep("", 5) },
+					{ provider = string.rep("", 4) },
+					{ provider = string.rep("", 3) },
+					{ provider = string.rep("", 2) },
+					{ provider = string.rep("", 1) },
+					{ provider = "" },
+				}
+			}
+
 
 			-- ViMode = utils.surround({ "", " " }, "black", { ViMode })
 
 			local DefaultStatusline = {
-				--ViMode, Space, FileNameBlock, Space, Git, Space, Diagnostics, Align,
-				ViMode, Space, Git, Space, LSPActive, Space, LSPMessages, Align,
-				--Navic, DAPMessages, Align,
-				Session, Align,
-				--LSPActive, Space, LSPMessages, Space, UltTest, Space, FileType, Space, Ruler, Space, ScrollBar
-				MacroRec, Space, FileEncoding, Space, FileFormat, Space, Ruler, Space, FileSize
+				{
+					flexible = 20,
+					{
+						ViMode, Git, LSPActive,
+					},
+					{
+						ViMode, Git,
+					},
+					{
+						ViMode,
+					},
+				},
+				Align, flexSession, Align,
+				{
+					flexible = 10,
+					{
+						MacroRec,
+						EncStart,
+						FileEncoding,
+						EncEnd,
+						LFStart,
+						FileFormat,
+						LFEnd,
+						RulerStart,
+						Ruler,
+						RulerEnd,
+						SizeStart,
+						FileSize
+					},
+					{
+						MacroRec,
+						EncStart,
+						FileEncoding,
+						EncEnd,
+						RulerStart,
+						Ruler,
+						RulerEnd,
+						SizeStart,
+						FileSize
+					},
+					{
+						MacroRec,
+						RulerStart,
+						Ruler,
+						RulerEnd,
+						SizeStart,
+						FileSize
+					},
+					{
+						MacroRec,
+						RulerStart,
+						Ruler,
+					},
+				}
 			}
 
 			local InactiveStatusline = {
@@ -348,10 +392,10 @@ return {
 					return conditions.buffer_matches({ buftype = { "terminal" } })
 				end,
 
-				hl = { bg = "dark_red" },
+				hl = "Error",
 
 				-- Quickly add a condition to the ViMode to only show it when buffer is active!
-				{ condition = conditions.is_active, ViMode, Space },
+				{ condition = conditions.is_active, ViMode, StylishSpace },
 				FileType,
 				Space,
 				TerminalName,
@@ -380,7 +424,6 @@ return {
 
 			require("heirline").setup({
 				statusline = StatusLines,
-				opts = { colors = colors }
 			})
 		end,
 	}

@@ -4,9 +4,30 @@ return {
 		opts = {},
 	},
 	{
+		's1n7ax/nvim-window-picker',
+		name = 'window-picker',
+		event = 'VeryLazy',
+		version = '2.*',
+		opts = {
+			hint = 'floating-big-letter',
+			show_prompt = false,
+			highlights = {
+				statusline = {
+					focused = "Error",
+					unfocused = "Error",
+				},
+				winbar = {
+					focused = "Error",
+					unfocused = "Error",
+				},
+			},
+		}
+	},
+	{
 		"jedrzejboczar/possession.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nanozuki/tabby.nvim",
 			"nvim-telescope/telescope.nvim"
 		},
 		config = function()
@@ -64,7 +85,7 @@ return {
 					symbols_outline = true,
 					tabby = true,
 					dap = true,
-					dapui = true,
+					dapui = false,
 					delete_buffers = false,
 				},
 				telescope = {

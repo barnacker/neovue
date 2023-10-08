@@ -1,7 +1,31 @@
+local rainbowHighlights = {
+	'RainbowDelimiterRed',
+	'RainbowDelimiterBlue',
+	'RainbowDelimiterGreen',
+	'RainbowDelimiterOrange',
+	'RainbowDelimiterViolet',
+	'RainbowDelimiterCyan',
+	'RainbowDelimiterYellow',
+}
 return {
+	{
+		"leafOfTree/vim-vue-plugin",
+		enabled = false
+	},
+
 	{
 		"posva/vim-vue",
 		enabled = true
+	},
+	{
+		"rktjmp/lush.nvim",
+	},
+	{
+		dir = "~/.config/nvim/colors/bevangelion",
+		dependencies = "rktjmp/lush.nvim",
+		config = function()
+			vim.cmd('colorscheme bevangelion')
+		end
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",
@@ -19,15 +43,7 @@ return {
 					[''] = 'rainbow-delimiters',
 					lua = 'rainbow-blocks',
 				},
-				highlight = {
-					'RainbowDelimiterRed',
-					'RainbowDelimiterYellow',
-					'RainbowDelimiterBlue',
-					'RainbowDelimiterOrange',
-					'RainbowDelimiterGreen',
-					'RainbowDelimiterViolet',
-					'RainbowDelimiterCyan',
-				},
+				highlight = rainbowHighlights,
 			}
 		end
 	},
@@ -49,7 +65,13 @@ return {
 		event = "VeryLazy",
 		main = "ibl",
 		config = function()
-			require("ibl").setup {}
+			local hooks = require "ibl.hooks"
+			require("ibl").setup {
+				indent = { char = '▏' },
+				scope = { highlight = rainbowHighlights }
+			}
+
+			hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 		end
 	},
 	{
@@ -71,6 +93,7 @@ return {
 					markdown = true,
 					rainbow_delimiters = true,
 					lightspeed = true,
+					---@diagnostic disable-next-line: assign-type-mismatch
 					illuminate = {
 						enabled = true,
 						lsp = false
@@ -136,15 +159,13 @@ return {
 				-- 		TelescopePromptTitle = { fg = colors.surface0, bg = colors.surface0 },
 				-- 		TelescopeResultsTitle = { fg = colors.mantle, bg = colors.mantle },
 				-- 		TelescopePreviewTitle = { fg = colors.crust, bg = colors.crust },
-				-- 		IndentBlanklineChar = { fg = colors.surface0 },
-				-- 		IndentBlanklineContextChar = { fg = colors.surface2 },
 				-- 		GitSignsChange = { fg = colors.peach },
 				-- 		NvimTreeIndentMarker = { link = "IndentBlanklineChar" },
 				-- 		NvimTreeExecFile = { fg = colors.text },
 				-- 	}
 				-- end,
 			})
-			vim.cmd('colorscheme catppuccin')
+			-- vim.cmd('colorscheme catppuccin')
 		end,
 	},
 	{
