@@ -1,6 +1,11 @@
 return {
 	{
-		"mbbill/undotree"
+		"jiaoshijie/undotree",
+		event = "BufReadPost",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {},
 	},
 	{ "ojroques/nvim-bufdel",    event = "UIEnter" },
 	{

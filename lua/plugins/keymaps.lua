@@ -91,6 +91,7 @@ return {
 				},
 				["<f2>"] = { "<cmd>Lspsaga rename<cr>", "Rename Symbol" },
 				["<C-,>"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous Diagnostic" },
+				["<F5>"] = { function() require('undotree').toggle() end, "Previous Diagnostic" },
 				["<C-.>"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next Diagnostic" },
 				["<C-n>"] = { "<cmd>$tabnew<cr>", "New tab" },
 				["<A-,>"] = { "<cmd>tabp<cr>", "Previous Tab" },
