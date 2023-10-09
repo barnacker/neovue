@@ -68,7 +68,22 @@ return {
 			local hooks = require "ibl.hooks"
 			require("ibl").setup {
 				indent = { char = '▏' },
-				scope = { highlight = rainbowHighlights }
+				scope = { highlight = rainbowHighlights },
+				exclude = {
+					filetypes = {
+						"",
+						"lspinfo",
+						"packer",
+						"checkhealth",
+						"help",
+						"man",
+						"gitcommit",
+						"TelescopePrompt",
+						"TelescopeResults",
+						"undotree",
+						"diff"
+					}
+				},
 			}
 
 			hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
