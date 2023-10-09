@@ -82,3 +82,6 @@ cnoremap <c-v> <c-r>+
 inoremap <c-r> <c-v>
 ]]
 end
+
+
+vim.g.copilot_assume_mapped = true
