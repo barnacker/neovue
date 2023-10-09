@@ -86,7 +86,7 @@ end
 
 
 vim.g.copilot_assume_mapped = true
-
+vim.g.copilot_keymap = '<c-space>'
 
 vim.o.swapfile = false
 vim.o.backup = false

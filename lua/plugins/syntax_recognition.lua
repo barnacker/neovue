@@ -15,7 +15,9 @@ return {
 	-- 	},
 	-- },
 	{
-		"hrsh7th/nvim-cmp",
+		-- "hrsh7th/nvim-cmp",
+		"llllvvuu/nvim-cmp",
+		branch = "feat/above",
 		enabled = true,
 		dependencies = {
 			{
@@ -89,11 +91,16 @@ return {
 				cmp_autopairs.on_confirm_done()
 			)
 
+			local ai = require("copilot.suggestion")
 			---@diagnostic disable-next-line: missing-fields
 			cmp.setup({
 				---@diagnostic disable-next-line: missing-fields
 				view = {
-					entries = { name = 'custom', selection_order = 'near_cursor' }
+					entries = {
+						name = 'custom',
+						selection_order = 'near_cursor',
+						vertical_positioning = 'above',
+					}
 				},
 
 				---@diagnostic disable-next-line: missing-fields
@@ -136,21 +143,52 @@ return {
 					['<C-b>'] = cmp.mapping.scroll_docs(-4),
 					['<C-f>'] = cmp.mapping.scroll_docs(4),
 					['<C-Space>'] = cmp.mapping.complete(),
-					['<C-e>'] = cmp.mapping.abort(),
-					['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-					-- ["<Tab>"] = cmp.mapping(function(fallback)
-					-- 	if cmp.visible() then
-					-- 		cmp.select_next_item()
-					-- 		-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-					-- 		-- they way you will only jump inside the snippet region
-					-- 	elseif luasnip.expand_or_locally_jumpable() then
-					-- 		luasnip.expand_or_jump()
-					-- 	elseif has_words_before() then
-					-- 		cmp.complete()
-					-- 	else
-					-- 		fallback()
-					-- 	end
-					-- end, { "i", "s" }),
+					['<C-e>'] = cmp.mapping(function()
+						cmp.abort()
+						ai.dismiss()
+					end
+					),
+
+					['<CR>'] = cmp.mapping(function(fallback)
+						if cmp.visible() and cmp.get_active_entry() then
+							cmp.confirm({
+								behavior = cmp.ConfirmBehavior.Replace,
+								select = true,
+							})
+						elseif ai.is_visible() then
+							ai.accept()
+						end
+						fallback()
+					end
+					),
+
+					["<C-Tab>"] = cmp.mapping(function(fallback)
+						if ai.is_visible() then
+							ai.accept_line()
+							return
+						end
+					end
+					),
+
+					["<A-Tab>"] = cmp.mapping(function(fallback)
+						if ai.is_visible() then
+							ai.accept_word()
+							return
+						end
+					end
+					),
+
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							if luasnip.expand_or_jumpable() then
+								luasnip.expand_or_jump()
+							else
+								fallback()
+							end
+						end
+					end, { "i", "s" }),
 
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
