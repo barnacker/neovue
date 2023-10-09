@@ -51,10 +51,11 @@ return {
 						i = { "<cmd>DapStepInto<cr>", "Step Into <F7>" },
 						t = { "<cmd>DapStepOut<cr>", "Step Out <Shift-F8>" },
 						x = { "<cmd>DapTerminate<cr>", "Terminate <Ctrl-F2>" },
+						l = { "<cmd>Telescope dap list_breakpoints<cr>", "list" },
 					},
 					t = {
 						name = "tabs...",
-						a = { "<cmd>$tabnew<cr>", "add new tab" },
+						n = { "<cmd>$tabnew<cr>", "new tab" },
 						x = { "<cmd>tabclose<cr>", "close this tab" },
 						o = { "<cmd>tabonly<cr>", "close all other tabs" },
 					},
@@ -91,6 +92,7 @@ return {
 				["<f2>"] = { "<cmd>Lspsaga rename<cr>", "Rename Symbol" },
 				["<C-,>"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous Diagnostic" },
 				["<C-.>"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next Diagnostic" },
+				["<C-n>"] = { "<cmd>$tabnew<cr>", "New tab" },
 				["<A-,>"] = { "<cmd>tabp<cr>", "Previous Tab" },
 				["<A-.>"] = { "<cmd>tabn<cr>", "Next Tab" },
 				["<C-A-,>"] = { "<cmd>-tabmove<cr>", "Move Tab Back" }, -- move current tab to previous position
@@ -117,6 +119,13 @@ return {
 				["<F7>"] = { "<cmd>DapStepInto<cr>", "Step Into" },
 				["<S-F8>"] = { "<cmd>DapStepOut<cr>", "Step Out" },
 				["<C-F2>"] = { "<cmd>DapTerminate<cr>", "Terminate" },
+				["<C-Tab>"] = { function()
+					require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({
+						prompt_title = "Switch to",
+						previewer = false,
+						ignore_current_buffer = true
+					}))
+				end, "Terminate" },
 			})
 		end,
 	}

@@ -6,9 +6,36 @@ return {
 	{
 		'nvim-telescope/telescope.nvim',
 		event = "UIEnter",
-		tag = '0.1.3',
+		-- tag = 'master',
 		-- or                              , branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' },
+		config = function()
+			local actions = require("telescope.actions")
+			require("telescope").setup({
+				pickers = {
+					buffers = {
+						mappings = {
+							i = { ["<CR>"] = actions.select_tab_drop }
+						},
+						find_files = {
+							mappings = {
+								i = { ["<CR>"] = actions.select_tab_drop }
+							}
+						},
+						git_files = {
+							mappings = {
+								i = { ["<CR>"] = actions.select_tab_drop }
+							}
+						},
+						old_files = {
+							mappings = {
+								i = { ["<CR>"] = actions.select_tab_drop }
+							}
+						},
+					},
+				}
+			})
+		end
 	},
 	{
 		'numToStr/Comment.nvim',

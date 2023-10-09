@@ -1,5 +1,16 @@
 return {
 	{
+		"nvim-telescope/telescope-dap.nvim",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"rcarriga/nvim-dap-ui",
+			'nvim-telescope/telescope.nvim',
+		},
+		config = function()
+			require('telescope').load_extension('dap')
+		end
+	},
+	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
@@ -11,14 +22,6 @@ return {
 				build = "npm i && npm run compile vsDebugServerBundle && mv dist out"
 			}
 		},
-		-- keys = {
-		-- 	-- normal mode is default
-		-- 	{ "<leader>d", function() require 'dap'.toggle_breakpoint() end },
-		-- 	{ "<leader>c", function() require 'dap'.continue() end },
-		-- 	-- { "<C-'>",     function() require 'dap'.step_over() end },
-		-- 	-- { "<C-;>",     function() require 'dap'.step_into() end },
-		-- 	-- { "<C-:>",     function() require 'dap'.step_out() end },
-		-- },
 		config = function()
 			require("dap-vscode-js").setup({
 				debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
@@ -30,6 +33,17 @@ return {
 					-- attach to a node process that has been started with
 					-- `--inspect` for longrunning tasks or `--inspect-brk` for short tasks
 					-- npm script -> `node --inspect-brk ./node_modules/.bin/vite dev`
+					{
+						type = "pwa-chrome",
+						name = "Attach to Chromium",
+						request = "attach",
+						sourceMaps = true,
+						protocol = "inspector",
+						port = 9222,
+						webRoot = "${workspaceFolder}/frontend",
+						-- skip files from vite's hmr
+						skipFiles = { "**/node_modules/**/*", "**/@vite/*", "**/src/client/*", "**/src/*" },
+					},
 					{
 						-- use nvim-dap-vscode-js's pwa-node debug adapter
 						type = "pwa-node",
@@ -60,17 +74,6 @@ return {
 						protocol = "inspector",
 						port = 9222,
 						webRoot = "${workspaceFolder}/src",
-						-- skip files from vite's hmr
-						skipFiles = { "**/node_modules/**/*", "**/@vite/*", "**/src/client/*", "**/src/*" },
-					},
-					{
-						type = "pwa-chrome",
-						name = "Attach to Chromium",
-						request = "attach",
-						sourceMaps = true,
-						protocol = "inspector",
-						port = 9222,
-						webRoot = "${workspaceFolder}/frontend",
 						-- skip files from vite's hmr
 						skipFiles = { "**/node_modules/**/*", "**/@vite/*", "**/src/client/*", "**/src/*" },
 					},
@@ -120,37 +123,39 @@ return {
 						current_frame = "",
 						expanded = ""
 					},
-					layouts = { {
-						elements = {
-							{
-								id = "repl",
-								size = 0.25
+					layouts = {
+						{
+							elements = {
+								{
+									id = "scopes",
+									size = 0.5
+								},
+								{
+									id = "stacks",
+									size = 0.25
+								},
+								{
+									id = "repl",
+									size = 0.25
+								},
 							},
-							{
-								id = "stacks",
-								size = 0.25
-							},
-							{
-								id = "scopes",
-								size = 0.5
-							},
+							position = "left",
+							size = 50
 						},
-						position = "left",
-						size = 40
-					}, {
-						elements = {
-							{
-								id = "watches",
-								size = 1.0
+						{
+							elements = {
+								{
+									id = "watches",
+									size = 1.0
+								},
+								-- {
+								-- 	id = "console",
+								-- 	size = 0.5
+								-- },
 							},
-							-- {
-							-- 	id = "console",
-							-- 	size = 0.5
-							-- },
-						},
-						position = "bottom",
-						size = 15
-					}
+							position = "bottom",
+							size = 15
+						}
 					},
 					mappings = {
 						edit = "e",
