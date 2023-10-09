@@ -1,3 +1,14 @@
+local theme = {
+	fill = 'TabLineFill',
+	-- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
+	head = 'TabLine',
+	current_tab = 'TabLineSel',
+	current_win = "WinSel",
+	tab = 'TabLine',
+	win = 'TabLine',
+	tail = 'TabLine',
+}
+
 local function tab_modified(tab)
 	local wins = require("tabby.module.api").get_tab_wins(tab.id)
 	---@diagnostic disable-next-line: unused-local
@@ -49,17 +60,6 @@ local function buffer_name(buf)
 	end
 	return buf
 end
-
-local theme = {
-	fill = 'TabLineFill',
-	-- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
-	head = 'TabLine',
-	current_tab = 'TabLineSel',
-	current_win = "DiffText",
-	tab = 'TabLine',
-	win = 'TabLine',
-	tail = 'TabLine',
-}
 
 return {
 	"nanozuki/tabby.nvim",

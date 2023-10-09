@@ -1,11 +1,13 @@
 return {
 	{
-		"jiaoshijie/undotree",
+		"mbbill/undotree",
 		event = "BufReadPost",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
-		opts = {},
+		init = function()
+			vim.g.undotree_TreeNodeShape   = "◯"
+			vim.g.undotree_TreeReturnShape = "─╮"
+			vim.g.undotree_TreeVertShape   = "│"
+			vim.g.undotree_TreeSplitShape  = "─╯"
+		end
 	},
 	{ "ojroques/nvim-bufdel",    event = "UIEnter" },
 	{

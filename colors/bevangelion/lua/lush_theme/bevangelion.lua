@@ -98,13 +98,13 @@ local theme = lush(function(injected_functions)
 		-- CurSearch      { }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		-- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		-- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
-		CursorColumn {},                               -- Screen-column at the cursor, when 'cursorcolumn' is set.
-		CursorLine { bg = highlight },                 -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-		Directory {},                                  -- Directory names (and other special names in listings)
-		DiffAdd { fg = green2 },                       -- Diff mode: Added line |diff.txt|
-		DiffChange { fg = purple1 },                   -- Diff mode: Changed line |diff.txt|
-		DiffDelete { fg = red1 },                      -- Diff mode: Deleted line |diff.txt|
-		DiffText { gui = "bold", fg = base, bg = red1 }, -- Diff mode: Changed text within a changed line |diff.txt|
+		CursorColumn {},                                                    -- Screen-column at the cursor, when 'cursorcolumn' is set.
+		CursorLine { bg = highlight },                                      -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+		Directory {},                                                       -- Directory names (and other special names in listings)
+		DiffAdd { fg = green2 },                                            -- Diff mode: Added line |diff.txt|
+		DiffChange { fg = purple1 },                                        -- Diff mode: Changed line |diff.txt|
+		DiffDelete { fg = red1 },                                           -- Diff mode: Deleted line |diff.txt|
+		DiffText { gui = "bold, italic, underdotted", bg = base, fg = red1 }, -- Diff mode: Changed text within a changed line |diff.txt|
 		-- EndOfBuffer    { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
 		-- TermCursor     { }, -- Cursor in a focused terminal
 		-- TermCursorNC   { }, -- Cursor in an unfocused terminal
@@ -153,6 +153,7 @@ local theme = lush(function(injected_functions)
 		TabLine { gui = "bold", fg = base, bg = yellow1 },    -- Tab pages line, not active tab page label
 		TabLineFill {},                                       -- Tab pages line, where there are no labels
 		TabLineSel { gui = "bold", fg = yellow1, bg = base }, -- Tab pages line, active tab page label
+		WinSel { gui = "bold", fg = base, bg = red1 },        -- Tab pages line, active tab page label
 		Title { fg = green1 },                                -- Titles for output from ":set all", ":autocmd" etc.
 		Visual { gui = "bold", bg = yellow1, fg = base },     -- Visual mode selection
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
@@ -264,7 +265,7 @@ local theme = lush(function(injected_functions)
 		-- UndotreeSeq { Comment },
 		-- UndotreeCurrent { Statement },
 		UndotreeTimeStamp { fg = dormant },
-		UndotreeSaved { fg = green2 },
+		-- UndotreeSaved { fg = green2 },
 		UndotreeBranch { fg = purple1 },
 		UndotreeDiffLine { DiffText },
 		UndotreeDiffAdded { DiffAdd },

@@ -69,7 +69,7 @@ return {
 						match = {
 							floating = true,
 							buftype = {},
-							filetype = {},
+							filetype = { "undotree", "diff" },
 							custom = false, -- or fun(win): boolean
 						},
 					},

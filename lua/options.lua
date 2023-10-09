@@ -7,6 +7,7 @@ vim.o.number = true
 vim.o.signcolumn = 'yes'
 vim.o.clipboard = 'unnamedplus'
 
+vim.o.scrolloff = 5
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.g.loaded_netrw = 1
@@ -87,6 +88,8 @@ end
 vim.g.copilot_assume_mapped = true
 
 
+vim.o.swapfile = false
+vim.o.backup = false
 if vim.fn.has("persistent_undo") then
 	local target_path = vim.fn.expand('~/.local/state/nvim/undo')
 
