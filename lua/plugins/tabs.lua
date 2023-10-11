@@ -14,7 +14,7 @@ local function tab_modified(tab)
 	---@diagnostic disable-next-line: unused-local
 	for i, x in pairs(wins) do
 		if vim.bo[vim.api.nvim_win_get_buf(x)].modified then
-			return "● "
+			return "●"
 		end
 	end
 	return ""
@@ -46,7 +46,7 @@ local function lsp_diag(buf)
 		table.insert(diagstring, string.format(diagformat, count[3], " "))
 	end
 	if count[4] > 0 then
-		table.insert(diagstring, string.format(diagformat, count[4], " "))
+		table.insert(diagstring, string.format(diagformat, count[4], "󰌵"))
 	end
 	if next(diagstring) == nil then
 		return ""
@@ -86,6 +86,7 @@ return {
 				end),
 				line.sep('', theme.win, theme.fill),
 				line.spacer(),
+
 				line.sep('', theme.win, theme.fill),
 				line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
 					local hl = win.is_current() and theme.current_win or theme.tab

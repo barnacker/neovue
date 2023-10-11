@@ -28,6 +28,21 @@ return {
 		end
 	},
 	{
+		"yamatsum/nvim-cursorline",
+		opts = {
+			cursorline = {
+				enable = true,
+				timeout = 100,
+				number = false,
+			},
+			cursorword = {
+				enable = false,
+				min_length = 3,
+				hl = { underline = true },
+			}
+		}
+	},
+	{
 		"HiPhish/rainbow-delimiters.nvim",
 		enabled = true,
 		config = function()

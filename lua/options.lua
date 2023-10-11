@@ -33,7 +33,7 @@ vim.fn.sign_define("DiagnosticSignWarn",
 vim.fn.sign_define("DiagnosticSignInfo",
 	{ text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint",
-	{ text = " ", texthl = "DiagnosticSignHint" })
+	{ text = "󰌵", texthl = "DiagnosticSignHint" })
 
 vim.fn.sign_define('DapBreakpoint',
 	{ text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
@@ -49,14 +49,9 @@ vim.fn.sign_define('DapStopped',
 vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 vim.cmd("set sessionoptions-=buffers")
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-	callback = function()
-		vim.cmd("set title titlestring=buffers")
-	end
-})
-
 -- vim.cmd("syntax off")
 vim.cmd([[au filetype * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
+vim.cmd([[au CursorHold * checktime]])
 
 if vim.g.neovide then
 	-- put anything you want to happen only in neovide here

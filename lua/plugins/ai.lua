@@ -49,5 +49,21 @@ return {
 				server_opts_overrides = {},
 			})
 		end
+	},
+	{
+		-- "dreamsofcode-io/chatgpt.nvim",
+		"jackMort/ChatGPT.nvim",
+		commit = "d4aa4d9e31d620a0c01006e59f4449ffc7eb33ce",
+		event = "VeryLazy",
+		config = function()
+			require("chatgpt").setup({
+				api_key_cmd = "cat /run/secrets/chatgptapi"
+			})
+		end,
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim"
+		}
 	}
 }

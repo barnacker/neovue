@@ -55,7 +55,7 @@ local theme = lush(function(injected_functions)
 	-- local base = hsl(240, 14, 10)
 	local base = hsl('#01161C')
 	local disabled = hsl('#686858')
-	local highlight = base.lighten(4)
+	local highlight = base.lighten(2)
 	local indent = base.lighten(16)
 	local orange = hsl('#E54810')
 	local orange1 = orange.lighten(15)
@@ -75,7 +75,7 @@ local theme = lush(function(injected_functions)
 	local red2 = hsl('#d3290f')
 	local red3 = red1.darken(30)
 	local info = hsl('#1f9fff')
-	local menu = highlight
+	local menu = highlight.lighten(3)
 	local normal = disabled.lighten(62)
 	local hint = normal.darken(30)
 
@@ -312,6 +312,10 @@ local theme = lush(function(injected_functions)
 		RainbowDelimiterViolet { fg = purple5 },
 		RainbowDelimiterCyan { fg = "cyan" },
 		RainbowDelimiterYellow { fg = yellow1 },
+
+		CopilotSuggestion { fg = disabled.lighten(19) },
+
+
 		-- Tree-Sitter syntax groups.
 		--
 		-- See :h treesitter-highlight-groups, some groups may not be listed,
