@@ -9,6 +9,20 @@ local theme = {
 	tail = 'TabLine',
 }
 
+local function tab_diagnostics(tab)
+	local wins = require("tabby.module.api").get_tab_wins(tab.id)
+	---@diagnostic disable-next-line: unused-local
+	for i, x in pairs(wins) do
+		local diagnostics = vim.diagnostic.get(vim.api.nvim_win_get_buf(x))
+		for _, diagnostic in ipairs(diagnostics) do
+			if diagnostic.severity < 4 then
+				return "⁉"
+			end
+		end
+	end
+	return ""
+end
+
 local function tab_modified(tab)
 	local wins = require("tabby.module.api").get_tab_wins(tab.id)
 	---@diagnostic disable-next-line: unused-local
@@ -78,6 +92,7 @@ return {
 						not tab.is_current() and tab.number() .. ' ' or '',
 						tab_modified(tab),
 						tab.name(),
+						tab_diagnostics(tab),
 						tab.close_btn(''),
 						line.sep('', hl, theme.fill),
 						hl = hl,
