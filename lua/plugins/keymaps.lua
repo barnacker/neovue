@@ -36,6 +36,14 @@ return {
 					-- ["<tab>"] = "TAB",
 				},
 			})
+			function _G.set_terminal_keymaps()
+				local opts = { buffer = 0 }
+				vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+				vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+			end
+
+			-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+			vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 			wk.register({
 				["<leader>"] = {
 					name = "󰶆 leader menu...",
@@ -135,6 +143,7 @@ return {
 				["<A-6>"] = { "<cmd>tabn 6<cr>", "Go to tab 6" },
 				["<A-7>"] = { "<cmd>tabn 7<cr>", "Go to tab 7" },
 				["<A-8>"] = { "<cmd>tabn 8<cr>", "Go to tab 8" },
+				["<A-9>"] = { "<cmd>tabn 9<cr>", "Go to tab 9" },
 				["<A-9>"] = { "<cmd>tabn 9<cr>", "Go to tab 9" },
 
 			})
