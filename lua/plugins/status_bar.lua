@@ -24,15 +24,15 @@ return {
 				-- them at initialisation time.
 				static = {
 					mode_names = { -- change the strings if you like it vvvvverbose!
-						n = "N",
-						no = "N?",
-						nov = "N?",
-						noV = "N?",
-						["no\22"] = "N?",
-						niI = "Ni",
-						niR = "Nr",
-						niV = "Nv",
-						nt = "Nt",
+						n = "Ƞ",
+						no = "Ƞ?",
+						nov = "Ƞ?",
+						noV = "Ƞ?",
+						["no\22"] = "Ƞ?",
+						niI = "Ƞi",
+						niR = "Ƞr",
+						niV = "Ƞv",
+						nt = "Ƞt",
 						v = "󰩬 ",
 						vs = "󰩬 s",
 						V = "󰘤 ",
@@ -42,9 +42,9 @@ return {
 						s = "S",
 						S = "S_",
 						["\19"] = "^S",
-						i = "I",
-						ic = "Ic",
-						ix = "Ix",
+						i = "Ǐ",
+						ic = "Ǐc",
+						ix = "Ǐx",
 						R = "R",
 						Rc = "Rc",
 						Rx = "Rx",
@@ -83,7 +83,7 @@ return {
 				-- control the padding and make sure our string is always at least 2
 				-- characters long. Plus a nice Icon.
 				provider = function(self)
-					return "%2( " .. self.mode_names[self.mode] .. "%)"
+					return "%2(" .. self.mode_names[self.mode] .. "%)"
 				end,
 				-- Same goes for the highlight. Now the foreground will change according to the current mode.
 				hl = function(self)
