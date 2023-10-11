@@ -126,7 +126,17 @@ return {
 						previewer = false,
 						ignore_current_buffer = true
 					}))
-				end, "Terminate" },
+				end, "Buffer selector" },
+				["<A-1>"] = { "<cmd>tabn 1<cr>", "Go to tab 1" },
+				["<A-2>"] = { "<cmd>tabn 2<cr>", "Go to tab 2" },
+				["<A-3>"] = { "<cmd>tabn 3<cr>", "Go to tab 3" },
+				["<A-4>"] = { "<cmd>tabn 4<cr>", "Go to tab 4" },
+				["<A-5>"] = { "<cmd>tabn 5<cr>", "Go to tab 5" },
+				["<A-6>"] = { "<cmd>tabn 6<cr>", "Go to tab 6" },
+				["<A-7>"] = { "<cmd>tabn 7<cr>", "Go to tab 7" },
+				["<A-8>"] = { "<cmd>tabn 8<cr>", "Go to tab 8" },
+				["<A-9>"] = { "<cmd>tabn 9<cr>", "Go to tab 9" },
+
 			})
 		end,
 	}
