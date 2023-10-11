@@ -249,17 +249,6 @@ return {
 				end,
 			}
 
-			-- listen lsp-progress event and refresh lualine
-			vim.api.nvim_create_augroup("heirline_augroup", { clear = true })
-			vim.api.nvim_create_autocmd("User LspProgressStatusUpdated", {
-				group = "heirline_augroup",
-				callback = vim.schedule_wrap(
-					function()
-						vim.cmd("redrawstatus")
-					end
-				)
-			})
-
 			local function session_name()
 				return require('possession.session').session_name or ''
 			end
