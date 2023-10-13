@@ -50,7 +50,7 @@ local hsl = lush.hsl
 ---@diagnostic disable: undefined-global
 ---@diagnostic disable-next-line: unused-local
 local theme = lush(function(injected_functions)
-	-- local sym = injected_functions.sym
+	local sym = injected_functions.sym
 	-- Palette
 	-- local base = hsl(240, 14, 10)
 	local base = hsl('#01161C')
@@ -140,9 +140,9 @@ local theme = lush(function(injected_functions)
 		-- PmenuExtraSel  { }, -- Popup menu: Selected item "extra text"
 		-- PmenuSbar      { }, -- Popup menu: Scrollbar.
 		-- PmenuThumb     { }, -- Popup menu: Thumb of the scrollbar.
-		Question { fg = green2 },                                -- |hit-enter| prompt and yes/no questions
+		Question { fg = green2 },                        -- |hit-enter| prompt and yes/no questions
 		-- QuickFixLine   { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-		Search { gui = "italic, bold, underdashed", fg = green2 }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+		Search { gui = "bold, underdashed", fg = green2 }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 		-- SpecialKey     { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
 		-- SpellBad       { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
 		-- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
@@ -181,15 +181,15 @@ local theme = lush(function(injected_functions)
 		-- Boolean { fg = green2 },                 --   A boolean constant: TRUE, false
 		-- Float          { }, --   A floating point constant: 2.3e10
 
-		Identifier { fg = disabled.lighten(82) }, -- (*) Any variable name
-		Function { fg = orange1, gui = "italic" }, --   Function name (also: methods for classes)
+		Identifier { fg = normal.lighten(60) }, -- (*) Any variable name
+		Function { fg = orange1 },            --   Function name (also: methods for classes)
 
-		Statement { fg = purple1 },              -- (*) Any statement
+		Statement { fg = purple1 },           -- (*) Any statement
 		-- Conditional {},                          --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
 		Operator { fg = pink }, --   "sizeof", "+", "*", etc.
-		Keyword { fg = pink }, --   any other keyword
+		-- Keyword { fg = pink }, --   any other keyword
 		-- Exception      { }, --   try, catch, throw
 
 		PreProc { fg = orange2 }, -- (*) Generic Preprocessor
@@ -200,10 +200,10 @@ local theme = lush(function(injected_functions)
 
 		Type { gui = "italic", fg = green1 }, -- (*) int, long, char, etc.
 		-- StorageClass   { }, --   static, register, volatile, etc.
-		-- Structure      { }, --   struct, union, enum, etc.
+		-- Structure { fg = info },            --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
 
-		Special { fg = green1 }, -- (*) Any special symbol
+		Special { fg = pink }, -- (*) Any special symbol
 		-- SpecialChar    { }, --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
 		-- Delimiter      { }, --   Character that needs attention
@@ -340,8 +340,8 @@ local theme = lush(function(injected_functions)
 		-- sym"@text.underline"    { }, -- Underlined
 		-- sym"@text.todo"         { }, -- Todo
 		-- sym"@comment"           { }, -- Comment
-		-- sym"@punctuation"       { }, -- Delimiter
-		-- sym "@constant" { fg = green2 },     -- Constant
+		sym "@punctuation" { fg = pink }, -- Delimiter
+		sym "@constant" { fg = green2 }, -- Constant
 		-- sym"@constant.builtin"  { }, -- Special
 		-- sym"@constant.macro"    { }, -- Define
 		-- sym"@define"            { }, -- Define
@@ -357,10 +357,11 @@ local theme = lush(function(injected_functions)
 		-- sym"@function"          { }, -- Function
 		-- sym"@function.builtin"  { }, -- Special
 		-- sym"@function.macro"    { }, -- Macro
-		-- sym"@parameter"         { }, -- Identifier
-		-- sym"@method"            { }, -- Function
-		-- sym"@field"             { }, -- Identifier
-		-- sym"@property"          { }, -- Identifier
+		sym "@parameter" { fg = orange },                -- Identifier
+		sym "@method" { fg = orange2, gui = "bold" },    -- Function
+		sym "@method.vue" { fg = green1, gui = "italic" }, -- Function
+		-- sym "@field" { fg = pink },          -- Identifier
+		sym "@property" { gui = "italic", fg = info },   -- Identifier
 		-- sym"@constructor"       { }, -- Special
 		-- sym"@conditional"       { }, -- Conditional
 		-- sym"@repeat"            { }, -- Repeat
@@ -369,7 +370,9 @@ local theme = lush(function(injected_functions)
 		-- sym"@keyword"           { }, -- Keyword
 		-- sym"@exception"         { }, -- Exception
 		-- sym"@variable"          { }, -- Identifier
+		sym "@variable.javascript" { fg = orange },            -- Identifier
 		-- sym"@type"              { }, -- Type
+		sym "@type.typescript" { fg = orange3, gui = "italic" }, -- Type
 		-- sym"@type.definition"   { }, -- Typedef
 		-- sym"@storageclass"      { }, -- StorageClass
 		-- sym"@structure"         { }, -- Structure

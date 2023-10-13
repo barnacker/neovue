@@ -76,7 +76,6 @@ return {
 						n = { "<cmd>Telescope notify<cr>", "notification" },
 						d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
 					},
-					a = { "<cmd>enew<cr>", "  add file" },
 					z = { "<cmd>Lazy<cr>", "鈴 lazy plugins" },
 					d = { "<cmd>Lspsaga show_buf_diagnostics ++float<cr>", "diagnostics (Buffer)" },
 					D = { "<cmd>Lspsaga show_workspace_diagnostics ++float<cr>", "Diagnostics (Workspace)" },

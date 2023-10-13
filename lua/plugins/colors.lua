@@ -9,13 +9,8 @@ local rainbowHighlights = {
 }
 return {
 	{
-		"leafOfTree/vim-vue-plugin",
-		enabled = false
-	},
-
-	{
 		"posva/vim-vue",
-		enabled = true
+		enabled = false
 	},
 	{
 		"rktjmp/lush.nvim",
