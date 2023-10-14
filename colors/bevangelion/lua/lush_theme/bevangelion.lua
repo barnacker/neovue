@@ -357,11 +357,12 @@ local theme = lush(function(injected_functions)
 		-- sym"@function"          { }, -- Function
 		-- sym"@function.builtin"  { }, -- Special
 		-- sym"@function.macro"    { }, -- Macro
-		sym "@parameter" { fg = orange },                -- Identifier
-		sym "@method" { fg = orange2, gui = "bold" },    -- Function
-		sym "@method.vue" { fg = green1, gui = "italic" }, -- Function
-		-- sym "@field" { fg = pink },          -- Identifier
-		sym "@property" { gui = "italic", fg = info },   -- Identifier
+		sym "@parameter" { fg = orange },                         -- Identifier
+		sym "@method" { fg = orange2, gui = "bold" },             -- Function
+		sym "@method.vue" { fg = green1, gui = "italic" },        -- Function
+		-- sym "@field" { fg = info, gui = "italic" },               -- Identifier
+		sym "@property" { gui = "italic", fg = info },            -- Identifier
+		sym "@lsp.type.property.lua" { gui = "italic", fg = info }, -- Identifier
 		-- sym"@constructor"       { }, -- Special
 		-- sym"@conditional"       { }, -- Conditional
 		-- sym"@repeat"            { }, -- Repeat
