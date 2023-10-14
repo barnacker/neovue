@@ -75,7 +75,7 @@ local theme = lush(function(injected_functions)
 	local red2 = hsl('#d3290f')
 	local red3 = red1.darken(30)
 	local info = hsl('#1f9fff')
-	local menu = highlight.lighten(3)
+	local menu = "black"
 	local normal = disabled.lighten(62)
 	local hint = normal.darken(30)
 
@@ -178,7 +178,7 @@ local theme = lush(function(injected_functions)
 		String { fg = yellow1 },                 --   A string constant: "this is a string"
 		-- Character      { }, --  redacter constant: 'c', '\n'
 		-- Number { fg = red1 },                    --   A number constant: 234, 0xff
-		-- Boolean { fg = green2 },                 --   A boolean constant: TRUE, false
+		Boolean { fg = orange, gui = "italic" }, --   A boolean constant: TRUE, false
 		-- Float          { }, --   A floating point constant: 2.3e10
 
 		Identifier { fg = normal.lighten(60) }, -- (*) Any variable name
@@ -313,12 +313,24 @@ local theme = lush(function(injected_functions)
 		RainbowDelimiterCyan { fg = "cyan" },
 		RainbowDelimiterYellow { fg = yellow1 },
 
+
 		CopilotSuggestion { fg = disabled.lighten(19) },
+		CmpItemAbbrDeprecated { bg = 'NONE', strikethrough = true, fg = disabled },
+		CmpItemAbbrMatch { bg = 'NONE', fg = green2 },
+		CmpItemAbbrMatchFuzzy {},
+		CmpItemKindVariable { Identifier },
+		CmpItemKindInterface { Type },
+		CmpItemKindText { String },
+		CmpItemKindFunction { Function },
+		CmpItemKindMethod { CmpItemKindFunction },
+		CmpItemKindKeyword { Statement },
+		CmpItemKindProperty { fg = info },
+		CmpItemKindUnit { CmpItemKindKeyword },
 
 
 		-- Tree-Sitter syntax groups.
 		--
-		-- See :h treesitter-highlight-groups, some groups may not be listed,
+		-- See :h sitter-highlight-groups, some groups may not be listed,
 		-- submit a PR fix to lush-template!
 		--
 		-- Tree-Sitter groups are defined with an "@" symbol, which must be
@@ -326,8 +338,8 @@ local theme = lush(function(injected_functions)
 		-- sym function. The following are all valid ways to call the sym function,
 		-- for more details see https://www.lua.org/pil/5.html
 		--
-		-- sym("@text.literal")
-		-- sym('@text.literal')
+		-- sym("@text.literal",
+		-- sym('@text.literal',
 		-- sym"@text.literal"
 		-- sym'@text.literal'
 		--
