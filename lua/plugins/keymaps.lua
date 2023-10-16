@@ -127,6 +127,7 @@ return {
 				["<F7>"] = { "<cmd>DapStepInto<cr>", "Step Into" },
 				["<S-F8>"] = { "<cmd>DapStepOut<cr>", "Step Out" },
 				["<C-F2>"] = { "<cmd>DapTerminate<cr>", "Terminate" },
+				["<F33>"] = { require('dap').disconnect(), "Disconnect" },
 				["-"] = { function()
 					require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({
 						prompt_title = "Switch to",
