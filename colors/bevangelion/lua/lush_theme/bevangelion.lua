@@ -69,8 +69,7 @@ local theme = lush(function(injected_functions)
 	local green2 = hsl('#9ef01a')
 	local green3 = hsl('#466b5a')
 	local purple1 = hsl('#b194fa')
-	local purple2 = purple1.lighten(30)
-	local purple3 = hsl('#D901F9')
+	local purple2 = hsl('#D901F9')
 	local red1 = hsl('#e52c2c')
 	local red2 = hsl('#d3290f')
 	local red3 = red1.darken(30)
@@ -140,9 +139,9 @@ local theme = lush(function(injected_functions)
 		-- PmenuExtraSel  { }, -- Popup menu: Selected item "extra text"
 		-- PmenuSbar      { }, -- Popup menu: Scrollbar.
 		-- PmenuThumb     { }, -- Popup menu: Thumb of the scrollbar.
-		Question { fg = green2 },                                    -- |hit-enter| prompt and yes/no questions
+		Question { fg = green2 },                                       -- |hit-enter| prompt and yes/no questions
 		-- QuickFixLine   { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-		Search { gui = "bold, underdashed", bg = base, fg = yellow1 }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+		Search { gui = "bold, undercurl", bg = highlight, fg = yellow1 }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 		-- SpecialKey     { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
 		-- SpellBad       { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
 		-- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
@@ -182,9 +181,9 @@ local theme = lush(function(injected_functions)
 		-- Float          { }, --   A floating point constant: 2.3e10
 
 		Identifier { fg = normal.lighten(60) }, -- (*) Any variable name
-		Function { fg = orange1 },            --   Function name (also: methods for classes)
+		Function { fg = orange1 },              --   Function name (also: methods for classes)
 
-		Statement { fg = purple1 },           -- (*) Any statement
+		Statement { gui = "italic", fg = purple1 }, -- (*) Any statement
 		-- Conditional {},                          --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
@@ -258,7 +257,7 @@ local theme = lush(function(injected_functions)
 		-- Debugger
 		DapBreakpoint { gui = "bold" },
 		DapBreakpointIcon { fg = "red", gui = "bold" },
-		DapLogPoint { fg = purple3, gui = "bold" },
+		DapLogPoint { fg = purple2, gui = "bold" },
 		DapStopped { fg = base, bg = green2, gui = "bold" },
 
 		UndotreeFirstNode { Function },
@@ -310,7 +309,7 @@ local theme = lush(function(injected_functions)
 		RainbowDelimiterBlue { fg = info },
 		RainbowDelimiterGreen { fg = green2 },
 		RainbowDelimiterOrange { fg = orange3 },
-		RainbowDelimiterViolet { fg = purple3 },
+		RainbowDelimiterViolet { fg = purple2 },
 		RainbowDelimiterCyan { fg = "cyan" },
 		RainbowDelimiterYellow { fg = yellow1 },
 
@@ -373,7 +372,7 @@ local theme = lush(function(injected_functions)
 		sym "@parameter" { fg = orange },                         -- Identifier
 		sym "@method" { fg = orange2, gui = "bold" },             -- Function
 		-- sym "@field" { fg = info, gui = "italic" },               -- Identifier
-		sym "@property" { gui = "italic", fg = info },            -- Identifier
+		sym "@property" { fg = info },                            -- Identifier
 		sym "@lsp.type.property.lua" { gui = "italic", fg = info }, -- Identifier
 		-- sym"@constructor"       { }, -- Special
 		-- sym"@conditional"       { }, -- Conditional
