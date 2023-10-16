@@ -256,9 +256,10 @@ local theme = lush(function(injected_functions)
 		-- DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
 
 		-- Debugger
-		DapBreakpoint { fg = "red", gui = "bold" },
+		DapBreakpoint { gui = "bold" },
+		DapBreakpointIcon { fg = "red", gui = "bold" },
 		DapLogPoint { fg = purple3, gui = "bold" },
-		DapStopped { fg = green2, gui = "bold" },
+		DapStopped { fg = base, bg = green2, gui = "bold" },
 
 		UndotreeFirstNode { Function },
 		-- UndotreeNode { Question },

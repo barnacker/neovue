@@ -36,9 +36,9 @@ vim.fn.sign_define("DiagnosticSignHint",
 	{ text = "󰌵", texthl = "DiagnosticSignHint" })
 
 vim.fn.sign_define('DapBreakpoint',
-	{ text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+	{ text = '', texthl = 'DapBreakpointIcon', numhl = 'DapBreakpointIcon' })
 vim.fn.sign_define('DapBreakpointCondition',
-	{ text = 'ﳁ', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+	{ text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointRejected',
 	{ text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapLogPoint',
