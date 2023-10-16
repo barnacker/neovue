@@ -73,9 +73,9 @@ return {
 				outline = {
 					close_after_jump = true,
 					keys = {
-						toggle_or_jump = 'l',
+						toggle_or_jump = '<cr>',
 						quit = 'q',
-						jump = 'h',
+						jump = 'j',
 					},
 				},
 			})
