@@ -69,8 +69,8 @@ local theme = lush(function(injected_functions)
 	local green2 = hsl('#9ef01a')
 	local green3 = hsl('#466b5a')
 	local purple1 = hsl('#b194fa')
-	local purple2 = hsl('#2F1934')
-	local purple5 = hsl('#D901F9')
+	local purple2 = purple1.lighten(30)
+	local purple3 = hsl('#D901F9')
 	local red1 = hsl('#e52c2c')
 	local red2 = hsl('#d3290f')
 	local red3 = red1.darken(30)
@@ -257,7 +257,7 @@ local theme = lush(function(injected_functions)
 
 		-- Debugger
 		DapBreakpoint { fg = "red", gui = "bold" },
-		DapLogPoint { fg = purple5, gui = "bold" },
+		DapLogPoint { fg = purple3, gui = "bold" },
 		DapStopped { fg = green2, gui = "bold" },
 
 		UndotreeFirstNode { Function },
@@ -309,7 +309,7 @@ local theme = lush(function(injected_functions)
 		RainbowDelimiterBlue { fg = info },
 		RainbowDelimiterGreen { fg = green2 },
 		RainbowDelimiterOrange { fg = orange3 },
-		RainbowDelimiterViolet { fg = purple5 },
+		RainbowDelimiterViolet { fg = purple3 },
 		RainbowDelimiterCyan { fg = "cyan" },
 		RainbowDelimiterYellow { fg = yellow1 },
 
@@ -371,7 +371,6 @@ local theme = lush(function(injected_functions)
 		-- sym"@function.macro"    { }, -- Macro
 		sym "@parameter" { fg = orange },                         -- Identifier
 		sym "@method" { fg = orange2, gui = "bold" },             -- Function
-		sym "@method.vue" { fg = green1, gui = "italic" },        -- Function
 		-- sym "@field" { fg = info, gui = "italic" },               -- Identifier
 		sym "@property" { gui = "italic", fg = info },            -- Identifier
 		sym "@lsp.type.property.lua" { gui = "italic", fg = info }, -- Identifier
@@ -393,7 +392,10 @@ local theme = lush(function(injected_functions)
 		-- sym"@include"           { }, -- Include
 		-- sym"@preproc"           { }, -- PreProc
 		-- sym"@debug"             { }, -- Debug
-		-- sym"@tag"               { }, -- Tag
+		sym "@tag" { fg = pink },                         -- Tag
+		-- Vue.js
+		sym "@tag.attribute.vue" { fg = purple1 },        -- Tag
+		sym "@method.vue" { fg = purple2, gui = "italic" }, -- Function
 	}
 end)
 
