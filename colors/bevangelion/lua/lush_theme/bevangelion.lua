@@ -180,8 +180,8 @@ local theme = lush(function(injected_functions)
 		Boolean { fg = orange, gui = "italic" }, --   A boolean constant: TRUE, false
 		-- Float          { }, --   A floating point constant: 2.3e10
 
-		Identifier { fg = normal.lighten(60) }, -- (*) Any variable name
-		Function { fg = orange1 },              --   Function name (also: methods for classes)
+		Identifier { fg = normal.lighten(60) },   -- (*) Any variable name
+		Function { fg = orange1 },                --   Function name (also: methods for classes)
 
 		Statement { gui = "italic", fg = purple1 }, -- (*) Any statement
 		-- Conditional {},                          --   if, then, else, endif, switch, etc.
@@ -392,10 +392,11 @@ local theme = lush(function(injected_functions)
 		-- sym"@include"           { }, -- Include
 		-- sym"@preproc"           { }, -- PreProc
 		-- sym"@debug"             { }, -- Debug
-		sym "@tag" { fg = pink },                                  -- Tag
+		sym "@tag" { fg = pink },                                   -- Tag
 		-- Vue.js
-		sym "@tag.attribute.vue" { fg = info },                    -- Tag
+		sym "@tag.attribute.vue" { fg = info },                     -- Tag
 		sym "@method.vue" { fg = info.lighten(40), gui = "italic" }, -- Function
+		sym "@punctuation.special.vue" { fg = info, gui = "italic" }, -- Function
 	}
 end)
 
