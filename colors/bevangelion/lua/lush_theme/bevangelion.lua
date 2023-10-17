@@ -125,9 +125,9 @@ local theme = lush(function(injected_functions)
 		-- MsgArea        { }, -- Area for messages and cmdline
 		-- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
 		-- MoreMsg        { }, -- |more-prompt|
-		NonText { fg = indent },         -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-		Normal { fg = normal, bg = base }, -- Normal text
-		NormalFloat {},                  -- Normal text in floating windows.
+		NonText { fg = indent, gui = "italic" }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+		Normal { fg = normal, bg = base },     -- Normal text
+		NormalFloat {},                        -- Normal text in floating windows.
 		-- FloatBorder    { }, -- Border of floating windows.
 		-- FloatTitle     { }, -- Title of floating windows.
 		-- NormalNC       { }, -- normal text in non-current windows
@@ -369,17 +369,18 @@ local theme = lush(function(injected_functions)
 		-- sym"@function"          { }, -- Function
 		-- sym"@function.builtin"  { }, -- Special
 		-- sym"@function.macro"    { }, -- Macro
-		sym "@parameter" { fg = orange },                         -- Identifier
-		sym "@method" { fg = orange2, gui = "bold" },             -- Function
+		sym "@parameter" { fg = orange },           -- Identifier
+		sym "@method" { fg = orange2, gui = "bold" }, -- Function
 		-- sym "@field" { fg = info, gui = "italic" },               -- Identifier
-		sym "@property" { fg = info },                            -- Identifier
-		sym "@lsp.type.property.lua" { gui = "italic", fg = info }, -- Identifier
+		sym "@property" { fg = info },              -- Identifier
+		sym "@lsp.type.property.lua" { fg = info }, -- Identifier
 		-- sym"@constructor"       { }, -- Special
 		-- sym"@conditional"       { }, -- Conditional
 		-- sym"@repeat"            { }, -- Repeat
 		-- sym"@label"             { }, -- Label
 		-- sym"@operator"          { }, -- Operator
 		-- sym"@keyword"           { }, -- Keyword
+		sym "@keyword.operator.typescript" { gui = "italic", fg = orange }, -- Keyword
 		-- sym"@exception"         { }, -- Exception
 		-- sym"@variable"          { }, -- Identifier
 		sym "@variable.javascript" { fg = orange },            -- Identifier
