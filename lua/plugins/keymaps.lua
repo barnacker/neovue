@@ -69,12 +69,12 @@ return {
 					},
 					f = {
 						name = "find...",
-						f = { "<cmd>Telescope find_files<cr>", "file" },
 						t = { "<cmd>Telescope live_grep<cr>", "text in files" },
 						r = { "<cmd>Telescope oldfiles<cr>", "recent file" },
 						s = { "<cmd>Telescope possession list<cr>", "session" },
 						n = { "<cmd>Telescope notify<cr>", "notification" },
 						d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
+						x = { "<cmd>TodoTelescope<cr>", "TODOs" },
 					},
 					z = { "<cmd>Lazy<cr>", "鈴 lazy plugins" },
 					d = { "<cmd>Lspsaga show_buf_diagnostics ++float<cr>", "diagnostics (Buffer)" },
