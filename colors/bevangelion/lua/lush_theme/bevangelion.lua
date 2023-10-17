@@ -211,11 +211,18 @@ local theme = lush(function(injected_functions)
 
 		-- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
 		-- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-		-- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-
+		-- Todo { fg = yellow1 }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+		-- TODO: Somehting
 		-- These groups are for the n765898ative LSP client and diagnostic system. Some
 		-- other LSP clients may use these groups, or use their own. Consult your
 		-- LSP client's documentation.
+		--
+		-- BUG: I have an issue here
+		-- and its not fun
+		--
+		-- FIXME: I have another issue
+		--
+		-- HACK: dont do this at homeS
 
 		-- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
 		--
