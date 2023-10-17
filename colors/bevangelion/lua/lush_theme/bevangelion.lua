@@ -393,11 +393,11 @@ local theme = lush(function(injected_functions)
 		-- sym"@include"           { }, -- Include
 		-- sym"@preproc"           { }, -- PreProc
 		-- sym"@debug"             { }, -- Debug
-		sym "@tag" { fg = pink },                                   -- Tag
+		sym "@tag" { fg = pink },                                  -- Tag
 		-- Vue.js
-		sym "@tag.attribute.vue" { fg = info },                     -- Tag
+		sym "@tag.attribute.vue" { fg = info },                    -- Tag
 		sym "@method.vue" { fg = info.lighten(40), gui = "italic" }, -- Function
-		sym "@punctuation.special.vue" { fg = info, gui = "italic" }, -- Function
+		sym "@punctuation.special.vue" { fg = info },              -- Function
 	}
 end)
 
