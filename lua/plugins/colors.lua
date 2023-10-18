@@ -9,10 +9,6 @@ local rainbowHighlights = {
 }
 return {
 	{
-		"posva/vim-vue",
-		enabled = false
-	},
-	{
 		"rktjmp/lush.nvim",
 	},
 	{
@@ -24,6 +20,7 @@ return {
 	},
 	{
 		"folke/todo-comments.nvim",
+		event = "BufRead",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {
 			-- your configuration comes here
