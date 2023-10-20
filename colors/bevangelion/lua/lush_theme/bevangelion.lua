@@ -202,10 +202,10 @@ local theme = lush(function(injected_functions)
 		-- Structure { fg = info },            --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
 
-		Special { fg = pink }, -- (*) Any special symbol
+		Special { fg = red1 }, -- (*) Any special symbol
 		-- SpecialChar    { }, --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
-		-- Delimiter      { }, --   Character that needs attention
+		Delimiter { fg = pink }, --   Character that needs attention
 		-- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
 		-- Debug          { }, --   Debugging statements
 
