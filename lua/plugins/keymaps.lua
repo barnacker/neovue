@@ -95,6 +95,11 @@ return {
 						d = { "<cmd>Lspsaga goto_definition<cr>", "definition" },
 						t = { "<cmd>Lspsaga goto_type_definition<cr>", "type definition" },
 					},
+					s = {
+						name = "swap...",
+						n = { name = "next..." },
+						p = { name = "previous..." },
+					}
 				},
 				["<f2>"] = { "<cmd>Lspsaga rename<cr>", "Rename Symbol" },
 				["<C-,>"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous Diagnostic" },
