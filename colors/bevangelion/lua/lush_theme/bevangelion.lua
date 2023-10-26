@@ -63,6 +63,7 @@ local theme = lush(function(injected_functions)
 	local orange3 = hsl('#F9A101')
 	local yellow1 = hsl('#f5c024')
 	local yellow2 = yellow1.darken(30)
+	local yellow3 = yellow1.darken(50)
 	local dormant = disabled.lighten(60)
 	local pink = hsl('#d694fa')
 	local green1 = hsl('#7cb375')
@@ -149,10 +150,9 @@ local theme = lush(function(injected_functions)
 		-- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
 		StatusLine { gui = "bold", fg = green1, bg = base },  -- Status line of current window
 		StatusLineNC { gui = "bold", fg = base, bg = purple1 }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-		TabLine { gui = "bold", fg = base, bg = yellow1 },    -- Tab pages line, not active tab page label
+		TabLine { gui = "bold", fg = base, bg = yellow3 },    -- Tab pages line, not active tab page label
 		TabLineFill {},                                       -- Tab pages line, where there are no labels
-		TabLineSel { gui = "bold", fg = yellow1, bg = base }, -- Tab pages line, active tab page label
-		WinSel { gui = "bold", fg = base, bg = red1 },        -- Tab pages line, active tab page label
+		TabLineSel { gui = "bold", fg = base, bg = yellow1 }, -- Tab pages line, active tab page label
 		Title { fg = green1 },                                -- Titles for output from ":set all", ":autocmd" etc.
 		Visual { gui = "bold", bg = yellow1, fg = base },     -- Visual mode selection
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
@@ -202,7 +202,7 @@ local theme = lush(function(injected_functions)
 		-- Structure { fg = info },            --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
 
-		Special { fg = red1 }, -- (*) Any special symbol
+		Special { fg = pink }, -- (*) Any special symbol
 		-- SpecialChar    { }, --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
 		Delimiter { fg = pink }, --   Character that needs attention
@@ -294,7 +294,9 @@ local theme = lush(function(injected_functions)
 		Size { gui = "bold", fg = base, bg = purple1 },
 		SizeCap { gui = "bold", bg = base, fg = purple1 },
 		Session { gui = "bold", bg = green1, fg = base },
-
+		WinErr { gui = "bold", fg = base, bg = red1 }, -- Tab pages line, active tab page label
+		WinOK { gui = "bold", fg = base, bg = green2 }, -- Tab pages line, active tab page label
+		Win { gui = "bold", fg = base, bg = yellow2 }, -- Tab pages line, active tab page label
 
 
 		TelescopeMatching { Search },

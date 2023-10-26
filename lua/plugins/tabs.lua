@@ -1,12 +1,13 @@
 local theme = {
 	fill = 'TabLineFill',
 	-- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
-	head = 'TabLine',
-	current_tab = 'TabLineSel',
-	current_win = "WinSel",
-	tab = 'TabLine',
+	head = 'TabLineSel',
 	win = 'TabLine',
-	tail = 'TabLine',
+	current_win_error = "WinErr",
+	current_win_ok = "WinOK",
+	tab = 'TabLine',
+	current_tab = 'TabLineSel',
+	tail = 'TabLineSel',
 }
 
 local function tab_diagnostics(tab)
@@ -63,9 +64,15 @@ local function lsp_diag(buf)
 		table.insert(diagstring, string.format(diagformat, count[4], "󰌵"))
 	end
 	if next(diagstring) == nil then
-		return ""
+		return {
+			error = false,
+			display = ""
+		}
 	end
-	return "" .. table.concat(diagstring, "")
+	return {
+		error = true,
+		display = "" .. table.concat(diagstring, "")
+	}
 end
 
 local function buffer_name(buf)
@@ -89,7 +96,7 @@ return {
 					local hl = tab.is_current() and theme.current_tab or theme.tab
 					return {
 						line.sep('', hl, theme.fill),
-						not tab.is_current() and tab.number() .. ' ' or '',
+						not tab.is_current() and tab.number() or '',
 						tab_modified(tab),
 						tab.name(),
 						tab_diagnostics(tab),
@@ -99,17 +106,24 @@ return {
 						margin = ' ',
 					}
 				end),
-				line.sep('', theme.win, theme.fill),
+				line.sep('', theme.tail, theme.fill),
 				line.spacer(),
 
-				line.sep('', theme.win, theme.fill),
+				line.sep('', theme.tail, theme.fill),
 				line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-					local hl = win.is_current() and theme.current_win or theme.tab
+					local lsp_diag = lsp_diag(win.buf().id)
+					local hl = win.is_current()
+							and (
+								lsp_diag.error
+								and theme.current_win_error
+								or theme.current_win_ok
+							)
+							or theme.win
 					return {
 						line.sep('', hl, theme.fill),
 						buf_modified(win.buf().id),
 						buffer_name(win.buf_name()),
-						lsp_diag(win.buf().id),
+						lsp_diag.display,
 						line.sep('', hl, theme.fill),
 						hl = hl,
 						margin = ' ',
