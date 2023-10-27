@@ -202,7 +202,9 @@ return {
 	{
 		"folke/twilight.nvim",
 		-- lazy = true,
-		opts = {}
+		opts = {
+			treesitter = false,
+		}
 	},
 	{
 		"folke/zen-mode.nvim",
