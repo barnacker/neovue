@@ -203,7 +203,7 @@ return {
 		"folke/twilight.nvim",
 		-- lazy = true,
 		opts = {
-			treesitter = false,
+			-- treesitter = false,
 		}
 	},
 	{
