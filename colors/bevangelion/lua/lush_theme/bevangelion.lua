@@ -151,7 +151,7 @@ local theme = lush(function(injected_functions)
 		StatusLine { gui = "bold", fg = green1, bg = base },  -- Status line of current window
 		StatusLineNC { gui = "bold", fg = base, bg = purple1 }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		TabLine { gui = "bold", fg = base, bg = yellow3 },    -- Tab pages line, not active tab page label
-		TabLineFill {},                                       -- Tab pages line, where there are no labels
+		TabLineFill { fg = yellow1 },                         -- Tab pages line, where there are no labels
 		TabLineSel { gui = "bold", fg = base, bg = yellow1 }, -- Tab pages line, active tab page label
 		Title { fg = green1 },                                -- Titles for output from ":set all", ":autocmd" etc.
 		Visual { gui = "bold", bg = yellow1, fg = base },     -- Visual mode selection
@@ -294,7 +294,7 @@ local theme = lush(function(injected_functions)
 		Size { gui = "bold", fg = base, bg = purple1 },
 		SizeCap { gui = "bold", bg = base, fg = purple1 },
 		Session { gui = "bold", bg = green1, fg = base },
-		WinErr { gui = "bold", fg = base, bg = red1 }, -- Tab pages line, active tab page label
+		WinErr { gui = "bold", fg = base, bg = "red" }, -- Tab pages line, active tab page label
 		WinOK { gui = "bold", fg = base, bg = green2 }, -- Tab pages line, active tab page label
 		Win { gui = "bold", fg = base, bg = yellow2 }, -- Tab pages line, active tab page label
 

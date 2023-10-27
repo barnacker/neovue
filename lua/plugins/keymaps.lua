@@ -149,7 +149,6 @@ return {
 				["<A-7>"] = { "<cmd>tabn 7<cr>", "Go to tab 7" },
 				["<A-8>"] = { "<cmd>tabn 8<cr>", "Go to tab 8" },
 				["<A-9>"] = { "<cmd>tabn 9<cr>", "Go to tab 9" },
-				["<A-9>"] = { "<cmd>tabn 9<cr>", "Go to tab 9" },
 
 			})
 		end,

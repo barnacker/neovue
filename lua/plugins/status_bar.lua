@@ -60,7 +60,7 @@ return {
 						t = "T",
 					},
 					mode_colors = {
-						n = "TabLine",
+						n = "TabLineSel",
 						i = "InsertMode",
 						v = "StatusLineNC",
 						V = "StatusLineNC",
@@ -130,6 +130,7 @@ return {
 					if fsize < 1024 then
 						return fsize .. suffix[1]
 					end
+					---@diagnostic disable-next-line: param-type-mismatch
 					local i = math.floor((math.log(fsize) / math.log(1024)))
 					return (string.format("%s %.2f%s", " ", fsize / math.pow(1024, i), suffix[i + 1]))
 				end,

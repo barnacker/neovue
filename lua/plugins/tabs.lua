@@ -17,7 +17,7 @@ local function tab_diagnostics(tab)
 		local diagnostics = vim.diagnostic.get(vim.api.nvim_win_get_buf(x))
 		for _, diagnostic in ipairs(diagnostics) do
 			if diagnostic.severity < 4 then
-				return "⁉"
+				return "󰇷"
 			end
 		end
 	end
@@ -52,13 +52,13 @@ local function lsp_diag(buf)
 		count[diagnostic.severity] = count[diagnostic.severity] + 1
 	end
 	if count[1] > 0 then
-		table.insert(diagstring, string.format(diagformat, count[1], " "))
+		table.insert(diagstring, string.format(diagformat, count[1], ""))
 	end
 	if count[2] > 0 then
-		table.insert(diagstring, string.format(diagformat, count[2], " "))
+		table.insert(diagstring, string.format(diagformat, count[2], ""))
 	end
 	if count[3] > 0 then
-		table.insert(diagstring, string.format(diagformat, count[3], " "))
+		table.insert(diagstring, string.format(diagformat, count[3], ""))
 	end
 	if count[4] > 0 then
 		table.insert(diagstring, string.format(diagformat, count[4], "󰌵"))
@@ -71,7 +71,7 @@ local function lsp_diag(buf)
 	end
 	return {
 		error = true,
-		display = "" .. table.concat(diagstring, "")
+		display = table.concat(diagstring, " ")
 	}
 end
 
@@ -89,8 +89,7 @@ return {
 		require('tabby.tabline').set(function(line)
 			return {
 				{
-					{ ' neovue ', hl = theme.head },
-					line.sep('', theme.head, theme.fill),
+					{ '󰽙 ', hl = theme.fill },
 				},
 				line.tabs().foreach(function(tab)
 					local hl = tab.is_current() and theme.current_tab or theme.tab
@@ -98,23 +97,23 @@ return {
 						line.sep('', hl, theme.fill),
 						not tab.is_current() and tab.number() or '',
 						tab_modified(tab),
-						tab.name(),
-						tab_diagnostics(tab),
+						tab.name() .. tab_diagnostics(tab),
 						tab.close_btn(''),
 						line.sep('', hl, theme.fill),
 						hl = hl,
 						margin = ' ',
 					}
 				end),
+				line.truncate_point(),
 				line.sep('', theme.tail, theme.fill),
 				line.spacer(),
 
 				line.sep('', theme.tail, theme.fill),
 				line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-					local lsp_diag = lsp_diag(win.buf().id)
+					local diag = lsp_diag(win.buf().id)
 					local hl = win.is_current()
 							and (
-								lsp_diag.error
+								diag.error
 								and theme.current_win_error
 								or theme.current_win_ok
 							)
@@ -123,14 +122,14 @@ return {
 						line.sep('', hl, theme.fill),
 						buf_modified(win.buf().id),
 						buffer_name(win.buf_name()),
-						lsp_diag.display,
+						diag.display,
 						line.sep('', hl, theme.fill),
 						hl = hl,
 						margin = ' ',
 					}
 				end),
 				{
-					line.sep('', theme.tail, theme.fill),
+					{ '  ', hl = theme.fill },
 				},
 				hl = theme.fill,
 			}
