@@ -201,12 +201,12 @@ return {
 	},
 	{
 		"folke/twilight.nvim",
-		lazy = true,
+		-- lazy = true,
 		opts = {}
 	},
 	{
 		"folke/zen-mode.nvim",
-		lazy = true,
+		-- lazy = true,
 		opts = {}
 	},
 }
