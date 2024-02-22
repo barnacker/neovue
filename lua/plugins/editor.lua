@@ -209,7 +209,7 @@ return {
 				---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
 				-- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 				incremental_selection = {
-					enable = true,
+					enable = false,
 					keymaps = {
 						init_selection = '<cr>', -- set to `false` to disable one of the mappings
 						scope_incremental = false,

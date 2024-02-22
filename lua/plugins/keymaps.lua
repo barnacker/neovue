@@ -70,7 +70,8 @@ return {
 					f = {
 						name = "find...",
 						t = { "<cmd>Telescope live_grep<cr>", "text in files" },
-						r = { "<cmd>Telescope oldfiles<cr>", "recent file" },
+						h = { "<cmd>Telescope oldfiles<cr>", "file history" },
+						r = { "<cmd>Telescope resume<cr>", "resume search" },
 						s = { "<cmd>Telescope possession list<cr>", "session" },
 						n = { "<cmd>Telescope notify<cr>", "notification" },
 						d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
