@@ -98,7 +98,7 @@ if vim.fn.has("persistent_undo") then
 	vim.o.undofile = true
 end
 
-if true then
+if false then
 	vim.g.clipboard = {
 		name = "win32yank-wsl",
 		copy = {
