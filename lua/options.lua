@@ -97,3 +97,18 @@ if vim.fn.has("persistent_undo") then
 	vim.o.undodir = target_path
 	vim.o.undofile = true
 end
+
+if true then
+	vim.g.clipboard = {
+		name = "win32yank-wsl",
+		copy = {
+			["+"] = "win32yank -i --crlf",
+			["*"] = "win32yank -i --crlf",
+		},
+		paste = {
+			["+"] = "win32yank -o --lf",
+			["*"] = "win32yank -o --lf",
+		},
+		cache_enabled = true,
+	}
+end

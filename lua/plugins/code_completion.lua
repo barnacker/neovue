@@ -411,6 +411,20 @@ return {
 					variables = {},
 				},
 			}
+			lspconfig.clangd.setup {
+				-- Format on save
+				---@diagnostic disable-next-line: unused-local
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format()
+						end
+					})
+				end,
+				capabilities = capabilities,
+				cmd = { "clangd-12", "--background-index" },
+			}
 		end,
 	},
 }
