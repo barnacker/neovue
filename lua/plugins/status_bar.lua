@@ -9,8 +9,51 @@ return {
 			"linrongbin16/lsp-progress.nvim",
 		},
 		config = function()
-			local conditions   = require("heirline.conditions")
-			local utils        = require("heirline.utils")
+			local conditions = require("heirline.conditions")
+			local utils      = require("heirline.utils")
+
+
+			local mode_hl      = function(self)
+				local mode        = vim.fn.mode(1):sub(1, 1) -- get only the first mode character
+				local mode_colors = {
+					n = "Session",
+					i = "InsertMode",
+					v = "StatusLineNC",
+					V = "StatusLineNC",
+					["\22"] = "cyan",
+					c = "TabLine",
+					s = "TabLine",
+					S = "TabLine",
+					["\19"] = "TabLine",
+					R = "TabLine",
+					r = "TabLine",
+					["!"] = "TabLine",
+					t = "TabLine",
+				}
+
+				return mode_colors[mode]
+			end
+
+			local mode_rev_hl  = function(self)
+				local mode        = vim.fn.mode(1):sub(1, 1) -- get only the first mode character
+				local mode_colors = {
+					n = "Title",
+					i = "DapBreakpointIcon",
+					v = "SizeCap",
+					V = "SizeCap",
+					["\22"] = "cyan",
+					c = "TabLineFill",
+					s = "TabLineFill",
+					S = "TabLineFill",
+					["\19"] = "TabLineFill",
+					R = "TabLineFill",
+					r = "TabLineFill",
+					["!"] = "TabLineFill",
+					t = "TabLineFill",
+				}
+
+				return mode_colors[mode]
+			end
 
 			local ViMode       = {
 				-- get vim current mode, this information will be required by the provider
@@ -59,21 +102,6 @@ return {
 						["!"] = "!",
 						t = "T",
 					},
-					mode_colors = {
-						n = "TabLineSel",
-						i = "InsertMode",
-						v = "StatusLineNC",
-						V = "StatusLineNC",
-						["\22"] = "cyan",
-						c = "TabLine",
-						s = "TabLine",
-						S = "TabLine",
-						["\19"] = "TabLine",
-						R = "TabLine",
-						r = "TabLine",
-						["!"] = "TabLine",
-						t = "TabLine",
-					}
 				},
 				-- We can now access the value of mode() that, by now, would have been
 				-- computed by `init()` and use it to index our strings dictionary.
@@ -86,10 +114,7 @@ return {
 					return self.mode_names[self.mode] .. ""
 				end,
 				-- Same goes for the highlight. Now the foreground will change according to the current mode.
-				hl = function(self)
-					local mode = self.mode:sub(1, 1) -- get only the first mode character
-					return self.mode_colors[mode]
-				end,
+				hl = mode_hl,
 				-- Re-evaluate the component only on ModeChanged event!
 				-- Also allows the statusline to be re-evaluated when entering operator-pending mode
 				update = {
@@ -260,7 +285,7 @@ return {
 
 			local Session = {
 				provider = session_name,
-				hl = "Session"
+				hl = mode_hl,
 			}
 
 			local Align = { provider = "%=" }
@@ -277,6 +302,7 @@ return {
 			local SizeStart = { provider = "", hl = "SizeCap" }
 			local flexSession = {
 				{
+					hl = mode_rev_hl,
 					flexible = 1,
 					{ provider = string.rep("", 5) },
 					{ provider = string.rep("", 4) },
@@ -286,11 +312,13 @@ return {
 					{ provider = "" },
 				},
 				{
-					Start,
+					hl = mode_hl,
+					End,
 					Session,
-					End
+					Start,
 				},
 				{
+					hl = mode_rev_hl,
 					flexible = 1,
 					{ provider = string.rep("", 5) },
 					{ provider = string.rep("", 4) },

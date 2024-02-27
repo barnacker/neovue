@@ -284,7 +284,7 @@ local theme = lush(function(injected_functions)
 		IblScope { fg = orange1 },
 
 		-- Custom Bar Items
-		InsertMode { gui = "bold", fg = base, bg = green1 },
+		InsertMode { gui = "bold", fg = base, bg = "red" },
 		Encoding { gui = "bold", fg = base, bg = orange2 },
 		EncodingCap { gui = "bold", bg = base, fg = orange2 },
 		LineFeed { gui = "bold", fg = base, bg = red2 },
