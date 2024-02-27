@@ -423,7 +423,8 @@ return {
 					})
 				end,
 				capabilities = capabilities,
-				cmd = { "clangd-12", "--background-index" },
+				-- cmd = { "clangd-12", "--background-index" },
+				cmd = { "clangd", "--offset-encoding=utf-16" },
 			}
 		end,
 	},

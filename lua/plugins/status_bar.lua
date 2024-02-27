@@ -207,8 +207,12 @@ return {
 					condition = function(self)
 						return self.has_changes
 					end,
-					provider = ")",
+					provider = ")",
 				},
+				{
+					provider = "",
+				},
+
 			}
 
 			-- We're getting minimalists here!
