@@ -280,7 +280,7 @@ return {
 			}
 
 			local function session_name()
-				return require('possession.session').session_name or ''
+				return require('possession.session').get_session_name() or ''
 			end
 
 			local Session = {

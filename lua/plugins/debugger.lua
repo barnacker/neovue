@@ -13,6 +13,7 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
+			"nvim-neotest/nvim-nio",
 			"rcarriga/nvim-dap-ui",
 			"mxsdev/nvim-dap-vscode-js",
 			-- build debugger from source

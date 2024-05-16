@@ -52,7 +52,6 @@ local hsl = lush.hsl
 local theme = lush(function(injected_functions)
 	local sym = injected_functions.sym
 	-- Palette
-	-- local base = hsl(240, 14, 10)
 	local base = hsl('#01161C')
 	local disabled = hsl('#686858')
 	local highlight = base.lighten(2)
