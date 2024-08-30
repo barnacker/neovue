@@ -1,13 +1,5 @@
 return {
 	{
-		'xiyaowong/transparent.nvim',
-		opts = {
-			groups = {
-				'Normal'
-			},
-		},
-	},
-	{
 		'stevearc/dressing.nvim',
 		opts = {},
 	},
