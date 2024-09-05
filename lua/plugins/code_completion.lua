@@ -259,9 +259,9 @@ return {
 						workspace = {
 							checkThirdParty = false,
 						},
-						-- diagnostics = {
-						-- 	globals = { "vim" }
-						-- }
+						diagnostics = {
+							globals = { "vim" }
+						}
 					}
 				}
 			}
@@ -373,6 +373,7 @@ return {
 				end,
 				capabilities = capabilitiesVSCode,
 			}
+
 
 			lspconfig.cssls.setup {
 				-- Format on save
