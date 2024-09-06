@@ -107,6 +107,7 @@ return {
 				{ "<leader>cf", "<cmd> Lspsaga finder<cr>", desc = "find" },
 				{ "<leader>d", "<cmd>Lspsaga show_buf_diagnostics ++float<cr>", desc = "diagnostics (Buffer)" },
 				{ "<leader>f", group = "find..." },
+				{ "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<cr>", desc = " find all" },
 				{ "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "diagnostics" },
 				{ "<leader>fh", "<cmd>Telescope oldfiles<cr>", desc = "file history" },
 				{ "<leader>fn", "<cmd>Telescope notify<cr>", desc = "notification" },

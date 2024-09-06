@@ -112,6 +112,8 @@ return {
 							i = { ["<CR>"] = actions.select_tab_drop }
 						},
 						find_files = {
+							hidden = true,
+							no_ignore = true,
 							mappings = {
 								i = { ["<CR>"] = actions.select_tab_drop }
 							}

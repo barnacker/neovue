@@ -141,7 +141,7 @@ return {
 								},
 							},
 							position = "left",
-							size = 50
+							size = 150
 						},
 						{
 							elements = {
